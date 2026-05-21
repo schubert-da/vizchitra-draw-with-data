@@ -1,0 +1,12 @@
+@theme {
+	--color-primary: #fc341e;
+	--color-primary-400: #fc5543;
+	--color-primary-300: #fc6b5b;
+	--color-primary-250: #fc7667;
+	--color-primary-200: #fc8073;
+	--color-primary-150: #fc968a;
+	--color-primary-100: #fdb7af;
+	--color-secondary: #ffbe00;
+	--color-locked: #141414;
+	--color-dark-bg: #1e1e1e;
+}
