@@ -91,15 +91,15 @@
 
 	.timer {
 		position: fixed;
-		bottom: 1em;
-		left: 1.5em;
+		bottom: 1rem;
+		left: 1.5rem;
 		z-index: 10;
 	}
 
 	.controls {
 		position: fixed;
-		right: 2em;
-		bottom: 2em;
+		right: 2rem;
+		bottom: 2rem;
 		z-index: 10;
 		opacity: 0.7;
 	}
