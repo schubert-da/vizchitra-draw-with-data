@@ -12,7 +12,9 @@ const config = {
 		alias: {
 			$assets: 'src/lib/assets',
 			$utils: 'src/lib/utils',
-			$components: 'src/lib/components'
+			$components: 'src/lib/components',
+			$slides: 'src/lib/slides.js',
+			$templates: 'src/lib/templates'
 		}
 	},
 	preprocess: [mdsvex({ extensions: ['.svx', '.md'] })],
