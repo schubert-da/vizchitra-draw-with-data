@@ -1,5 +1,5 @@
 <script>
-	import SvelteMarkdown from 'svelte-markdown';
+	import { marked } from 'marked';
 
 	let { text } = $props();
 
@@ -20,7 +20,7 @@
 				.map(([property, value]) => `${property}: ${value}`)
 				.join('; ')}
 		>
-			<SvelteMarkdown source={text} isInline />
+			{@html marked.parseInline(text)}
 		</p>
 	{/each}
 </div>
