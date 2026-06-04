@@ -9,4 +9,14 @@
 	--color-secondary: #ffbe00;
 	--color-locked: #141414;
 	--color-dark-bg: #1e1e1e;
+
+	--color-palette-white: #efeee5;
+	--color-palette-purple: #bca1c1;
+	--color-palette-purple-dark: #8d708c;
+	--color-palette-blue: #509ad2;
+	--color-palette-blue-dark: #3765bf;
+	--color-palette-orange: #e18c65;
+	--color-palette-orange-dark: #b66144;
+	--color-palette-yellow: #fdce8c;
+	--color-palette-yellow-dark: #eac0b7;
 }
