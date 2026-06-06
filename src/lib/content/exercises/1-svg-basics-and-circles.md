@@ -46,4 +46,10 @@ Its attributes are:
 - **`stroke`** - the colour of the circle border(the "stroke")
 - **`stroke-width`** - the width of the circle border.
 
-Try nudging `cx` and `cy` around, then change `r`, to feel how the circle is anchored from the middle outward.
+Try nudging `cx` and `cy` around, then change `r`, to feel how the circle is anchored from the middle outward. In fact, lets try creating a scatter plot where we have dots for the following points:
+
+- coordinates (x = 40%, y = 25%)
+- coordinates (x = 25%, y = 25%)
+- coordinates (x = 50%, y = 50%)
+- coordinates (x = 10%, y = 33%)
+- coordinates (x = 80%, y = 70%)
