@@ -1,13 +1,14 @@
 // Ordered index of exercises, used by the listing page (/exercises),
-// plus an explicit slug -> lesson registry used by the lesson layout
-// (src/routes/exercises/(lesson)/+layout.svelte) to render the sidebar.
+// plus a slug -> lesson registry used by the lesson layout
+// (src/routes/exercises/+layout.svelte) to render the sidebar.
+//
+// Each lesson module is imported as a namespace object exposing `.default`
+// (the compiled component) and `.metadata` (the frontmatter).
 //
 // To add a lesson: create src/lib/content/exercises/<slug>.md, import it
 // below, and add an entry to both `exercises` and `lessons`.
-import SvgBasics, { metadata as svgBasicsMeta } from '$lib/content/exercises/svg-basics.md';
-import SvgCoordinates, {
-	metadata as svgCoordinatesMeta
-} from '$lib/content/exercises/svg-coordinates.md';
+import * as svgBasics from '$lib/content/exercises/svg-basics.md';
+import * as svgCoordinates from '$lib/content/exercises/svg-coordinates.md';
 
 export const exercises = [
 	{ id: 1, slug: 'svg-basics', title: 'SVG Basics', path: '/exercises/svg-basics' },
@@ -15,6 +16,6 @@ export const exercises = [
 ];
 
 export const lessons = {
-	'svg-basics': { component: SvgBasics, metadata: svgBasicsMeta },
-	'svg-coordinates': { component: SvgCoordinates, metadata: svgCoordinatesMeta }
+	'svg-basics': svgBasics,
+	'svg-coordinates': svgCoordinates
 };

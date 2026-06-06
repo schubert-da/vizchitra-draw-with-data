@@ -54,7 +54,7 @@
 </svelte:head>
 
 {#if lesson}
-	{@const Lesson = lesson.component}
+	{@const Lesson = lesson.default}
 	<div class="exercise">
 		<aside class="sidebar">
 			<div class="lesson" bind:this={lessonEl}>
