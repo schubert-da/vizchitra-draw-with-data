@@ -1,8 +1,23 @@
 <script>
-	// Two-pane lesson shell: a scrollable sidebar that renders the lesson markdown
-	// (passed in as `lesson`) beside a workspace pane (`children`) for the editor/output.
-	let { lesson: Lesson, children } = $props();
+	// Layout for everything under /exercises.
+	//
+	// Lesson routes (/exercises/<slug>) get the two-pane shell: a scrollable
+	// sidebar that renders the lesson markdown, beside a workspace pane filled
+	// by the child +page.svelte via {@render children()}.
+	//
+	// The /exercises index list isn't a lesson, so it renders plainly — we gate
+	// on whether the current route's slug matches a known lesson.
+	import { page } from '$app/state';
+	import { lessons } from '$components/Exercises/exerciseConfig.js';
 
+	let { children } = $props();
+
+	// Resolve the current lesson from the route's last path segment.
+	// On the index (/exercises) the slug is "exercises", which has no lesson.
+	let slug = $derived(page.url.pathname.split('/').filter(Boolean).pop());
+	let lesson = $derived(lessons[slug]);
+
+	/** @type {HTMLElement} */
 	let lessonEl;
 
 	// Single delegated click handler for every code block's Copy button.
@@ -10,8 +25,9 @@
 		const el = lessonEl;
 		if (!el) return;
 
+		/** @param {MouseEvent} e */
 		function onClick(e) {
-			const btn = e.target.closest?.('.code-block-copy');
+			const btn = /** @type {HTMLElement} */ (e.target).closest?.('.code-block-copy');
 			if (!btn) return;
 
 			const pre = btn.closest('.code-block')?.querySelector('pre');
@@ -33,17 +49,27 @@
 	});
 </script>
 
-<div class="exercise">
-	<aside class="sidebar">
-		<div class="lesson" bind:this={lessonEl}>
-			<Lesson />
-		</div>
-	</aside>
+<svelte:head>
+	{#if lesson}<title>{lesson.metadata?.title ?? 'Exercise'} • Exercises</title>{/if}
+</svelte:head>
 
-	<main class="workspace">
-		{@render children?.()}
-	</main>
-</div>
+{#if lesson}
+	{@const Lesson = lesson.component}
+	<div class="exercise">
+		<aside class="sidebar">
+			<div class="lesson" bind:this={lessonEl}>
+				<Lesson />
+			</div>
+		</aside>
+
+		<main class="workspace">
+			{@render children()}
+		</main>
+	</div>
+{:else}
+	<!-- Not a lesson (e.g. the /exercises index) — render the page as-is. -->
+	{@render children()}
+{/if}
 
 <style>
 	.exercise {
@@ -60,8 +86,8 @@
 	}
 
 	.workspace {
-		flex: 1 1 0;
-		min-width: 0;
+		width: 100%;
+		height: 100%;
 		display: flex;
 		align-items: center;
 		justify-content: center;

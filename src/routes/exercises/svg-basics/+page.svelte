@@ -1,14 +1,5 @@
-<script>
-	import LessonLayout from '$components/Exercises/LessonLayout.svelte';
-	import Lesson, { metadata } from '$lib/content/exercises/svg-basics.md';
-</script>
-
-<svelte:head><title>{metadata.title} • Exercises</title></svelte:head>
-
-<LessonLayout lesson={Lesson}>
-	<!-- Workspace placeholder; the editable code + live output lands here later. -->
-	<p class="workspace-placeholder">Output coming soon</p>
-</LessonLayout>
+<!-- Workspace for the SVG Basics lesson; the editable code + live output lands here later. -->
+<p class="workspace-placeholder">Output coming soon</p>
 
 <style>
 	.workspace-placeholder {
