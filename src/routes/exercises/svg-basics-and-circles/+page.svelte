@@ -1,8 +1,11 @@
-<!-- Workspace for the SVG Basics and Circles lesson; the editable code + live output lands here later. -->
-<p class="workspace-placeholder">Output coming soon</p>
+<!-- 1. SVG Basics and Circles -->
+<!-- Write your code here -->
 
 <style>
-	.workspace-placeholder {
-		font-size: 0.95rem;
+	/* CLASSES: if you add the attribute class="chart" to the SVG 
+	element, it would get the following styling */
+	.chart {
+		background: #eee; /* light grey background */
+		border: 1px solid #222; /* thin grey border */
 	}
 </style>

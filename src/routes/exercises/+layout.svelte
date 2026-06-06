@@ -79,7 +79,8 @@
 	}
 
 	.sidebar {
-		width: min(40%, 500px);
+		flex: 0 0 auto;
+		width: min(35%, 500px);
 		max-width: 100%;
 		overflow-y: auto;
 		background: var(--color-palette-white);
