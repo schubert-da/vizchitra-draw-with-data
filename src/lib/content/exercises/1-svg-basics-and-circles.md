@@ -23,9 +23,7 @@ Each attribute is doing a specific job:
 - **`class`**: the CSS class `chart` is a reusable style we wish to apply to all charts.
 
 > [!NOTE]
-> SVG's coordinate system starts at the **top-left** corner, `(0, 0)`. `x` increases to the
-> right and `y` increases _downward_ - so `y="20"` is 20px _down_ from the top, not up from the
-> bottom.
+> SVG's coordinate system starts at the **top-left** corner, `(0, 0)`. `x` increases to the right and `y` increases _downward_ - so `y="20"` is 20px _down_ from the top, not up from the bottom.
 
 ---
 
