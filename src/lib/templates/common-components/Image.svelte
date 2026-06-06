@@ -64,8 +64,7 @@
 		object-fit: contain;
 
 		&.frame {
-			filter: drop-shadow(0.3rem 0.3rem 0 var(--color-locked))
-				drop-shadow(0.3rem 0.3rem 0 white);
+			filter: drop-shadow(0.3rem 0.3rem 0 var(--color-text)) drop-shadow(0.3rem 0.3rem 0 white);
 		}
 	}
 

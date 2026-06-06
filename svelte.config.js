@@ -35,7 +35,7 @@ const highlight = {
 			: `<span class="code-block__lang">${safeLang}</span>`;
 		const head =
 			`<div class="code-block__head">${label}` +
-			`<button class="code-block__copy" type="button" aria-label="Copy code">Copy</button></div>`;
+			`<button class="code-block-copy" type="button" aria-label="Copy code">Copy</button></div>`;
 
 		return escapeSvelte(`<div class="code-block">${head}${pre}</div>`);
 	}
