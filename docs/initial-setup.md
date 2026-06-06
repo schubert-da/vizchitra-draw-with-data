@@ -65,7 +65,7 @@ src/
 | `--color-primary-150` | `#FC968A` | `bg-primary-150`       |
 | `--color-primary-100` | `#FDB7AF` | `bg-primary-100`       |
 | `--color-secondary`   | `#FFBE00` | `bg-secondary`         |
-| `--color-locked`      | `#141414` | `bg-locked`            |
+| `--color-text`        | `#141414` | `bg-text`              |
 | `--color-dark-bg`     | `#1E1E1E` | `bg-dark-bg`           |
 
 - Gradients can be composed inline with Tailwind: `bg-linear-to-r from-primary to-primary-100`

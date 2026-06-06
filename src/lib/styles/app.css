@@ -30,7 +30,7 @@ svg {
 	height: 100%;
 	padding: var(--padding);
 	font-size: var(--base-font-size);
-	color: var(--color-locked);
+	color: var(--color-text);
 }
 
 .slide h1 {
