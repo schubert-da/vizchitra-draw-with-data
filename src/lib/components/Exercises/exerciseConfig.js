@@ -7,20 +7,20 @@
 //
 // To add a lesson: create src/lib/content/exercises/<slug>.md, import it
 // below, and add an entry to both `exercises` and `lessons`.
-import * as svgBasicsAndCircles from '$lib/content/exercises/svg-basics-and-circles.md';
-import * as svgCoordinates from '$lib/content/exercises/svg-coordinates.md';
+import * as svgBasicsAndCircles from '$lib/content/exercises/1-svg-basics-and-circles.md';
+import * as rectangles from '$lib/content/exercises/2-rectangles.md';
 
 export const exercises = [
 	{
 		id: 1,
-		slug: 'svg-basics-and-circles',
+		slug: '1-svg-basics-and-circles',
 		title: 'SVG Basics and Circles',
-		path: '/exercises/svg-basics-and-circles'
+		path: '/exercises/1-svg-basics-and-circles'
 	},
-	{ id: 2, slug: 'svg-coordinates', title: 'SVG Coordinates', path: '/exercises/svg-coordinates' }
+	{ id: 2, slug: '2-rectangles', title: 'Rectangles', path: '/exercises/2-rectangles' }
 ];
 
 export const lessons = {
-	'svg-basics-and-circles': svgBasicsAndCircles,
-	'svg-coordinates': svgCoordinates
+	'1-svg-basics-and-circles': svgBasicsAndCircles,
+	'2-rectangles': rectangles
 };
