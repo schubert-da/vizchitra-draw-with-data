@@ -79,7 +79,8 @@
 	}
 
 	.sidebar {
-		flex: 0 0 clamp(320px, 33%, 480px);
+		width: min(40%, 500px);
+		max-width: 100%;
 		overflow-y: auto;
 		background: var(--color-palette-white);
 		border-right: 1px solid color-mix(in srgb, var(--color-text) 12%, transparent);
@@ -150,8 +151,24 @@
 		padding-left: 1.4rem;
 	}
 
+	/* Tailwind's preflight removes list markers — add them back. */
+	.lesson :global(ul) {
+		list-style: disc;
+	}
+
+	.lesson :global(ol) {
+		list-style: decimal;
+	}
+
 	.lesson :global(li) {
 		margin: 0.25rem 0;
+	}
+
+	/* Section separator (markdown `---`). */
+	.lesson :global(hr) {
+		margin: 2.5rem 0;
+		border: none;
+		border-top: 1px solid color-mix(in srgb, var(--color-text) 15%, transparent);
 	}
 
 	.lesson :global(a),
