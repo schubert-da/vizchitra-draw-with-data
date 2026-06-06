@@ -9,6 +9,7 @@
 // below, and add an entry to both `exercises` and `lessons`.
 import * as svgBasicsAndCircles from '$lib/content/exercises/1-svg-basics-and-circles.md';
 import * as rectangles from '$lib/content/exercises/2-rectangles.md';
+import * as lines from '$lib/content/exercises/3-lines.md';
 
 export const exercises = [
 	{
@@ -17,10 +18,12 @@ export const exercises = [
 		title: 'SVG Basics and Circles',
 		path: '/exercises/1-svg-basics-and-circles'
 	},
-	{ id: 2, slug: '2-rectangles', title: 'Rectangles', path: '/exercises/2-rectangles' }
+	{ id: 2, slug: '2-rectangles', title: 'Rectangles', path: '/exercises/2-rectangles' },
+	{ id: 3, slug: '3-lines', title: 'Lines', path: '/exercises/3-lines' }
 ];
 
 export const lessons = {
 	'1-svg-basics-and-circles': svgBasicsAndCircles,
-	'2-rectangles': rectangles
+	'2-rectangles': rectangles,
+	'3-lines': lines
 };
