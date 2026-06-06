@@ -245,7 +245,8 @@
 	.lesson :global(pre.shiki) {
 		margin: 0;
 		padding: 1rem;
-		overflow-x: auto;
+		white-space: pre-wrap;
+		overflow-wrap: anywhere;
 		background-color: var(--color-dark-bg) !important;
 	}
 
