@@ -9,7 +9,7 @@ treemaps are all just rectangles in disguise. Here's how you can create one:
 
 ```svelte
 /// file: A single rectangle
-<svg class="chart" width="800" height="400">
+<svg class="chart" width="700" height="400">
 	<rect x="20" y="20" width="160" height="80" fill="tomato" rx="6" />
 </svg>
 ```

@@ -11,7 +11,7 @@ Here's the simplest possible drawing - a rectangle inside an SVG (_ignore the re
 
 ```svelte
 /// file: Basic SVG
-<svg class="chart" width="800" height="400">
+<svg class="chart" width="700" height="400">
 	<rect" x="20" y="20" width="160" height="80" fill="tomato" />
 </svg>
 ```
@@ -33,7 +33,7 @@ Circles are postitioned from the center outwards - we first decide its x and y p
 
 ```svelte
 /// file: SVG with a circle
-<svg width="800" height="400">
+<svg width="700" height="400">
 	<circle cx="100" cy="60" r="40" fill="steelblue" stroke="black" stroke-width="1" />
 </svg>
 ```
