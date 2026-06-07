@@ -18,12 +18,13 @@ const highlight = {
 		const hl = await getHighlighter();
 		const safeLang = LANGS.includes(lang) ? lang : 'text';
 
-		// Pull an optional `/// file: App.svelte` first line off for the filename label.
+		// Pull an optional `/// file: App.svelte` directive off for the filename label.
+		// It can sit on any line (e.g. below a leading <script> block), not just the first.
 		let file = '';
-		const match = code.match(/^\/\/\/\s*file:\s*(.+)\n/);
+		const match = code.match(/^[ \t]*\/\/\/[ \t]*file:[ \t]*(.+)\r?\n/m);
 		if (match) {
 			file = match[1].trim();
-			code = code.slice(match[0].length);
+			code = code.replace(match[0], '');
 		}
 
 		// Shiki adds tabindex="0" to <pre>; drop it to avoid Svelte's a11y warning.

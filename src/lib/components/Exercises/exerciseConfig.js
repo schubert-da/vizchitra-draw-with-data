@@ -12,6 +12,7 @@ import * as rectangles from '$lib/content/exercises/2-rectangles.md';
 import * as lines from '$lib/content/exercises/3-lines.md';
 import * as paths from '$lib/content/exercises/4-paths.md';
 import * as drawingShapes from '$lib/content/exercises/5-drawing-shapes.md';
+import * as variablesAndLogic from '$lib/content/exercises/6-variables-and-logic.md';
 
 export const exercises = [
 	{
@@ -23,7 +24,13 @@ export const exercises = [
 	{ id: 2, slug: '2-rectangles', title: 'Rectangles', path: '/exercises/2-rectangles' },
 	{ id: 3, slug: '3-lines', title: 'Lines', path: '/exercises/3-lines' },
 	{ id: 4, slug: '4-paths', title: 'Draw anything with Paths', path: '/exercises/4-paths' },
-	{ id: 5, slug: '5-drawing-shapes', title: 'Drawing Shapes', path: '/exercises/5-drawing-shapes' }
+	{ id: 5, slug: '5-drawing-shapes', title: 'Drawing Shapes', path: '/exercises/5-drawing-shapes' },
+	{
+		id: 6,
+		slug: '6-variables-and-logic',
+		title: 'Variables and Logic',
+		path: '/exercises/6-variables-and-logic'
+	}
 ];
 
 export const lessons = {
@@ -31,5 +38,6 @@ export const lessons = {
 	'2-rectangles': rectangles,
 	'3-lines': lines,
 	'4-paths': paths,
-	'5-drawing-shapes': drawingShapes
+	'5-drawing-shapes': drawingShapes,
+	'6-variables-and-logic': variablesAndLogic
 };

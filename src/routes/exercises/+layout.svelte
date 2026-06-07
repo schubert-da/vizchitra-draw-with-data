@@ -18,7 +18,7 @@
 	let lesson = $derived(lessons[slug]);
 
 	/** @type {HTMLElement} */
-	let lessonEl;
+	let lessonEl = $state();
 
 	// Single delegated click handler for every code block's Copy button.
 	$effect(() => {
@@ -91,6 +91,7 @@
 		width: 100%;
 		height: 100%;
 		display: flex;
+		flex-direction: column;
 		align-items: center;
 		justify-content: center;
 		background: var(--color-palette-white);
