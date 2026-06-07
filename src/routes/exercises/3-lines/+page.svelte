@@ -4,11 +4,11 @@
 	<!-- WRITE YOUR CODE HERE -->
 
 	<!-- CIRCLES FROM EXERCISE 1 -->
-	<circle cx="40%" cy="75%" r="12" fill="steelblue" />
-	<circle cx="25%" cy="75%" r="12" fill="steelblue" />
-	<circle cx="50%" cy="50%" r="12" fill="steelblue" />
-	<circle cx="10%" cy="66%" r="12" fill="steelblue" />
-	<circle cx="80%" cy="30%" r="12" fill="steelblue" />
+	<circle cx="40%" cy="75%" r="10" fill="steelblue" />
+	<circle cx="25%" cy="75%" r="10" fill="steelblue" />
+	<circle cx="50%" cy="50%" r="10" fill="steelblue" />
+	<circle cx="10%" cy="66%" r="10" fill="steelblue" />
+	<circle cx="80%" cy="30%" r="10" fill="steelblue" />
 </svg>
 
 <style>
