@@ -34,10 +34,8 @@ Here we scatter plot you built in the first exercise. The goal now is to turn it
 <svg class="chart" width="700" height="400">
 	<line x1="10%" y1="66%" x2="25%" y2="75%" stroke="steelblue" stroke-width="2" />
 
-	<circle cx="40%" cy="75%" r="15" fill="steelblue" />
-	<circle cx="25%" cy="75%" r="15" fill="steelblue" />
-	<circle cx="50%" cy="50%" r="15" fill="steelblue" />
-	<circle cx="10%" cy="66%" r="15" fill="steelblue" />
-	<circle cx="80%" cy="30%" r="15" fill="steelblue" />
+	<circle cx="40%" cy="75%" r="10" fill="steelblue" />
+	<circle cx="25%" cy="75%" r="10" fill="steelblue" />
+	<!-- ... remaining circles ... -->
 </svg>
 ```
