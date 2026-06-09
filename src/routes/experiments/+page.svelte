@@ -1,22 +1,26 @@
 <script>
 	import BoilFilter from './BoilFilter.svelte';
+	import OrganicGradient from '$components/OrganicGradient.svelte';
 
 	// Toggle + tuning knobs for the boil effect.
 	let enabled = $state(true);
 	let scale = $state(1.5);
 	let baseFrequency = $state(0.0012);
 	let fps = $state(5);
+
+	// Separate toggle for boiling the organic-gradient section.
+	let boilGradient = $state(false);
 </script>
 
 <svelte:head><title>Boil filter · Experiments</title></svelte:head>
 
-<!-- The filter definition (hidden). Lives outside the boil-layer so it isn't affected by itself. -->
-<BoilFilter {enabled} {scale} {baseFrequency} {fps} />
+<!-- The filter definition (hidden). Animate it whenever either section wants to boil. -->
+<BoilFilter enabled={enabled || boilGradient} {scale} {baseFrequency} {fps} />
 
-<div class="min-h-dvh bg-palette-white px-[clamp(1.5rem,5vw,4rem)] py-10 font-sans text-text">
+<div class="min-h-dvh bg-palette-white px-[clamp(1.5rem,5vw,4rem)] py-10 pt-30 font-sans text-text">
 	<!-- Controls sit OUTSIDE the boil-layer so they stay steady and usable. -->
 	<section
-		class="mb-10 flex flex-wrap items-center gap-x-8 gap-y-5 rounded-xl border border-text/15 bg-white px-5 py-4 text-sm"
+		class="fixed top-0 z-10 mb-10 flex flex-wrap items-center gap-x-8 gap-y-5 rounded-xl border border-text/15 bg-white px-5 py-4 text-sm"
 	>
 		<label class="flex cursor-pointer flex-row items-center gap-2 font-semibold">
 			<input type="checkbox" bind:checked={enabled} class="size-[1.1rem] accent-primary" />
@@ -28,7 +32,7 @@
 			<input
 				type="range"
 				min="0"
-				max="6"
+				max="100"
 				step="0.1"
 				bind:value={scale}
 				class="w-44 accent-primary"
@@ -119,6 +123,37 @@
 			<line x1="150" y1="60" x2="312" y2="60" stroke="currentColor" stroke-width="2" />
 		</svg>
 	</main>
+
+	<!-- Organic gradient test — with its own independent boil toggle. -->
+	<section class="mt-16 max-w-[60rem]">
+		<div class="mb-4 flex flex-wrap items-center gap-4">
+			<h2 class="text-[clamp(1.5rem,4vw,2.25rem)] leading-tight font-extrabold">
+				Organic gradient
+			</h2>
+			<label class="flex cursor-pointer flex-row items-center gap-2 text-sm font-semibold">
+				<input type="checkbox" bind:checked={boilGradient} class="size-[1.1rem] accent-primary" />
+				<span>Boil {boilGradient ? 'on' : 'off'}</span>
+			</label>
+		</div>
+
+		<div class="relative h-[22rem] overflow-hidden rounded-xl">
+			<!-- Boiling layer is oversized (-inset-6) so its warped edges fall OUTSIDE the clip;
+			     the container's overflow-hidden trims them back to a straight rounded rectangle. -->
+			<div class="absolute -inset-6" class:boiling={boilGradient}>
+				<OrganicGradient colorA="#f4e8d5" colorB="#657143" height="100%" scale={220} blur={3}
+				></OrganicGradient>
+			</div>
+
+			<!-- Text is a sibling on top (not inside the filtered div), so it stays crisp. -->
+			<div class="absolute inset-0 z-20 flex flex-col justify-center p-8 text-[#2c2417]">
+				<h3 class="mb-2 text-3xl font-extrabold">A hand-mixed blend</h3>
+				<p class="max-w-md text-lg leading-relaxed">
+					Two colours meeting along a soft noise mask. Flip the boil toggle to make the blend edge
+					shiver.
+				</p>
+			</div>
+		</div>
+	</section>
 </div>
 
 <style>
