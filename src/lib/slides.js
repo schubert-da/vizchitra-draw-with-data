@@ -1,8 +1,8 @@
 export default [
 	// CenteredText — h1 + h2
 	{
-		h1: 'Centered template',
-		h2: 'h1 + h2, centred on the slide'
+		h1: 'The thing is...',
+		text: 'It shouldn’t be this difficult. At least not right now or in like two more lines where I want to test how a longer paragraph would work with this layout. K bye!'
 	},
 
 	// CenteredText — h1 + a list of text lines

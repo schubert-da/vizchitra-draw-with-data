@@ -12,6 +12,13 @@
 {/if}
 
 <style>
+	h1,
+	h2 {
+		font-family: var(--font-display);
+		font-weight: normal;
+		line-height: 1.2;
+	}
+
 	.h2-only {
 		margin-block-start: 0;
 	}

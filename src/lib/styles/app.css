@@ -24,25 +24,23 @@ svg {
 
 .slide {
 	--padding: 3rem;
-	--base-font-size: 36px;
-	--heading-font-size: 80px;
+	--base-font-size: 32px;
+	--heading-font-size: 72px;
 
 	width: 100%;
 	height: 100%;
 	padding: var(--padding);
+
 	font-size: var(--base-font-size);
 	color: var(--color-text);
+	line-height: 1.35;
 }
 
 .slide h1 {
 	margin-top: 0;
-	margin-bottom: 2rem;
+	margin-bottom: 1.25rem;
 	font-size: var(--heading-font-size);
 	font-weight: 200;
-	text-decoration: underline;
-	text-decoration-thickness: 0.07rem;
-	text-decoration-color: var(--color-primary);
-	text-underline-offset: 0.2rem;
 }
 
 .slide h2 {
@@ -50,7 +48,6 @@ svg {
 	margin-bottom: 2rem;
 	font-size: calc(var(--heading-font-size) / 2.2);
 	font-weight: 700;
-	text-transform: uppercase;
 }
 
 .slide a,
@@ -63,4 +60,8 @@ svg {
 	width: 100%;
 	min-height: 1rem;
 	background-color: #eee;
+}
+
+.border-shadow-left {
+	box-shadow: -0.6rem 0.6rem 0 0 #515151;
 }

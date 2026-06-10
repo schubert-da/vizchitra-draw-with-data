@@ -6,22 +6,21 @@
 	let { h1, h2, text } = $props();
 </script>
 
-<div class="slide">
-	{#if h1 || h2}
-		<Title {h1} {h2} />
-	{/if}
-	{#if text}
-		<Text {text} />
-	{/if}
+<div class="slide flex flex-col items-center justify-center bg-palette-yellow-dark">
+	<div
+		class="text-container border-shadow-left relative flex max-w-250 flex-col items-start justify-center border border-black bg-palette-white p-10"
+	>
+		{#if h1 || h2}
+			<Title {h1} {h2} />
+		{/if}
+		{#if text}
+			<Text {text} />
+		{/if}
+	</div>
 </div>
 
 <style>
 	.slide {
-		--text-align: center;
-
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
+		--text-align: left;
 	}
 </style>
