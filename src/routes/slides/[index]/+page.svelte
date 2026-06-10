@@ -13,16 +13,7 @@
 	let timerStartTime = $state();
 
 	onMount(() => {
-		const imageUrls = slides.reduce((urls, slide) => {
-			const { image, images } = slide;
-			if (image) {
-				urls.push(image);
-			}
-			if (images) {
-				urls.push(...(Array.isArray(images) ? images : [images]));
-			}
-			return urls;
-		}, []);
+		const imageUrls = slides.map((slide) => slide.image).filter(Boolean);
 		imageUrls.forEach((url) => fetch(url));
 	});
 
@@ -75,14 +66,6 @@
 	<SlideView slideIndex={currentIndex} />
 </div>
 
-<div class="iframe-preload">
-	{#each slides as slide, i (i)}
-		{#if slide.iframe}
-			<iframe title="preload: {slide.iframe}" src={slide.iframe}></iframe>
-		{/if}
-	{/each}
-</div>
-
 <style>
 	.view {
 		width: 100vw;
@@ -102,9 +85,5 @@
 		bottom: 2rem;
 		z-index: 10;
 		opacity: 0.7;
-	}
-
-	.iframe-preload {
-		display: none;
 	}
 </style>

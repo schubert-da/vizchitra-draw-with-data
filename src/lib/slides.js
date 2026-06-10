@@ -34,36 +34,13 @@ export default [
 		text: 'A slide with **centred** text and _nothing_ else.'
 	},
 
-	// 7. FullscreenImage — image + fullscreen flag
-	{
-		image: 'https://picsum.photos/seed/fullscreen/1920/1080',
-		fullscreen: true
-	},
-
-	// 8. ImageGrid — array of images
-	{
-		h1: 'ImageGrid template',
-		h2: 'multiple images, bouncing in',
-		images: [
-			'https://picsum.photos/seed/grid1/600/400',
-			'https://picsum.photos/seed/grid2/600/400',
-			'https://picsum.photos/seed/grid3/600/400',
-			'https://picsum.photos/seed/grid4/600/400'
-		]
-	},
-
-	// 9. IFrame — embeds an external URL fullscreen
-	{
-		iframe: 'https://example.com'
-	},
-
-	// 10. Component — renders an arbitrary Svelte component
+	// 7. Component — renders an arbitrary Svelte component
 	{
 		h1: 'Component template',
 		h2: 'renders any Svelte component (Timer here)',
 		component: Timer
 	},
 
-	// 11. End — closing slide
+	// 8. End — closing slide
 	{ template: 'End' }
 ];
