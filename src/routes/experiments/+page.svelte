@@ -1,6 +1,6 @@
 <script>
-	import BoilFilter from './BoilFilter.svelte';
-	import OrganicGradient from '$components/OrganicGradient.svelte';
+	import BoilFilter from '$components/ArtUtils/BoilFilter.svelte';
+	import BackgroundBlend from '$components/ArtUtils/BackgroundBlend.svelte';
 
 	// Toggle + tuning knobs for the boil effect.
 	let enabled = $state(true);
@@ -140,8 +140,8 @@
 			<!-- Boiling layer is oversized (-inset-6) so its warped edges fall OUTSIDE the clip;
 			     the container's overflow-hidden trims them back to a straight rounded rectangle. -->
 			<div class="absolute -inset-6" class:boiling={boilGradient}>
-				<OrganicGradient colorA="#f4e8d5" colorB="#657143" height="100%" scale={220} blur={3}
-				></OrganicGradient>
+				<BackgroundBlend colorA="#f4e8d5" colorB="#657143" height="100%" scale={220} blur={3}
+				></BackgroundBlend>
 			</div>
 
 			<!-- Text is a sibling on top (not inside the filtered div), so it stays crisp. -->
