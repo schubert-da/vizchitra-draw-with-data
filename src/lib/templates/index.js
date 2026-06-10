@@ -1,27 +1,22 @@
-import CentredText from './CentredText.svelte';
-import CentredTitle from './CentredTitle.svelte';
-import Component from './Component.svelte';
+import CenteredText from './CenteredText.svelte';
 import Default from './Default.svelte';
-import End from './End.svelte';
-import Start from './Start.svelte';
 
 const templates = {
-	CentredText,
-	CentredTitle,
-	Component,
-	Default,
-	End,
-	Start
+	CenteredText,
+	Default
 };
 
 export function resolveTemplate(slide) {
-	if (slide.component) {
-		return templates.Component;
+	// Explicit `template` wins if it names a registered template.
+	if (slide?.template && templates[slide.template]) {
+		return templates[slide.template];
 	}
 
-	if (Object.keys(slide).filter((key) => !['h1', 'h2', 'notes'].includes(key)).length === 0) {
-		return templates.CentredTitle;
+	// A slide with images → Default (text on top, images in a row below).
+	if (slide?.images) {
+		return templates.Default;
 	}
 
-	return templates[slide.template ?? 'Default'] ?? templates.Default;
+	// Otherwise just h1/h2/text → centred.
+	return templates.CenteredText;
 }

@@ -23,7 +23,15 @@
 <div class="slide-view">
 	{#key slideIndex}
 		<div class="animation-wrapper" in:inTransition out:outTransition>
-			<Slide {...currentSlide} />
+			{#if Slide}
+				<Slide {...currentSlide} />
+			{:else}
+				<p class="no-template">
+					No template registered for this slide{currentSlide?.template
+						? ` ("${currentSlide.template}")`
+						: ''}.
+				</p>
+			{/if}
 		</div>
 	{/key}
 </div>
@@ -41,5 +49,18 @@
 		left: 0;
 		width: 100%;
 		height: 100%;
+	}
+
+	.no-template {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 100%;
+		height: 100%;
+		margin: 0;
+		color: color-mix(in srgb, var(--color-text, #1a1a1a) 45%, transparent);
+		font:
+			italic 1rem/1.5 system-ui,
+			sans-serif;
 	}
 </style>

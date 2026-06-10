@@ -1,18 +1,30 @@
 <script>
-	import Image from './common-components/Image.svelte';
-	import Text from './common-components/Text.svelte';
 	import Title from './common-components/Title.svelte';
+	import Text from './common-components/Text.svelte';
+	import Image from './common-components/Image.svelte';
 
-	let { h1, h2, text, image } = $props();
+	// h1/h2 and/or text at the top, with a row of images underneath.
+	let { h1, h2, text, images } = $props();
+
+	let imageList = $derived(Array.isArray(images) ? images : images ? [images] : []);
 </script>
 
 <div class="slide">
-	<Title {h1} {h2} />
+	<div class="text-content">
+		{#if h1 || h2}
+			<Title {h1} {h2} />
+		{/if}
+		{#if text}
+			<Text {text} />
+		{/if}
+	</div>
 
-	{#if image}
-		<Image {image} />
-	{:else if text}
-		<Text {text} />
+	{#if imageList.length}
+		<div class="image-row">
+			{#each imageList as image (image)}
+				<Image {image} />
+			{/each}
+		</div>
 	{/if}
 </div>
 
@@ -20,6 +32,20 @@
 	.slide {
 		display: flex;
 		flex-direction: column;
-		align-items: self-start;
+	}
+
+	.text-content {
+		flex: 0 0 auto;
+	}
+
+	.image-row {
+		flex: 1 1 0;
+		min-height: 0;
+
+		display: flex;
+		flex-direction: row;
+		gap: 1rem;
+		align-items: center;
+		justify-content: center;
 	}
 </style>
