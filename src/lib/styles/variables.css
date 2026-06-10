@@ -1,4 +1,66 @@
+/* ---- Fonts (files in static/fonts, served from /fonts) ----------------- */
+
+/* DM Serif Display — display font */
+@font-face {
+	font-family: 'DM Serif Display';
+	src: url('/fonts/DMSerifDisplay-Regular.ttf') format('truetype');
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}
+@font-face {
+	font-family: 'DM Serif Display';
+	src: url('/fonts/DMSerifDisplay-Italic.ttf') format('truetype');
+	font-weight: 400;
+	font-style: italic;
+	font-display: swap;
+}
+
+/* Elms Sans — body font (variable weight) */
+@font-face {
+	font-family: 'Elms Sans';
+	src: url('/fonts/ElmsSans-VariableFont_wght.ttf') format('truetype');
+	font-weight: 100 900;
+	font-style: normal;
+	font-display: swap;
+}
+@font-face {
+	font-family: 'Elms Sans';
+	src: url('/fonts/ElmsSans-Italic-VariableFont_wght.ttf') format('truetype');
+	font-weight: 100 900;
+	font-style: italic;
+	font-display: swap;
+}
+
+/* Fira Mono — code font */
+@font-face {
+	font-family: 'Fira Mono';
+	src: url('/fonts/FiraMono-Regular.ttf') format('truetype');
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}
+@font-face {
+	font-family: 'Fira Mono';
+	src: url('/fonts/FiraMono-Medium.ttf') format('truetype');
+	font-weight: 500;
+	font-style: normal;
+	font-display: swap;
+}
+@font-face {
+	font-family: 'Fira Mono';
+	src: url('/fonts/FiraMono-Bold.ttf') format('truetype');
+	font-weight: 700;
+	font-style: normal;
+	font-display: swap;
+}
+
 @theme {
+	/* Fonts (use as var(--font-display) etc., or the font-display/font-body/font-code utilities) */
+	--font-display: 'DM Serif Display', serif;
+	--font-body: 'Elms Sans', sans-serif;
+	--font-code: 'Fira Mono', monospace;
+
 	--color-primary: #fc341e;
 	--color-primary-400: #fc5543;
 	--color-primary-300: #fc6b5b;
