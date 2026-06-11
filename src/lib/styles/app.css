@@ -65,7 +65,3 @@ svg {
 .border-shadow-left {
 	box-shadow: -0.6rem 0.6rem 0 0 #515151;
 }
-
-.boiling {
-	filter: url(#boil);
-}

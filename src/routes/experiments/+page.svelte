@@ -1,24 +1,32 @@
 <script>
-	import BoilFilter from '$components/ArtUtils/BoilFilter.svelte';
+	import Boil from '$components/ArtUtils/Boil.svelte';
 	import BackgroundBlend from '$components/ArtUtils/BackgroundBlend.svelte';
 
-	// Toggle + tuning knobs for the boil effect.
+	// Tuning knobs shared by both boil demos below.
 	let enabled = $state(true);
-	let scale = $state(1.5);
+	let displacement = $state(1.5);
 	let baseFrequency = $state(0.0012);
 	let fps = $state(5);
 
 	// Separate toggle for boiling the organic-gradient section.
 	let boilGradient = $state(false);
+
+	// Boil params for the gradient demo (independent of the main demo's boil above).
+	let gradDisplacement = $state(1.5);
+	let gradBaseFrequency = $state(0.0012);
+	let gradFps = $state(5);
+
+	// BackgroundBlend params for the gradient demo.
+	let blendColorA = $state('#f4e8d5');
+	let blendColorB = $state('#657143');
+	let blendScale = $state(220);
+	let blendBlur = $state(3);
 </script>
 
 <svelte:head><title>Boil filter · Experiments</title></svelte:head>
 
-<!-- The filter definition (hidden). Animate it whenever either section wants to boil. -->
-<BoilFilter enabled={enabled || boilGradient} {scale} {baseFrequency} {fps} />
-
 <div class="min-h-dvh bg-palette-white px-[clamp(1.5rem,5vw,4rem)] py-10 pt-30 font-sans text-text">
-	<!-- Controls sit OUTSIDE the boil-layer so they stay steady and usable. -->
+	<!-- Controls sit OUTSIDE the boiled content so they stay steady and usable. -->
 	<section
 		class="fixed top-0 z-10 mb-10 flex flex-wrap items-center gap-x-8 gap-y-5 rounded-xl border border-text/15 bg-white px-5 py-4 text-sm"
 	>
@@ -28,13 +36,13 @@
 		</label>
 
 		<label class="flex flex-col gap-1.5 font-semibold">
-			Displacement <output class="font-normal text-text/60 tabular-nums">{scale}</output>
+			Displacement <output class="font-normal text-text/60 tabular-nums">{displacement}</output>
 			<input
 				type="range"
 				min="0"
 				max="100"
 				step="0.1"
-				bind:value={scale}
+				bind:value={displacement}
 				class="w-44 accent-primary"
 			/>
 		</label>
@@ -57,8 +65,8 @@
 		</label>
 	</section>
 
-	<!-- Everything in here gets the boil. -->
-	<main class="max-w-[60rem]" class:boiling={enabled}>
+	<!-- Everything inside this <Boil> gets the wobble. -->
+	<Boil class="max-w-[60rem]" {enabled} {displacement} {baseFrequency} {fps}>
 		<header class="max-w-[42rem]">
 			<p class="mb-2 text-xs font-bold tracking-[0.18em] text-primary uppercase">Experiments</p>
 			<h1 class="mb-4 text-[clamp(2rem,5vw,3.25rem)] leading-[1.05] font-extrabold">
@@ -122,29 +130,123 @@
 			<circle cx="200" cy="60" r="44" fill="none" stroke="currentColor" stroke-width="2" />
 			<line x1="150" y1="60" x2="312" y2="60" stroke="currentColor" stroke-width="2" />
 		</svg>
-	</main>
+	</Boil>
 
-	<!-- Organic gradient test — with its own independent boil toggle. -->
+	<!-- Organic gradient test — with its own independent boil toggle (own filter instance). -->
 	<section class="mt-16 max-w-[60rem]">
-		<div class="mb-4 flex flex-wrap items-center gap-4">
+		<div class="mb-4 flex flex-wrap items-center gap-x-6 gap-y-3">
 			<h2 class="text-[clamp(1.5rem,4vw,2.25rem)] leading-tight font-extrabold">
 				Organic gradient
 			</h2>
+
 			<label class="flex cursor-pointer flex-row items-center gap-2 text-sm font-semibold">
 				<input type="checkbox" bind:checked={boilGradient} class="size-[1.1rem] accent-primary" />
 				<span>Boil {boilGradient ? 'on' : 'off'}</span>
+			</label>
+
+			<label class="flex flex-col gap-1 text-sm font-semibold">
+				Displacement <output class="font-normal text-text/60 tabular-nums"
+					>{gradDisplacement}</output
+				>
+				<input
+					type="range"
+					min="0"
+					max="100"
+					step="0.1"
+					bind:value={gradDisplacement}
+					class="w-36 accent-primary"
+				/>
+			</label>
+
+			<label class="flex flex-col gap-1 text-sm font-semibold">
+				Base frequency <output class="font-normal text-text/60 tabular-nums"
+					>{gradBaseFrequency}</output
+				>
+				<input
+					type="range"
+					min="0.0004"
+					max="0.006"
+					step="0.0002"
+					bind:value={gradBaseFrequency}
+					class="w-36 accent-primary"
+				/>
+			</label>
+
+			<label class="flex flex-col gap-1 text-sm font-semibold">
+				Frame rate <output class="font-normal text-text/60 tabular-nums">{gradFps} fps</output>
+				<input
+					type="range"
+					min="1"
+					max="24"
+					step="1"
+					bind:value={gradFps}
+					class="w-36 accent-primary"
+				/>
+			</label>
+
+			<label class="flex flex-row items-center gap-2 text-sm font-semibold">
+				Colour A
+				<input
+					type="color"
+					bind:value={blendColorA}
+					class="h-7 w-9 cursor-pointer rounded border border-text/15"
+				/>
+			</label>
+
+			<label class="flex flex-row items-center gap-2 text-sm font-semibold">
+				Colour B
+				<input
+					type="color"
+					bind:value={blendColorB}
+					class="h-7 w-9 cursor-pointer rounded border border-text/15"
+				/>
+			</label>
+
+			<label class="flex flex-col gap-1 text-sm font-semibold">
+				Scale <output class="font-normal text-text/60 tabular-nums">{blendScale}%</output>
+				<input
+					type="range"
+					min="50"
+					max="400"
+					step="10"
+					bind:value={blendScale}
+					class="w-36 accent-primary"
+				/>
+			</label>
+
+			<label class="flex flex-col gap-1 text-sm font-semibold">
+				Blur <output class="font-normal text-text/60 tabular-nums">{blendBlur}px</output>
+				<input
+					type="range"
+					min="0"
+					max="20"
+					step="1"
+					bind:value={blendBlur}
+					class="w-36 accent-primary"
+				/>
 			</label>
 		</div>
 
 		<div class="relative h-[22rem] overflow-hidden rounded-xl">
 			<!-- Boiling layer is oversized (-inset-6) so its warped edges fall OUTSIDE the clip;
 			     the container's overflow-hidden trims them back to a straight rounded rectangle. -->
-			<div class="absolute -inset-6" class:boiling={boilGradient}>
-				<BackgroundBlend colorA="#f4e8d5" colorB="#657143" height="100%" scale={220} blur={3}
+			<Boil
+				class="absolute -inset-6"
+				enabled={boilGradient}
+				displacement={gradDisplacement}
+				baseFrequency={gradBaseFrequency}
+				fps={gradFps}
+			>
+				<BackgroundBlend
+					colorA={blendColorA}
+					colorB={blendColorB}
+					height="100%"
+					scale={blendScale}
+					blur={blendBlur}
 				></BackgroundBlend>
-			</div>
+			</Boil>
 
-			<!-- Text is a sibling on top (not inside the filtered div), so it stays crisp. -->
+			<!-- Text is a sibling on top (not inside the <Boil>), so it stays crisp. -->
 			<div class="absolute inset-0 z-20 flex flex-col justify-center p-8 text-[#2c2417]">
 				<h3 class="mb-2 text-3xl font-extrabold">A hand-mixed blend</h3>
 				<p class="max-w-md text-lg leading-relaxed">
@@ -155,11 +257,3 @@
 		</div>
 	</section>
 </div>
-
-<style>
-	/* Dynamic SVG-filter reference — kept as CSS (Tailwind's class scanner is unreliable
-	   for url(#…) arbitrary values). Toggled with the `boiling` class. */
-	.boiling {
-		filter: url(#boil);
-	}
-</style>
