@@ -15,6 +15,7 @@ import * as drawingShapes from '$lib/content/exercises/5-drawing-shapes.md';
 import * as variablesAndLogic from '$lib/content/exercises/6-variables-and-logic.md';
 import * as arraysAndScales from '$lib/content/exercises/7-arrays-and-scales.md';
 import * as objectsAndArcs from '$lib/content/exercises/8-objects-and-arcs.md';
+import * as dataAndFunctions from '$lib/content/exercises/9-data-and-functions.md';
 
 export const exercises = [
 	{
@@ -44,6 +45,12 @@ export const exercises = [
 		slug: '8-objects-and-arcs',
 		title: 'Objects and Arcs',
 		path: '/exercises/8-objects-and-arcs'
+	},
+	{
+		id: 9,
+		slug: '9-data-and-functions',
+		title: 'Data and Functions',
+		path: '/exercises/9-data-and-functions'
 	}
 ];
 
@@ -55,5 +62,6 @@ export const lessons = {
 	'5-drawing-shapes': drawingShapes,
 	'6-variables-and-logic': variablesAndLogic,
 	'7-arrays-and-scales': arraysAndScales,
-	'8-objects-and-arcs': objectsAndArcs
+	'8-objects-and-arcs': objectsAndArcs,
+	'9-data-and-functions': dataAndFunctions
 };
