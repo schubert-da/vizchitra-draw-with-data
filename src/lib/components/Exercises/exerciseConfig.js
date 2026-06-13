@@ -14,6 +14,7 @@ import * as paths from '$lib/content/exercises/4-paths.md';
 import * as drawingShapes from '$lib/content/exercises/5-drawing-shapes.md';
 import * as variablesAndLogic from '$lib/content/exercises/6-variables-and-logic.md';
 import * as arraysAndScales from '$lib/content/exercises/7-arrays-and-scales.md';
+import * as objectsAndArcs from '$lib/content/exercises/8-objects-and-arcs.md';
 
 export const exercises = [
 	{
@@ -37,6 +38,12 @@ export const exercises = [
 		slug: '7-arrays-and-scales',
 		title: 'Arrays and Scales',
 		path: '/exercises/7-arrays-and-scales'
+	},
+	{
+		id: 8,
+		slug: '8-objects-and-arcs',
+		title: 'Objects and Arcs',
+		path: '/exercises/8-objects-and-arcs'
 	}
 ];
 
@@ -47,5 +54,6 @@ export const lessons = {
 	'4-paths': paths,
 	'5-drawing-shapes': drawingShapes,
 	'6-variables-and-logic': variablesAndLogic,
-	'7-arrays-and-scales': arraysAndScales
+	'7-arrays-and-scales': arraysAndScales,
+	'8-objects-and-arcs': objectsAndArcs
 };
