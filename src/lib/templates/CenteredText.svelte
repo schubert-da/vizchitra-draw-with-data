@@ -23,7 +23,7 @@
 				.padStart(2, '0')
 	);
 
-	let scale = $state(120);
+	let scale = $state(90);
 	let blur = $state(2);
 </script>
 
