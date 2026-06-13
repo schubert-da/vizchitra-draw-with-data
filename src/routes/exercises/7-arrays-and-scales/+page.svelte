@@ -1,7 +1,7 @@
 <!-- 7. Arrays and Scales -->
 
 <script>
-	// import { scaleLinear } from 'd3'; // Part 2: uncomment to use scales
+	import * as d3 from 'd3'; // Part 2: uncomment to use scales
 
 	// Part 1 - a radius for each circle
 	let radiusList = [];

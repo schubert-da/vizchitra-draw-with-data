@@ -57,9 +57,10 @@ That job belongs to a **scale**. A scale is a helper that takes a value from one
 
 ```js
 /// file: A linear scale
-import { scaleLinear } from 'd3';
+import * as d3 from 'd3';
 
-let xScale = scaleLinear()
+let xScale = d3
+	.scaleLinear()
 	.domain([0, 40000000]) // the data:   smallest -> largest value
 	.range([0, 700]); // the pixels: left edge -> right edge
 ```
@@ -84,13 +85,13 @@ xScale(40000000); // 700 -> the largest population, at the right edge
 
 ```svelte
 <script>
-	import { scaleLinear } from 'd3';
+	import * as d3 from 'd3';
 
 	let populationList = [38000000, 25000000, 14000000, 9000000, 3000000];
 	let povertyPercentage = [9, 21, 11, 17, 4];
 
-	let xScale = scaleLinear().domain([0, 40000000]).range([0, 700]);
-	let yScale = scaleLinear().domain([0, 25]).range([0, 400]);
+	let xScale = d3.scaleLinear().domain([0, 40000000]).range([0, 700]);
+	let yScale = d3.scaleLinear().domain([0, 25]).range([0, 400]);
 </script>
 
 /// file: Positioning circles from data
