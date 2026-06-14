@@ -6,13 +6,14 @@
 
 	// Scales map a measurement onto a position in the 700 x 400 chart.
 	// (yScale's range goes high -> low so bigger flippers sit higher up.)
-	let xScale = d3.scaleLinear().domain(d3.extent(penguins, (d) => +d.bill_length)).range([40, 660]);
+	let xScale = d3
+		.scaleLinear()
+		.domain(d3.extent(penguins, (d) => +d.bill_length))
+		.range([40, 660]);
 	let yScale = d3
 		.scaleLinear()
 		.domain(d3.extent(penguins, (d) => +d.flipper_length))
 		.range([360, 40]);
-
-	// Part 2: write a function that returns a colour for a given species
 </script>
 
 <svg class="chart" width="700" height="400">

@@ -16,6 +16,7 @@ import * as variablesAndLogic from '$lib/content/exercises/6-variables-and-logic
 import * as arraysAndScales from '$lib/content/exercises/7-arrays-and-scales.md';
 import * as objectsAndArcs from '$lib/content/exercises/8-objects-and-arcs.md';
 import * as dataAndFunctions from '$lib/content/exercises/9-data-and-functions.md';
+import * as finalProject from '$lib/content/exercises/10-final-project.md';
 
 export const exercises = [
 	{
@@ -51,6 +52,12 @@ export const exercises = [
 		slug: '9-data-and-functions',
 		title: 'Data and Functions',
 		path: '/exercises/9-data-and-functions'
+	},
+	{
+		id: 10,
+		slug: '10-final-project',
+		title: 'Final Project: Small Multiples',
+		path: '/exercises/10-final-project'
 	}
 ];
 
@@ -63,5 +70,6 @@ export const lessons = {
 	'6-variables-and-logic': variablesAndLogic,
 	'7-arrays-and-scales': arraysAndScales,
 	'8-objects-and-arcs': objectsAndArcs,
-	'9-data-and-functions': dataAndFunctions
+	'9-data-and-functions': dataAndFunctions,
+	'10-final-project': finalProject
 };
