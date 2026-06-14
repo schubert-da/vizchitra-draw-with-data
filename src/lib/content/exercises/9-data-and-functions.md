@@ -55,18 +55,21 @@ Inside the loop, `penguin` is the current row's object, so `penguin.bill_length`
 	import * as d3 from 'd3';
 	import penguins from '$assets/data/palmer-penguins.csv';
 
+	let width = 700;
+	let height = 400;
+
 	let xScale = d3
 		.scaleLinear()
 		.domain(d3.extent(penguins, (d) => +d.bill_length))
-		.range([40, 660]);
+		.range([40, width - 40]);
 	let yScale = d3
 		.scaleLinear()
 		.domain(d3.extent(penguins, (d) => +d.flipper_length))
-		.range([360, 40]);
+		.range([height - 40, 40]);
 </script>
 
 /// file: One circle per penguin
-<svg class="chart" width="700" height="400">
+<svg class="chart" {width} {height}>
 	{#each penguins as penguin}
 		<circle
 			cx={xScale(+penguin.bill_length)}

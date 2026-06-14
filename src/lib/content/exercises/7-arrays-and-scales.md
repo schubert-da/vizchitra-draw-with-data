@@ -87,15 +87,18 @@ xScale(40000000); // 700 -> the largest population, at the right edge
 <script>
 	import * as d3 from 'd3';
 
+	let width = 700;
+	let height = 400;
+
 	let populationList = [38000000, 25000000, 14000000, 9000000, 3000000];
 	let povertyPercentage = [9, 21, 11, 17, 4];
 
-	let xScale = d3.scaleLinear().domain([0, 40000000]).range([0, 700]);
-	let yScale = d3.scaleLinear().domain([0, 25]).range([0, 400]);
+	let xScale = d3.scaleLinear().domain([0, 40000000]).range([0, width]);
+	let yScale = d3.scaleLinear().domain([0, 25]).range([0, height]);
 </script>
 
 /// file: Positioning circles from data
-<svg class="chart" width="700" height="400">
+<svg class="chart" {width} {height}>
 	<circle
 		cx={xScale(populationList[0])}
 		cy={yScale(povertyPercentage[0])}

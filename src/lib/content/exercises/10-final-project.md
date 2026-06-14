@@ -65,14 +65,14 @@ Before we can decorate a single tile, we need the **grid** to hold them all: one
 
 	let tileSize = 300; // size of one country's tile
 	let tilesPerRow = 4; // how many tiles before wrapping to a new row
+
+	// the whole grid's dimensions, derived from the tile size and how many rows we need
+	let width = tileSize * tilesPerRow;
+	let height = tileSize * Math.ceil(data.length / tilesPerRow);
 </script>
 
 /// file: A grid of small multiples
-<svg
-	class="chart"
-	width={tileSize * tilesPerRow}
-	height={tileSize * Math.ceil(data.length / tilesPerRow)}
->
+<svg class="chart" {width} {height}>
 	{#each data as country, index}
 		<!-- TODO: use index to correctly position the tiles -->
 		<g transform="translate(0, 0)">

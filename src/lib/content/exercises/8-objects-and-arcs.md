@@ -107,6 +107,9 @@ The trick to the gauge look is **two arcs per ring**: a faint `track` that sweep
 <script>
 	import * as d3 from 'd3';
 
+	let width = 700;
+	let height = 400;
+
 	let dailyStats = { sleepHours: 6.5, dailySteps: 6000, waterGlasses: 5 };
 	let goals = { sleepHours: 8, dailySteps: 10000, waterGlasses: 8 };
 
@@ -125,7 +128,7 @@ The trick to the gauge look is **two arcs per ring**: a faint `track` that sweep
 </script>
 
 /// file: Three rings from one object
-<svg class="chart" width="700" height="400">
+<svg class="chart" {width} {height}>
 	<!-- ... labels from earlier ... -->
 
 	<!-- all three rings share one centre -->
