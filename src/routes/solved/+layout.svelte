@@ -89,12 +89,6 @@
 	}
 
 	@media (max-width: 800px) {
-		.exercise {
-			flex-direction: column;
-			height: auto;
-			min-height: 100dvh;
-		}
-
 		.sidebar {
 			flex: none;
 			border-right: none;
