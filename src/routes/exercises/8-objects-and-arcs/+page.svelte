@@ -4,7 +4,7 @@
 	import * as d3 from 'd3';
 
 	let width = 700;
-	let height = 400;
+	let height = 600;
 
 	// Part 1 - today's stats as an object
 	let dailyStats = { sleepHours: 6.5, dailySteps: 6000, waterGlasses: 5 };
@@ -13,17 +13,19 @@
 	let goals = { sleepHours: 8, dailySteps: 10000, waterGlasses: 8 };
 
 	// Part 2 - build an arc generator for each ring here
-	// let stepsTrack = d3.arc().innerRadius(100).outerRadius(120).startAngle(0).endAngle(2 * Math.PI);
+	// let stepsTrack = d3.arc().innerRadius(190).outerRadius(240).startAngle(0).endAngle(2 * Math.PI);
 </script>
 
 <svg class="chart" {width} {height}>
-	<!-- Part 1: fill in each label's text using dot notation, e.g. Steps: {dailyStats.dailySteps} -->
-	<text x="24" y="44" fill="#fa114f"></text>
-	<text x="24" y="70" fill="#7ac70c"></text>
-	<text x="24" y="96" fill="#00b9ff"></text>
+	<!-- The rings and labels share one centre, in the middle of the chart -->
+	<g transform="translate({width / 2}, {height / 2})">
+		<!-- Part 2: draw the track + value arcs here -->
 
-	<!-- Part 2: draw the track + value arcs inside this centered group -->
-	<g transform="translate(500, 200)"></g>
+		<!-- Part 1: fill in each label's content using dot notation, e.g. Steps: {dailyStats.dailySteps} -->
+		<text text-anchor="middle" dominant-baseline="middle" y="-30" fill="#fa114f"></text>
+		<text text-anchor="middle" dominant-baseline="middle" y="0" fill="#7ac70c"></text>
+		<text text-anchor="middle" dominant-baseline="middle" y="30" fill="#00b9ff"></text>
+	</g>
 </svg>
 
 <style>
@@ -33,7 +35,7 @@
 	}
 
 	text {
-		font-size: 16px;
+		font-size: 24px;
 		font-weight: 600;
 	}
 </style>

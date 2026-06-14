@@ -33,7 +33,7 @@ Where an array asks "what's at position 2?", an object asks "what's the `sleepHo
 
 <br><br>
 
-**Exercise:** the workspace has `dailyStats` ready, and three empty `<text>` elements are already placed in the top-left of the chart - one per stat. Your job is just to **fill in each label's content**, pulling the value out of the object with dot notation:
+**Exercise:** the workspace has `dailyStats` ready, and three empty `<text>` elements are already placed in the centre of the chart - one per stat. Your job is just to **fill in each label's content**, pulling the value out of the object with dot notation:
 
 ```svelte
 <script>
@@ -45,13 +45,13 @@ Where an array asks "what's at position 2?", an object asks "what's the `sleepHo
 </script>
 
 /// file: Labels pulled from the object
-<svg class="chart" width="700" height="400">
-	<text x="24" y="44" fill="#fa114f">Steps: {dailyStats.dailySteps}</text>
+<svg class="chart" width="700" height="600">
+	<text x="350" y="270" text-anchor="middle" fill="#fa114f">Steps: {dailyStats.dailySteps}</text>
 	<!-- ... remaining stats ... -->
 </svg>
 ```
 
-A `<text>` element draws words at its `x`/`y` point - that placement is done for you - and `{dailyStats.dailySteps}` drops the live value in. Change a number in the object and the label updates with it. These three lines will become the key for the rings we draw next.
+A `<text>` element draws words at its `x`/`y` point (with `text-anchor="middle"` centring it horizontally) - that placement is done for you - and `{dailyStats.dailySteps}` drops the live value in. Change a number in the object and the label updates with it. These three lines will become the key for the rings we draw next.
 
 > [!TIP]
 > A `key` can hold _any_ value - a number, text, even another object or array. Objects and arrays are the two containers you'll use to hold almost all of your data.
@@ -108,7 +108,7 @@ The trick to the gauge look is **two arcs per ring**: a faint `track` that sweep
 	import * as d3 from 'd3';
 
 	let width = 700;
-	let height = 400;
+	let height = 600;
 
 	let dailyStats = { sleepHours: 6.5, dailySteps: 6000, waterGlasses: 5 };
 	let goals = { sleepHours: 8, dailySteps: 10000, waterGlasses: 8 };
@@ -116,11 +116,11 @@ The trick to the gauge look is **two arcs per ring**: a faint `track` that sweep
 	let full = 2 * Math.PI;
 
 	// Steps ring (outer): a faint full track + a value arc
-	let stepsTrack = d3.arc().innerRadius(100).outerRadius(120).startAngle(0).endAngle(full);
+	let stepsTrack = d3.arc().innerRadius(190).outerRadius(240).startAngle(0).endAngle(full);
 	let stepsValue = d3
 		.arc()
-		.innerRadius(100)
-		.outerRadius(120)
+		.innerRadius(190)
+		.outerRadius(240)
 		.startAngle(0)
 		.endAngle((dailyStats.dailySteps / goals.dailySteps) * full);
 
@@ -129,14 +129,18 @@ The trick to the gauge look is **two arcs per ring**: a faint `track` that sweep
 
 /// file: Three rings from one object
 <svg class="chart" {width} {height}>
-	<!-- ... labels from earlier ... -->
-
-	<!-- all three rings share one centre -->
-	<g transform="translate(500, 200)">
+	<!-- the rings and the labels from earlier share one centre -->
+	<g transform="translate({width / 2}, {height / 2})">
 		<path d={stepsTrack()} fill="#fa114f" opacity="0.15" />
 		<path d={stepsValue()} fill="#fa114f" />
 
 		<!-- ... same for other rings ... -->
+
+		<!-- labels stacked in the centre, drawn on top of the rings -->
+		<text text-anchor="middle" dominant-baseline="middle" y="-30" fill="#fa114f"
+			>Steps: {dailyStats.dailySteps}</text
+		>
+		<!-- ... remaining labels ... -->
 	</g>
 </svg>
 ```
