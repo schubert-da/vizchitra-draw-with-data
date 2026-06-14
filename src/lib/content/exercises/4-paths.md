@@ -45,6 +45,8 @@ So the triangle above reads: _move_ to `(100, 300)`, _line_ to `(250, 80)`, _lin
 
 Let's bring back the scatter points again to create an **area chart** - a filled region under the line. A path does this neatly: trace the points along the top, drop straight down to the base of the chart, run back along the base, and close.
 
+The points are already given to you as pixel coordinates (so there's no percentage math to do) - just read each circle's `cx`/`cy` straight into the path's `d`:
+
 ```svelte
 /// file: An area chart through the points
 <svg class="chart" width="700" height="400">
@@ -55,11 +57,15 @@ Let's bring back the scatter points again to create an **area chart** - a filled
 		stroke-width="2"
 	/>
 
-	<!-- points -->
+	<circle cx="70" cy="268" r="6" fill="steelblue" />
+	<circle cx="175" cy="300" r="6" fill="steelblue" />
+	<circle cx="280" cy="300" r="6" fill="steelblue" />
+	<circle cx="350" cy="200" r="6" fill="steelblue" />
+	<circle cx="560" cy="120" r="6" fill="steelblue" />
 </svg>
 ```
 
-Reading the `d`: `M` to the first point, five `L`s through the points left to right, then `L 560 400` and `L 70 400` drop to the base and run back along it, and `Z` closes the shape.
+Reading the `d`: `M` to the first point, five `L`s through the points left to right (ordered by `x`: `70, 175, 280, 350, 560`), then `L 560 400` and `L 70 400` drop to the base and run back along it, and `Z` closes the shape.
 
 ---
 

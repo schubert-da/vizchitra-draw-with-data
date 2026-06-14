@@ -6,11 +6,11 @@
 <svg class="chart" width="700" height="400">
 	<!-- WRITE YOUR CODE HERE -->
 
-	<circle cx="40%" cy="75%" r="6" fill="steelblue" />
-	<circle cx="25%" cy="75%" r="6" fill="steelblue" />
-	<circle cx="50%" cy="50%" r="6" fill="steelblue" />
-	<circle cx="10%" cy="67%" r="6" fill="steelblue" />
-	<circle cx="80%" cy="30%" r="6" fill="steelblue" />
+	<circle cx="70" cy="268" r="6" fill="steelblue" />
+	<circle cx="175" cy="300" r="6" fill="steelblue" />
+	<circle cx="280" cy="300" r="6" fill="steelblue" />
+	<circle cx="350" cy="200" r="6" fill="steelblue" />
+	<circle cx="560" cy="120" r="6" fill="steelblue" />
 </svg>
 
 <style>
