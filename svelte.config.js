@@ -55,7 +55,8 @@ const config = {
 		runes: ({ filename }) => {
 			const parts = filename.split(/[/\\]/);
 			if (parts.includes('node_modules')) return undefined;
-			if (parts.includes('exercises') || parts.includes('solved')) return undefined;
+			if (parts.includes('exercises') || parts.includes('solved') || parts.includes('chapters'))
+				return undefined;
 			return true;
 		}
 	},
