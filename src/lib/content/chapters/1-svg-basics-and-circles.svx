@@ -7,53 +7,74 @@ slug: 1-svg-basics-and-circles
 	import Section from '$components/chapters/Section.svelte';
 	import BasicSvgDemo from '$components/chapters/1-svg-basics-and-circles/BasicSvgDemo.svelte';
 	import CircleDemo from '$components/chapters/1-svg-basics-and-circles/CircleDemo.svelte';
+	import ScatterResult from '$components/chapters/1-svg-basics-and-circles/ScatterResult.svelte';
 </script>
 
-<Section id="intro" title="Drawing with SVG" note="SVG describes **shapes**, not pixels — so your drawing stays crisp at any size.">
+<Section id="intro" title="Drawing with SVG">
 
-**SVG** (Scalable Vector Graphics) is an image format you can write as HTML markup. Instead of storing pixels like a photo, you _describe_ shapes — and because they're vectors, they stay crisp at any size.
+**SVG** (Scalable Vector Graphics) is an image format you write as markup. Instead of storing pixels like a photo, you _describe_ shapes — and because they're vectors, they stay crisp at any size.
 
-Here's the simplest possible drawing: a single rectangle inside an SVG. (Ignore the rectangle's own attributes for now — we'll meet each shape one at a time.)
+Everything we draw lives inside an `<svg>` canvas with a `width` and a `height`. The `class="chart"` just gives every canvas the same background and border.
 
 <BasicSvgDemo />
 
+One thing to keep in mind as you place shapes: the coordinate system starts at the **top-left**, and `y` grows _downward_.
+
+{#snippet sidebar()}
+
+Copy this to start a canvas:
+
 ```svelte
-/// file: Basic SVG
+/// file: Starter canvas
 <svg class="chart" width="700" height="400">
 	<rect x="20" y="20" width="160" height="80" fill="tomato" />
 </svg>
 ```
 
-Each attribute on the `<svg>` does a specific job:
+> [!WARNING]
+> `(0, 0)` is the **top-left**, not the centre. `y="20"` is 20px _down_ from the top.
 
-- **`width`** / **`height`** — the size of the canvas, in pixels.
-- **`class`** — the CSS class `chart` gives every drawing the same background and border.
-
-> [!NOTE]
-> SVG's coordinate system starts at the **top-left** corner, `(0, 0)`. `x` increases to the right and `y` increases _downward_ — so `y="20"` is 20px _down_ from the top, not up from the bottom.
+{/snippet}
 
 </Section>
 
-<Section id="circles" title="Circles" note="A circle is placed from its **centre** — set `cx` and `cy` first, then the radius `r`.">
+<Section id="circles" title="Circles">
 
-Circles are positioned from the centre outward. First decide where the centre sits with `cx` and `cy`, then set the radius `r`.
+Circles are positioned from their **centre** outward. You set where the centre sits with `cx` and `cy`, then give it a radius `r`. Add a `fill` for the inside, and `stroke` / `stroke-width` for the outline.
 
 <CircleDemo />
 
+Because percentages resolve against the canvas, `cx="50%"` keeps a dot centred no matter how the canvas resizes — handy for laying out a few points into a scatter plot.
+
+{#snippet sidebar()}
+
+A single circle:
+
 ```svelte
-/// file: A circle
+/// file: Circle
 <svg class="chart" width="700" height="400">
 	<circle cx="100" cy="60" r="40" fill="steelblue" stroke="black" stroke-width="1" />
 </svg>
 ```
 
-Its attributes are:
+> [!WARNING]
+> `cx`/`cy` are the **centre**, not a corner — and a circle has no outline unless you set `stroke`.
 
-- **`cx`** / **`cy`** — the coordinates of the circle's _centre_.
-- **`r`** — the radius, in pixels.
-- **`fill`** — the colour painted inside the circle.
-- **`stroke`** / **`stroke-width`** — the colour and thickness of the border.
+**End result** — five circles make a scatter plot:
 
-Try nudging `cx` and `cy` around, then change `r`, to feel how the circle is anchored from the middle outward.
+<ScatterResult />
+
+```svelte
+/// file: Scatter plot
+<svg class="chart" width="700" height="400">
+	<circle cx="40%" cy="75%" r="10" fill="steelblue" />
+	<circle cx="25%" cy="75%" r="10" fill="steelblue" />
+	<circle cx="50%" cy="50%" r="10" fill="steelblue" />
+	<circle cx="10%" cy="66%" r="10" fill="steelblue" />
+	<circle cx="80%" cy="30%" r="10" fill="steelblue" />
+</svg>
+```
+
+{/snippet}
 
 </Section>

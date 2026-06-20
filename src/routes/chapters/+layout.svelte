@@ -12,11 +12,11 @@
 	let isChapter = $derived(page.url.pathname.split('/').filter(Boolean).length > 1);
 
 	/** @type {HTMLElement} */
-	let articleEl = $state();
+	let shellEl = $state();
 
-	// One delegated handler copies any code block's source.
+	// One delegated handler copies any code block's source, in the article or sidebar.
 	$effect(() => {
-		const el = articleEl;
+		const el = shellEl;
 		if (!el) return;
 
 		/** @param {MouseEvent} e */
@@ -44,93 +44,82 @@
 </script>
 
 {#if isChapter}
-	<div class="flex w-full items-start text-text">
+	<div class="flex w-full items-start text-text max-[800px]:flex-col" bind:this={shellEl}>
+		<main
+			class="prose order-2 min-w-0 flex-1 px-[clamp(1.5rem,4vw,3rem)] pt-[clamp(2rem,6vh,4rem)] pb-[30vh] text-[1.05rem] leading-[1.7]"
+		>
+			{@render children()}
+		</main>
+
 		<aside
-			class="sticky top-0 flex h-dvh w-[min(35%,460px)] max-w-full flex-col justify-center overflow-y-auto border-r border-text/12 bg-palette-white px-8 py-10 max-[800px]:z-5 max-[800px]:h-auto max-[800px]:w-full max-[800px]:justify-start max-[800px]:border-r-0 max-[800px]:border-b max-[800px]:px-5 max-[800px]:py-3"
+			class="order-1 sticky top-0 flex h-dvh w-[min(38%,480px)] max-w-full flex-col overflow-y-auto border-r border-text/12 bg-palette-white px-8 py-10 max-[800px]:h-auto max-[800px]:w-full max-[800px]:border-r-0 max-[800px]:border-b max-[800px]:px-5 max-[800px]:py-4"
 		>
 			{#if scrolly.active}
-				<p class="mb-2 text-xs font-bold tracking-[0.08em] text-primary uppercase">
+				<p class="mb-3 text-xs font-bold tracking-[0.08em] text-primary uppercase">
 					{scrolly.active.title}
 				</p>
 				{#key scrolly.activeId}
-					<div class="note-body text-[1.05rem] leading-relaxed" in:fade={{ duration: 200 }}>
-						<!-- author-authored markdown note; safe to inject -->
-						{@html marked.parse(scrolly.active.note ?? '')}
+					<div class="prose text-[0.95rem] leading-relaxed" in:fade={{ duration: 200 }}>
+						{#if scrolly.active.sidebar}
+							{@render scrolly.active.sidebar()}
+						{:else if scrolly.active.note}
+							<!-- author-authored markdown note; safe to inject -->
+							{@html marked.parse(scrolly.active.note)}
+						{/if}
 					</div>
 				{/key}
 			{/if}
 		</aside>
-
-		<main
-			class="article min-w-0 flex-1 px-[clamp(1.5rem,4vw,3rem)] pt-[clamp(2rem,6vh,4rem)] pb-[30vh] text-[1.05rem] leading-[1.7]"
-			bind:this={articleEl}
-		>
-			{@render children()}
-		</main>
 	</div>
 {:else}
 	{@render children()}
 {/if}
 
 <style>
-	/* mdsvex injects the article + note markdown as plain elements, so they can only
-	   be reached with :global() (utility classes can't target injected markup). */
+	/* mdsvex injects the article + sidebar markdown as plain elements, so they can
+	   only be reached with :global(). Both columns share the `prose` hook. */
 
-	.note-body :global(p) {
-		margin: 0 0 0.6rem;
-	}
-	.note-body :global(p:last-child) {
-		margin-bottom: 0;
-	}
-	.note-body :global(code) {
-		padding: 0.08rem 0.3rem;
-		border-radius: 0.25rem;
-		font-family: var(--font-code);
-		font-size: 0.85em;
-		background: color-mix(in srgb, var(--color-text) 10%, transparent);
-	}
-
-	.article :global(h3) {
+	.prose :global(h3) {
 		margin: 2rem 0 0.75rem;
 		font-size: 1.2rem;
 		font-weight: 700;
 	}
 
-	.article :global(p) {
+	.prose :global(p) {
 		margin: 0 0 1rem;
 	}
 
-	.article :global(ul),
-	.article :global(ol) {
+	.prose :global(ul),
+	.prose :global(ol) {
 		margin: 0 0 1rem;
 		padding-left: 1.4rem;
 	}
 
 	/* Tailwind's preflight removes list markers - add them back. */
-	.article :global(ul) {
+	.prose :global(ul) {
 		list-style: disc;
 	}
-	.article :global(ol) {
+	.prose :global(ol) {
 		list-style: decimal;
 	}
-	.article :global(li) {
+	.prose :global(li) {
 		margin: 0.25rem 0;
 	}
 
-	.article :global(hr) {
+	.prose :global(hr) {
 		margin: 2.5rem 0;
 		border: none;
 		border-top: 1px solid color-mix(in srgb, var(--color-text) 15%, transparent);
 	}
 
-	.article :global(a),
-	.article :global(a:visited) {
+	.prose :global(a),
+	.prose :global(a:visited) {
 		color: var(--color-primary);
 		text-underline-offset: 0.15rem;
 	}
 
 	/* Inline code (not inside a highlighted block). */
-	.article :global(:not(pre) > code) {
+	.prose :global(:not(pre) > code) {
 		padding: 0.1rem 0.35rem;
 		border-radius: 0.3rem;
 		font-family: var(--font-code);
@@ -140,15 +129,15 @@
 	}
 
 	/* Code blocks (shiki output from mdsvex). */
-	.article :global(.code-block) {
+	.prose :global(.code-block) {
 		margin: 1.5rem 0;
 		border-radius: 0.5rem;
 		overflow: hidden;
 		border: 1px solid color-mix(in srgb, var(--color-text) 15%, transparent);
-		font-size: 0.9rem;
+		font-size: 0.85rem;
 	}
 
-	.article :global(.code-block__head) {
+	.prose :global(.code-block__head) {
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
@@ -157,21 +146,21 @@
 		background: var(--color-dark-bg);
 		border-bottom: 1px solid color-mix(in srgb, white 8%, transparent);
 		font-family: var(--font-code);
-		font-size: 0.78rem;
+		font-size: 0.72rem;
 		color: var(--color-palette-white);
 	}
 
-	.article :global(.code-block__file) {
+	.prose :global(.code-block__file) {
 		font-weight: 600;
 	}
 
-	.article :global(.code-block__lang) {
+	.prose :global(.code-block__lang) {
 		opacity: 0.6;
 		text-transform: uppercase;
 		letter-spacing: 0.06em;
 	}
 
-	.article :global(.code-block-copy) {
+	.prose :global(.code-block-copy) {
 		flex: none;
 		padding: 0.15rem 0.55rem;
 		border: none;
@@ -183,15 +172,15 @@
 		transition: background 0.15s;
 	}
 
-	.article :global(.code-block-copy:hover) {
+	.prose :global(.code-block-copy:hover) {
 		background: color-mix(in srgb, white 15%, transparent);
 	}
 
-	.article :global(.code-block-copy.is-copied) {
+	.prose :global(.code-block-copy.is-copied) {
 		color: var(--color-secondary);
 	}
 
-	.article :global(pre.shiki) {
+	.prose :global(pre.shiki) {
 		margin: 0;
 		padding: 1rem;
 		white-space: pre-wrap;
@@ -200,7 +189,7 @@
 	}
 
 	/* Note callouts (remark-callouts output). */
-	.article :global(.note) {
+	.prose :global(.note) {
 		margin: 1.5rem 0;
 		padding: 0.85rem 1.1rem;
 		border-radius: 0.4rem;
@@ -208,11 +197,11 @@
 		background: color-mix(in srgb, var(--note-color, var(--color-palette-blue)) 12%, transparent);
 	}
 
-	.article :global(.note > *:last-child) {
+	.prose :global(.note > *:last-child) {
 		margin-bottom: 0;
 	}
 
-	.article :global(.note__title) {
+	.prose :global(.note__title) {
 		margin: 0 0 0.35rem;
 		font-size: 0.72rem;
 		font-weight: 700;
@@ -221,17 +210,17 @@
 		color: var(--note-color, var(--color-palette-blue));
 	}
 
-	.article :global(.note--note) {
+	.prose :global(.note--note) {
 		--note-color: var(--color-palette-blue-dark);
 	}
-	.article :global(.note--tip) {
+	.prose :global(.note--tip) {
 		--note-color: var(--color-palette-purple-dark);
 	}
-	.article :global(.note--warning) {
+	.prose :global(.note--warning) {
 		--note-color: var(--color-palette-orange-dark);
 	}
-	.article :global(.note--important),
-	.article :global(.note--caution) {
+	.prose :global(.note--important),
+	.prose :global(.note--caution) {
 		--note-color: var(--color-primary);
 	}
 </style>
