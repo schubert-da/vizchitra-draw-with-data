@@ -55,8 +55,7 @@ svg {
 	color: var(--color-primary);
 }
 
-/* Shared chart canvas for lesson demos. (The /exercises + /solved pages still
-   carry their own scoped .chart for now; their scoped rule wins over this.) */
+/* Shared chart canvas for chapter demos. */
 .chart {
 	background: #ffffff;
 	border: 1px solid var(--color-text);

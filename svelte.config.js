@@ -45,18 +45,14 @@ const highlight = {
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
 	compilerOptions: {
-		// Force runes mode for the project, except for libraries. Can be removed in svelte 6.
-		//
-		// Exception: the learner-facing exercise/solved routes are left to auto-detect.
-		// Since those components use no runes, they compile in Svelte-4-style "legacy"
-		// mode - a plain `let x = 0` is reactive and `$:` works, so learners never have
-		// to meet `$state`. (Files that DO use a rune - e.g. the layouts' `$props()` -
-		// still compile as runes under auto-detect, so nothing there breaks.)
+		// Force runes mode project-wide, except under /chapters, which is left to
+		// auto-detect. Rune-free chapter files (demos, .svx) then compile in legacy
+		// mode so authors/learners write plain `let x = 0` and `$:` without `$state`;
+		// files that do use a rune still compile as runes under auto-detect.
 		runes: ({ filename }) => {
 			const parts = filename.split(/[/\\]/);
 			if (parts.includes('node_modules')) return undefined;
-			if (parts.includes('exercises') || parts.includes('solved') || parts.includes('chapters'))
-				return undefined;
+			if (parts.includes('chapters')) return undefined;
 			return true;
 		}
 	},

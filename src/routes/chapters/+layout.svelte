@@ -14,7 +14,7 @@
 	/** @type {HTMLElement} */
 	let articleEl = $state();
 
-	// One delegated handler copies any code block's source (same pattern as exercises).
+	// One delegated handler copies any code block's source.
 	$effect(() => {
 		const el = articleEl;
 		if (!el) return;
