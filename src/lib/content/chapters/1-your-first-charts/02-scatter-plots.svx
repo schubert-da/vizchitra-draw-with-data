@@ -24,12 +24,14 @@ We start with placing the circle at the correct position with `cx` and `cy` and 
 
 {#snippet sidebar()}
 
-In a scatter plot the y value is measure from the bottom of the chart, so we can do a bit of math here to position the circle 20px from the bottom using curly brackets `cy={350 - 20}`.
+To position the circle 20px from the bottom using curly brackets to do some math: `cy={350 - 20}`.
 
 ```svelte
 /// file: Circle
 <circle cx="15" cy="{350 - 20}" r="8" fill="steelblue" />
 ```
+
+**RESULT**:
 
 <ScatterDemo />
 

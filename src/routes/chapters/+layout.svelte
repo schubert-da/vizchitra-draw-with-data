@@ -73,7 +73,7 @@
 			{/if}
 
 			{#if scrolly.active}
-				<p class="text-xs font-bold tracking-[0.08em] text-primary uppercase">
+				<p class="mb-1.5 text-sm font-bold text-primary uppercase">
 					{scrolly.active.title}
 				</p>
 				{#key scrolly.activeId}
@@ -113,6 +113,10 @@
 
 	.prose :global(p) {
 		margin: 0 0 0.25rem;
+	}
+
+	:global(aside p) {
+		line-height: 1.35;
 	}
 
 	.prose :global(ul),
