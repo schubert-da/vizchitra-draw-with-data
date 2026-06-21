@@ -63,7 +63,7 @@
 
 		<aside
 			bind:this={asideEl}
-			class="sticky top-0 order-1 flex h-dvh w-[min(38%,480px)] max-w-full flex-col overflow-y-auto border-r border-text/12 bg-palette-white px-8 py-10 pt-6 max-[800px]:h-auto max-[800px]:w-full max-[800px]:border-r-0 max-[800px]:border-b max-[800px]:px-5 max-[800px]:py-4"
+			class="sticky top-0 order-1 flex h-dvh w-[min(35%,4540px)] max-w-full flex-col overflow-y-auto border-r border-text/12 bg-palette-white px-8 py-10 pt-6 max-[800px]:h-auto max-[800px]:w-full max-[800px]:border-r-0 max-[800px]:border-b max-[800px]:px-5 max-[800px]:py-4"
 		>
 			{#if scrolly.persistent}
 				<div class="prose text-[0.95rem] leading-relaxed">
