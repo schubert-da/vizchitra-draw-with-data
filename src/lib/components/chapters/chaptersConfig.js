@@ -7,5 +7,11 @@ export const chapters = [
 		slug: '1-your-first-charts',
 		title: 'Your First Charts',
 		path: '/chapters/1-your-first-charts'
+	},
+	{
+		id: 2,
+		slug: '2-drawing-with-data',
+		title: 'Drawing with Data',
+		path: '/chapters/2-drawing-with-data'
 	}
 ];

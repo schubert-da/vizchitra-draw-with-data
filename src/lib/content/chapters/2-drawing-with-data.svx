@@ -1,0 +1,20 @@
+---
+title: Drawing with Data
+slug: 2-drawing-with-data
+---
+
+<script>
+	import DrawAShapeWithData from './2-drawing-with-data/01-draw-a-shape-with-data.svx';
+</script>
+
+<div class="mx-auto max-w-184">
+
+# Drawing with Data
+
+So far every position was a number we typed by hand. Now we hook the shapes up to **real data**: loading a dataset, mapping each row to a simple shape, and letting the data itself decide where that shape sits on the screen.
+
+From there we make the charts **interactive** — highlighting points on hover, filtering the data on the fly, and responding to what the reader does. Together these are everything we need to start building the final project.
+
+</div>
+
+<DrawAShapeWithData />
