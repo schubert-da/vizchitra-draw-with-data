@@ -7,7 +7,7 @@
 
 <Section id="circles" title="2. You First Scatter Plot">
 
-Now we draw inside the canvas. A point is a `<circle>`, which needs a centre — `cx`, `cy` — and a radius `r`:
+Now we draw inside the canvas. A point is a `<circle>`, which needs a centre (`cx`, `cy`) and a radius `r`:
 
 ```svelte
 /// file: A circle
@@ -16,7 +16,11 @@ Now we draw inside the canvas. A point is a `<circle>`, which needs a centre —
 </svg>
 ```
 
-We start with placing the circle at the correct position with `cx` and `cy` and then give it a radius with `r` and `fill` to make it visible. Open the exercise file and draw the remaining circles to create your first scatter.
+To draw the circle:
+- We start with placing the circle at the correct position with `cx` and `cy` and then 
+- `r` - gives it a radius.
+- `fill` to make it visible. This can be any colour eg. "red", "#ff0000", hsl(0, 100%, 50%), etc.
+- `stroke` is also a colour that can be used to give the circle a border. You can control its thickness with `stroke-width="4"`.
 
 <Exercise file="1-first-scatter-plot.svelte">
 	<FirstScatterPlot />
