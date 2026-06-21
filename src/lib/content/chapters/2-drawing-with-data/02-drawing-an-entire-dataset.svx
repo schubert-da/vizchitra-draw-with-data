@@ -1,0 +1,101 @@
+<script>
+	import Section from '$components/chapters/Section.svelte';
+	import Exercise from '$components/chapters/Exercise.svelte';
+	import FullGridDemo from '$components/chapters/2-drawing-with-data/FullGridDemo.svelte';
+	import DrawingEntireDataset from '$exercises/6-drawing-an-entire-dataset.svelte';
+</script>
+
+<Section id="each" title="2. Drawing an Entire Dataset">
+
+We drew one song. With 139 of them, we don't want to copy that markup 139 times — we want to repeat it once per row. Svelte's **`{#each}` block** does exactly that: give it a list and it stamps out the HTML inside it once for every item.
+
+We'll start small, with the first six songs. `data.slice(0, 6)` takes items 0 to 5:
+
+```svelte
+/// file: Loop over the first few
+{#each data.slice(0, 6) as row, i}
+	<circle r={row.popularity} />
+{/each}
+```
+
+`row` is the song for this turn of the loop, and `i` is its **index** — its position in the list (0, 1, 2, …).
+
+Each song needs its own spot in a grid. We wrap every cell in a `<g>` — a **group** that holds several shapes and can be moved as one — and shift it into place with a `transform`. The grid maths lives in a helper, `cellPosition(i)`, so the HTML stays about the drawing:
+
+```svelte
+/// file: One group per cell
+{#each data.slice(0, 6) as row, i}
+	<g transform={cellPosition(i)}>
+		<rect ... />   <!-- the cell's border -->
+		<circle ... /> <!-- sized by popularity -->
+		<text>{row.title}</text>
+	</g>
+{/each}
+```
+
+Inside each group we draw the same circle and labels as before, plus a `<rect>` marking the cell boundary. Swap `data.slice(0, 6)` for `data` and the loop draws **all 139 songs** at once.
+
+---
+
+One snag: popularity is measured from `0` to `100`, which is too big to use straight as a radius — a value of `83` would be a circle wider than its cell. We remap that `0–100` range onto a radius range that fits, with a **scale** from D3 — `scaleLinear`. We keep the low end at `0`, so the least popular songs shrink to nothing, which is honest to the data:
+
+```svelte
+/// file: A scale for the radius
+import { scaleLinear } from 'd3';
+
+const radius = scaleLinear()
+	.domain([0, 100]) // popularity runs from 0 to 100
+	.range([0, 70]); // 0 -> invisible, 100 -> biggest dot
+```
+
+Now size each circle with `r={radius(row.popularity)}`. Fill in the cells in the exercise:
+
+<Exercise file="6-drawing-an-entire-dataset.svelte">
+	<DrawingEntireDataset />
+</Exercise>
+
+{#snippet sidebar()}
+
+**Repeat markup with `{#each}`**
+
+```svelte
+/// file: Each
+{#each data as row, i}
+	<!-- drawn once per song; `row` is the song, `i` its index -->
+{/each}
+```
+
+> [!Note] New words
+> - **`{#each}` block**: repeats the markup inside it once per item in a list.
+> - **index** (`i`): an item's position in the list, counting from `0`.
+> - **`<g>`**: a group holding several shapes so they move together.
+> - **scale**: a function that maps values from one range onto another.
+
+**Position each cell**
+
+`cellPosition(i)` returns the grid offset for cell `i`:
+
+```svelte
+/// file: Create a tile for a song
+<g transform={cellPosition(i)}>
+	<rect x="0" y="0" width={CELL} height={CELL} fill="none" stroke="#ddd" />
+	<circle cx="100" cy="85" r={radius(row.popularity)} fill="steelblue" />
+</g>
+```
+
+**Map popularity to a radius**
+
+```svelte
+/// file: Scale
+const radius = scaleLinear()
+	.domain([0, 100])
+	.range([0, 70]);
+```
+
+**RESULT** (all 139 songs):
+
+<FullGridDemo />
+
+{/snippet}
+
+</Section>

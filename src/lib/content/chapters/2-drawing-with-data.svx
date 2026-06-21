@@ -5,6 +5,7 @@ slug: 2-drawing-with-data
 
 <script>
 	import DrawAShapeWithData from './2-drawing-with-data/01-draw-a-shape-with-data.svx';
+	import DrawingEntireDataset from './2-drawing-with-data/02-drawing-an-entire-dataset.svx';
 </script>
 
 <div class="mx-auto max-w-184">
@@ -18,3 +19,5 @@ From there we make the charts **interactive** — highlighting points on hover, 
 </div>
 
 <DrawAShapeWithData />
+
+<DrawingEntireDataset />
