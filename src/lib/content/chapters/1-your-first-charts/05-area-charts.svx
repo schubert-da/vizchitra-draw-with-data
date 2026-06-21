@@ -1,0 +1,77 @@
+<script>
+	import Section from '$components/chapters/Section.svelte';
+	import Exercise from '$components/chapters/Exercise.svelte';
+	import AreaDemo from '$components/chapters/1-your-first-charts/AreaDemo.svelte';
+	import AreaChart from '$exercises/4-area-chart.svelte';
+</script>
+
+<Section id="paths" title="5. Area Charts">
+
+A `<path>` can draw _any_ shape. Everything lives in one attribute, `d` - a list of drawing commands the pen follows:
+
+```svelte
+/// file: A path
+<path d="M 50 280 L 160 50 L 260 170 Z" fill="steelblue" />
+```
+
+- `M x y` **moves** the pen to a start point (without drawing).
+- `L x y` draws a straight **line** to a point.
+- `Z` **closes** the shape, joining the last point back to the start.
+- Curves have their own commands (`C` for a cubic, `Q` for a quadratic) - you'll see one in the sidebar.
+
+These strings get long and fiddly fast, so in practice we **almost never write `d` by hand** - libraries like D3 generate it for us. We'll build a short one here just to see how the pen moves.
+
+An area chart is a line chart with the space underneath filled in. We trace the same path through our points, then drop down to the base (`y = 350`) and close it into a solid shape:
+
+<Exercise file="4-area-chart.svelte">
+	<AreaChart />
+</Exercise>
+
+{#snippet sidebar()}
+
+One shape for the whole area:
+
+```svelte
+/// file: Path
+<path
+	d="M 50 280 L 160 50 L 260 170 L 360 30 L 460 230 L 460 350 L 50 350 Z"
+	fill="steelblue"
+	fill-opacity="0.25"
+	stroke="steelblue"
+	stroke-width="2"
+/>
+```
+
+**RESULT**:
+
+<AreaDemo />
+
+---
+
+**Variants to try**
+
+Swap the `d` for one of these (same points, different pen path):
+
+A **smooth** area, with `C` cubic curves through the points (a Catmull-Rom spline). Notice how unreadable it is by hand - this is exactly what a library would generate:
+
+```svelte
+/// file: Smooth (Catmull-Rom)
+d="M 50 280
+   C 68 242 125 68 160 50
+   C 195 32 227 173 260 170
+   C 293 167 327 20 360 30
+   C 393 40 443 197 460 230
+   L 460 350 L 50 350 Z"
+```
+
+A **stepped** area, holding each value until the next point (only `L` commands):
+
+```svelte
+/// file: Stepped
+d="M 50 280 L 160 280 L 160 50 L 260 50 L 260 170 L 360 170
+   L 360 30 L 460 30 L 460 230 L 460 350 L 50 350 Z"
+```
+
+{/snippet}
+
+</Section>
