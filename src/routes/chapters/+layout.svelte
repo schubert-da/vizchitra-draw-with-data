@@ -52,8 +52,15 @@
 		</main>
 
 		<aside
-			class="order-1 sticky top-0 flex h-dvh w-[min(38%,480px)] max-w-full flex-col overflow-y-auto border-r border-text/12 bg-palette-white px-8 py-10 max-[800px]:h-auto max-[800px]:w-full max-[800px]:border-r-0 max-[800px]:border-b max-[800px]:px-5 max-[800px]:py-4"
+			class="sticky top-0 order-1 flex h-dvh w-[min(38%,480px)] max-w-full flex-col overflow-y-auto border-r border-text/12 bg-palette-white px-8 py-10 max-[800px]:h-auto max-[800px]:w-full max-[800px]:border-r-0 max-[800px]:border-b max-[800px]:px-5 max-[800px]:py-4"
 		>
+			{#if scrolly.persistent}
+				<div class="prose text-[0.95rem] leading-relaxed">
+					{@render scrolly.persistent()}
+				</div>
+				<hr class="my-6 border-text/12" />
+			{/if}
+
 			{#if scrolly.active}
 				<p class="mb-3 text-xs font-bold tracking-[0.08em] text-primary uppercase">
 					{scrolly.active.title}
@@ -78,6 +85,14 @@
 <style>
 	/* mdsvex injects the article + sidebar markdown as plain elements, so they can
 	   only be reached with :global(). Both columns share the `prose` hook. */
+
+	/* Chapter header (only in the main column). */
+	.prose :global(h1) {
+		margin: 0 0 1rem;
+		font-size: 2.1rem;
+		font-weight: 700;
+		line-height: 1.15;
+	}
 
 	.prose :global(h3) {
 		margin: 2rem 0 0.75rem;

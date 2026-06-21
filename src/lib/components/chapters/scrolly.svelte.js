@@ -7,6 +7,12 @@ const KEY = Symbol('scrolly');
 class ScrollyStore {
 	activeId = $state(null);
 	sections = $state([]);
+	// Chapter-level sidebar content (e.g. the data table) shown across all sections.
+	persistent = $state(null);
+
+	setPersistent(snippet) {
+		this.persistent = snippet;
+	}
 
 	register(section) {
 		if (!this.sections.some((s) => s.id === section.id)) {

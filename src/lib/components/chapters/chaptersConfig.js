@@ -4,8 +4,8 @@
 export const chapters = [
 	{
 		id: 1,
-		slug: '1-svg-basics-and-circles',
-		title: 'SVG Basics and Circles',
-		path: '/chapters/1-svg-basics-and-circles'
+		slug: '1-your-first-charts',
+		title: 'Your First Charts',
+		path: '/chapters/1-your-first-charts'
 	}
 ];
