@@ -12,7 +12,7 @@ Now we draw inside the canvas. A point is a `<circle>`, which needs a centre (`c
 ```svelte
 /// file: A circle
 <svg class="chart" width="500" height="350">
-	<circle cx="100" cy="80" r="8" fill="steelblue" />
+	<circle cx="50" cy={350 - 70} r="8" fill="steelblue" />
 </svg>
 ```
 
@@ -28,11 +28,11 @@ To draw the circle:
 
 {#snippet sidebar()}
 
-To position the circle 20px from the bottom using curly brackets to do some math: `cy={350 - 20}`.
+The table's `x` and `y` are already pixel positions, so plot them straight onto the canvas. Flip `y` with curly brackets so larger values sit higher: `cy={350 - 70}`.
 
 ```svelte
 /// file: Circle
-<circle cx="15" cy="{350 - 20}" r="8" fill="steelblue" />
+<circle cx="50" cy={350 - 70} r="8" fill="steelblue" />
 ```
 
 **RESULT**:

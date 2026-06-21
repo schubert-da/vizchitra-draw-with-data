@@ -1,0 +1,41 @@
+<script>
+	import Section from '$components/chapters/Section.svelte';
+	import Exercise from '$components/chapters/Exercise.svelte';
+	import BarsDemo from '$components/chapters/1-your-first-charts/BarsDemo.svelte';
+	import FirstBar from '$exercises/2-first-bar.svelte';
+</script>
+
+<Section id="rects" title="3. Bars and Rectangles">
+
+A bar is a `<rect>` — a rectangle. It needs a position (`x`, `y`) for its **top-left corner**, plus a `width` and `height`:
+
+```svelte
+/// file: A rectangle
+	<rect x="30" y="280" width="40" height="70" fill="seagreen" />
+```
+
+- `x`, `y`: Start by placing the **top-left** corner of the rectangle.
+- `width` and `height` set its size in pixels.
+- `fill` colours it in; `stroke` and `stroke-width` add a border, just like a circle.
+
+Because `y` is the **top** edge, a bar resting on the floor has to start at `y={350 - barHeight}` and have a height of `barHeight`.
+
+<Exercise file="2-first-bar.svelte">
+	<FirstBar />
+</Exercise>
+
+{#snippet sidebar()}
+
+
+```svelte
+/// file: Rect syntax
+<rect x="30" y={350 - 70} width="40" height="70" fill="seagreen" />
+```
+
+**RESULT**:
+
+<BarsDemo />
+
+{/snippet}
+
+</Section>

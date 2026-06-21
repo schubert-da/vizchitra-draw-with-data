@@ -8,6 +8,7 @@ slug: 1-your-first-charts
 	import DataTable from '$components/chapters/1-your-first-charts/DataTable.svelte';
 	import SvgCanvas from './1-your-first-charts/01-the-svg-canvas.svx';
 	import ScatterPlots from './1-your-first-charts/02-scatter-plots.svx';
+	import BarsAndRectangles from './1-your-first-charts/03-bars-and-rectangles.svx';
 </script>
 
 <ChapterAside>
@@ -29,3 +30,5 @@ A chart is really just shapes placed in the right spots. In this chapter we take
 <SvgCanvas />
 
 <ScatterPlots />
+
+<BarsAndRectangles />

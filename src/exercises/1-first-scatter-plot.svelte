@@ -1,16 +1,18 @@
 <!--
 	Exercise 1: Your First Scatter Plot
 
-	Draw a dot for each row in the data table
+	Draw a dot for each row in the data table. The x and y in the table are
+	already pixel positions on this 500 x 350 canvas, so you don't need to
+	do any scaling.
 
 	Every dot is a <circle> with three settings:
-	  - cx: distance from the left      
-	  - cy: distance from the top      
+	  - cx: the row's x  (distance from the left)
+	  - cy: 350 - the row's y  (we flip it so larger y sits higher up)
 	  - r: radius
 
-	One is done for you. Add a <circle> for each remaining row.
-	Save the file and watch this panel update.
+	The first row (x = 50, y = 70) is done for you. Add a <circle> for each
+	remaining row. Save the file and watch this panel update.
 -->
 <svg class="chart" width="500" height="350">
-	<circle cx="90" cy={350 - 80} r="8" fill="steelblue" />
+	<circle cx="50" cy={350 - 70} r="8" fill="steelblue" />
 </svg>

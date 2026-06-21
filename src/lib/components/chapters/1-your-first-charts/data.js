@@ -1,9 +1,10 @@
-// Placeholder 3-column dataset for "Your First Charts". Every section draws this
-// same data as a different shape. Swap for a real CSV later.
+// Placeholder dataset for "Your First Charts". The x and y values are already
+// in pixels for a 500×350 canvas, so charts can plot them directly with no
+// scaling - read a row's x/y straight from the table onto the SVG.
 export const data = [
-	{ label: 'A', x: 15, y: 20 },
-	{ label: 'B', x: 40, y: 75 },
-	{ label: 'C', x: 55, y: 45 },
-	{ label: 'D', x: 70, y: 85 },
-	{ label: 'E', x: 90, y: 35 }
+	{ label: 'A', x: 50, y: 70 },
+	{ label: 'B', x: 160, y: 300 },
+	{ label: 'C', x: 260, y: 180 },
+	{ label: 'D', x: 360, y: 320 },
+	{ label: 'E', x: 460, y: 120 }
 ];
