@@ -58,11 +58,11 @@
 				<div class="prose text-[0.95rem] leading-relaxed">
 					{@render scrolly.persistent()}
 				</div>
-				<hr class="my-6 border-text/12" />
+				<hr class="my-6 border-text/50" />
 			{/if}
 
 			{#if scrolly.active}
-				<p class="mb-3 text-xs font-bold tracking-[0.08em] text-primary uppercase">
+				<p class="text-xs font-bold tracking-[0.08em] text-primary uppercase">
 					{scrolly.active.title}
 				</p>
 				{#key scrolly.activeId}
@@ -101,7 +101,7 @@
 	}
 
 	.prose :global(p) {
-		margin: 0 0 1rem;
+		margin: 0 0 0.25rem;
 	}
 
 	.prose :global(ul),

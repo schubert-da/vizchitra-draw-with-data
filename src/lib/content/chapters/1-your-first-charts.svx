@@ -13,28 +13,31 @@ slug: 1-your-first-charts
 
 <ChapterAside>
 
-**The data**
-
-We'll draw this same little dataset as a different shape in each section.
+**The Data**
 
 <DataTable />
 
 </ChapterAside>
 
+<div class="mx-auto max-w-184">
+
 # Your First Charts
 
-A chart is really just shapes placed in the right spots. In this chapter we take the small dataset on the left and turn it into our first charts — starting with the canvas everything is drawn on, then plotting each row as a point, and building up from there.
+A chart is really just shapes placed in the right spots. In this chapter we take the small dataset on the left and turn it into our first charts. We'll start with the canvas everything is drawn on, then plotting each row as a point, and building up from there.
+
+</div>
 
 <Section id="svg" title="The SVG canvas">
 
-Everything we draw lives on an **SVG** — a canvas you write with _tags_, the same building blocks as a web page. A tag is a keyword in angle brackets like `<svg>`, and most come in pairs: an opening `<svg>` and a closing `</svg>`, with whatever we draw nested between them.
+Everything we draw lives on an **SVG** - a canvas you write with _tags_, the same building blocks as a web page. A tag is a keyword in angle brackets like `<svg>`, and most come in pairs: an opening `<svg>` and a closing `</svg>`.
 
-Each tag carries **attributes** — `name="value"` settings. For the canvas we set a width and a height, in pixels:
 
 ```svelte
 /// file: An SVG canvas
 <svg class="chart" width="600" height="400"></svg>
 ```
+
+Each tag carries **attributes** — `name="value"` settings. For the SVG we set a width and a height, in pixels:
 
 <CanvasDemo />
 
