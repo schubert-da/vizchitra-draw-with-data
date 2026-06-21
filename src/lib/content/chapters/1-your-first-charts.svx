@@ -27,7 +27,7 @@ A chart is really just shapes placed in the right spots. In this chapter we take
 
 </div>
 
-<Section id="svg" title="The SVG canvas">
+<Section id="svg" title="1. The SVG canvas">
 
 Everything we draw lives on an **SVG** - a canvas you write with _tags_, the same building blocks as a web page. A tag is a keyword in angle brackets like `<svg>`, and most come in pairs: an opening `<svg>` and a closing `</svg>`.
 
@@ -37,36 +37,31 @@ Everything we draw lives on an **SVG** - a canvas you write with _tags_, the sam
 <svg class="chart" width="600" height="400"></svg>
 ```
 
-Each tag carries **attributes** — `name="value"` settings. For the SVG we set a width and a height, in pixels:
+The SVG element can have fields of `"width"` and `"height"` which specify the dimensions of the SVG in pixels.  `class="chart"` tells it to apply the styling for `chart` to the SVG (in our case just a black border)
 
 <CanvasDemo />
 
-We can see that empty box only because `class="chart"` gives it a light background and border — an SVG with nothing drawn in it is invisible by default.
-
-### The coordinate system
-
-Every position is measured from the **top-left corner**, `(0, 0)`. `x` grows to the **right**, and `y` grows **downward** — so a bigger `y` sits _lower_ on the canvas, the opposite of a maths graph. Keep that in mind the moment we start placing shapes.
+**The coordinate system**: Every position is measured from the **top-left corner**, `(0, 0)`. `x` grows to the **right**, and `y` grows **downward** — so a bigger `y` sits _lower_ on the canvas, the opposite of a maths graph.
 
 {#snippet sidebar()}
 
-> [!WARNING]
-> An empty SVG is invisible. We add a light background + border (the `chart` class) so you can see the canvas while you work.
-
-> [!WARNING]
-> Coordinates start at the **top-left** `(0, 0)`, and `y` increases **downward**.
+> [!Note]
+> A couple things to note
+> - By default *an empty SVG is invisible*. We add a light background + border (the `chart` class) so you can see the element while you work.
+> - Coordinates start at the **top-left** `(0, 0)`, and `y` increases **downward**.
 
 Copy this to start your canvas:
 
 ```svelte
-/// file: SVG canvas
-<svg class="chart" width="600" height="400"></svg>
+/// file: SVG
+<svg class="chart" width="400" height="250"></svg>
 ```
 
 {/snippet}
 
 </Section>
 
-<Section id="circles" title="Plotting circles">
+<Section id="circles" title="2. You First Scatter Plots">
 
 Now we draw inside the canvas. A point is a `<circle>`, which needs a centre — `cx`, `cy` — and a radius `r`:
 
