@@ -1,0 +1,38 @@
+<script>
+	import Section from '$components/chapters/Section.svelte';
+	import CanvasDemo from '$components/chapters/1-your-first-charts/CanvasDemo.svelte';
+</script>
+
+<Section id="svg" title="1. The SVG canvas">
+
+Everything we draw lives on an **SVG** - a canvas you write with _tags_, the same building blocks as a web page. A tag is a keyword in angle brackets like `<svg>`, and most come in pairs: an opening `<svg>` and a closing `</svg>`.
+
+
+```svelte
+/// file: An SVG canvas
+<svg class="chart" width="600" height="400"></svg>
+```
+
+The SVG element can have fields of `"width"` and `"height"` which specify the dimensions of the SVG in pixels.  `class="chart"` tells it to apply the styling for `chart` to the SVG (in our case just a black border)
+
+<CanvasDemo />
+
+**The coordinate system**: Every position is measured from the **top-left corner**, `(0, 0)`. `x` grows to the **right**, and `y` grows **downward** — so a bigger `y` sits _lower_ on the canvas, the opposite of a maths graph.
+
+{#snippet sidebar()}
+
+> [!Note]
+> A couple things to note
+> - By default *an empty SVG is invisible*. We add a light background + border (the `chart` class) so you can see the element while you work.
+> - Coordinates start at the **top-left** `(0, 0)`, and `y` increases **downward**.
+
+Copy this to start your canvas:
+
+```svelte
+/// file: SVG
+<svg class="chart" width="400" height="250"></svg>
+```
+
+{/snippet}
+
+</Section>

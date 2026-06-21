@@ -53,6 +53,9 @@ const config = {
 			const parts = filename.split(/[/\\]/);
 			if (parts.includes('node_modules')) return undefined;
 			if (parts.includes('chapters')) return undefined;
+			// Student exercise files mirror the chapter code style: plain `let x = 0`
+			// and `$:` without runes, so leave them on auto-detect too.
+			if (parts.includes('exercises')) return undefined;
 			return true;
 		}
 	},
@@ -62,6 +65,7 @@ const config = {
 			$assets: 'src/lib/assets',
 			$utils: 'src/lib/utils',
 			$components: 'src/lib/components',
+			$exercises: 'src/exercises',
 			$slides: 'src/lib/slides.js',
 			$templates: 'src/lib/templates'
 		}

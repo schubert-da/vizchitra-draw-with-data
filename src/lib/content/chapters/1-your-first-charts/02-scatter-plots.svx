@@ -1,0 +1,38 @@
+<script>
+	import Section from '$components/chapters/Section.svelte';
+	import Exercise from '$components/chapters/Exercise.svelte';
+	import ScatterDemo from '$components/chapters/1-your-first-charts/ScatterDemo.svelte';
+	import FirstScatterPlot from '$exercises/1-first-scatter-plot.svelte';
+</script>
+
+<Section id="circles" title="2. You First Scatter Plot">
+
+Now we draw inside the canvas. A point is a `<circle>`, which needs a centre — `cx`, `cy` — and a radius `r`:
+
+```svelte
+/// file: A circle
+<svg class="chart" width="500" height="350">
+	<circle cx="100" cy="80" r="8" fill="steelblue" />
+</svg>
+```
+
+We start with placing the circle at the correct position with `cx` and `cy` and then give it a radius with `r` and `fill` to make it visible. Open the exercise file and draw the remaining circles to create your first scatter.
+
+<Exercise file="1-first-scatter-plot.svelte">
+	<FirstScatterPlot />
+</Exercise>
+
+{#snippet sidebar()}
+
+In a scatter plot the y value is measure from the bottom of the chart, so we can do a bit of math here to position the circle 20px from the bottom using curly brackets `cy={350 - 20}`.
+
+```svelte
+/// file: Circle
+<circle cx="15" cy="{350 - 20}" r="8" fill="steelblue" />
+```
+
+<ScatterDemo />
+
+{/snippet}
+
+</Section>

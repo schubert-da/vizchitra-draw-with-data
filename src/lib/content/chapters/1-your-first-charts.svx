@@ -4,11 +4,10 @@ slug: 1-your-first-charts
 ---
 
 <script>
-	import Section from '$components/chapters/Section.svelte';
 	import ChapterAside from '$components/chapters/ChapterAside.svelte';
 	import DataTable from '$components/chapters/1-your-first-charts/DataTable.svelte';
-	import CanvasDemo from '$components/chapters/1-your-first-charts/CanvasDemo.svelte';
-	import ScatterDemo from '$components/chapters/1-your-first-charts/ScatterDemo.svelte';
+	import SvgCanvas from './1-your-first-charts/01-the-svg-canvas.svx';
+	import ScatterPlots from './1-your-first-charts/02-scatter-plots.svx';
 </script>
 
 <ChapterAside>
@@ -27,84 +26,6 @@ A chart is really just shapes placed in the right spots. In this chapter we take
 
 </div>
 
-<Section id="svg" title="1. The SVG canvas">
+<SvgCanvas />
 
-Everything we draw lives on an **SVG** - a canvas you write with _tags_, the same building blocks as a web page. A tag is a keyword in angle brackets like `<svg>`, and most come in pairs: an opening `<svg>` and a closing `</svg>`.
-
-
-```svelte
-/// file: An SVG canvas
-<svg class="chart" width="600" height="400"></svg>
-```
-
-The SVG element can have fields of `"width"` and `"height"` which specify the dimensions of the SVG in pixels.  `class="chart"` tells it to apply the styling for `chart` to the SVG (in our case just a black border)
-
-<CanvasDemo />
-
-**The coordinate system**: Every position is measured from the **top-left corner**, `(0, 0)`. `x` grows to the **right**, and `y` grows **downward** — so a bigger `y` sits _lower_ on the canvas, the opposite of a maths graph.
-
-{#snippet sidebar()}
-
-> [!Note]
-> A couple things to note
-> - By default *an empty SVG is invisible*. We add a light background + border (the `chart` class) so you can see the element while you work.
-> - Coordinates start at the **top-left** `(0, 0)`, and `y` increases **downward**.
-
-Copy this to start your canvas:
-
-```svelte
-/// file: SVG
-<svg class="chart" width="400" height="250"></svg>
-```
-
-{/snippet}
-
-</Section>
-
-<Section id="circles" title="2. You First Scatter Plots">
-
-Now we draw inside the canvas. A point is a `<circle>`, which needs a centre — `cx`, `cy` — and a radius `r`:
-
-```svelte
-/// file: A circle
-<circle cx="100" cy="80" r="8" fill="steelblue" />
-```
-
-That places a single dot. But we have a whole table of rows, and we'd rather not write a `<circle>` by hand for each. Svelte's `{#each}` block loops over the data and repeats the markup once per row, and curly braces `{ }` let us drop in a little maths to turn a value into a pixel position:
-
-```svelte
-/// file: One circle per row
-{#each data as d}
-	<circle cx={d.x * 6} cy={d.y * 4} r="8" fill="steelblue" />
-{/each}
-```
-
-Our `x` and `y` columns run from 0 to 100, but the canvas is 600×400 — so we scale `x` up by 6 and `y` by 4 to spread the points across it. We work in **pixels** like this rather than percentages, so the maths stays explicit.
-
-Drop that loop inside your `<svg>` and you've drawn a scatter plot — the goal is on the left.
-
-{#snippet sidebar()}
-
-A single circle:
-
-```svelte
-/// file: Circle
-<circle cx="100" cy="80" r="8" fill="steelblue" />
-```
-
-One circle per data row:
-
-```svelte
-/// file: Loop
-{#each data as d}
-	<circle cx={d.x * 6} cy={d.y * 4} r="8" fill="steelblue" />
-{/each}
-```
-
-**Goal**
-
-<ScatterDemo />
-
-{/snippet}
-
-</Section>
+<ScatterPlots />
