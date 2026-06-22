@@ -1,0 +1,43 @@
+<script>
+	import Section from '$components/chapters/Section.svelte';
+	import Bleed from '$components/chapters/Bleed.svelte';
+	import PackedCirclesDemo from '$components/chapters/4-custom-viz-with-ai/PackedCirclesDemo.svelte';
+</script>
+
+<Section id="packing" title="1. Packing the Discs by Genre">
+
+Our grid gave every song the same square. But songs aren't really a flat list — they cluster: many songs share an **artist**, and many artists share a **genre**. A **circle-packing** layout shows that nesting directly: each song sits inside its artist's circle, and each artist inside its genre's circle.
+
+Every leaf is the same **vinyl disc** we built — a dark record with four wedges radiating from the centre for popularity, tempo, energy and danceability, and a genre-coloured hub. Here each disc is **sized by popularity**, so the hits grow large while the deep cuts stay small, and every genre is tinted its own colour.
+
+<Bleed>
+	<PackedCirclesDemo />
+</Bleed>
+
+{#snippet sidebar()}
+
+This is exactly the kind of chart that's quick to reach for with an AI assistant: describe the nesting and the leaf design, get a first draft of the D3, then refine it. Try this prompt:
+
+```text
+/// file: Prompt to try
+I have a dataset of 2010s songs with fields: title, artist, genre,
+popularity, bpm, energy, danceability.
+
+Build a D3 circle-packing chart (in Svelte) that groups the songs by
+genre, then by artist. Size each leaf circle by popularity, and tint
+each genre group with its own colour.
+
+Render every leaf as a small "vinyl disc": a dark circle with four
+wedges radiating from the centre — popularity, tempo, energy and
+danceability — each wedge's length scaled to its value, plus a small
+genre-coloured hub in the middle.
+```
+
+> [!Tip] Reading it
+> - **Outer circles** are genres; the circles nested inside them are artists.
+> - **Disc size** = popularity.
+> - **Wedges** = that song's popularity, tempo, energy and danceability.
+
+{/snippet}
+
+</Section>

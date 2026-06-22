@@ -13,5 +13,11 @@ export const chapters = [
 		slug: '2-drawing-with-data',
 		title: 'Drawing with Data',
 		path: '/chapters/2-drawing-with-data'
+	},
+	{
+		id: 4,
+		slug: '4-custom-viz-with-ai',
+		title: 'Custom Viz with AI',
+		path: '/chapters/4-custom-viz-with-ai'
 	}
 ];

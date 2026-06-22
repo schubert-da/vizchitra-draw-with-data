@@ -1,0 +1,20 @@
+---
+title: Custom Viz with AI
+slug: 4-custom-viz-with-ai
+---
+
+<script>
+	import PackedCircles from './4-custom-viz-with-ai/01-packed-circles.svx';
+</script>
+
+<div class="mx-auto max-w-184">
+
+# Custom Viz with AI
+
+We have the building blocks now — shapes, scales, data, colour. From here the interesting question shifts from "how do I draw a circle?" to "what's worth drawing?"
+
+This chapter is a small gallery of charts you could reach for next, each one a good fit for building **alongside an AI assistant**: you describe the idea, it drafts the D3, and you refine. Every example comes with the prompt that produced it — in the sidebar — so you can try it yourself.
+
+</div>
+
+<PackedCircles />
