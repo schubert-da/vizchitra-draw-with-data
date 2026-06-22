@@ -1,0 +1,80 @@
+<script>
+	import Section from '$components/chapters/Section.svelte';
+	import Exercise from '$components/chapters/Exercise.svelte';
+	import ColoredGridDemo from '$components/chapters/2-drawing-with-data/ColoredGridDemo.svelte';
+	import DrawingEntireDataset from '$exercises/6-drawing-an-entire-dataset.svelte';
+</script>
+
+<Section id="styling" title="3. Styling your Shapes">
+
+We'll keep working on the **same grid** from the last section — no new file. Right now every record looks alike; let's colour each one by its **genre** so the chart tells us something at a glance.
+
+The catch: a genre is a piece of text like `"Dance pop"` or `"Hip-hop/R&B"`, and an SVG `fill` needs a colour. We need a way to turn one into the other.
+
+For that we use an **object** as a lookup table — think of it like a **dictionary**: you look up a word (the genre) and get back its definition (the colour). Each line is a **key** (the genre) paired with a **value** (the colour):
+
+```svelte
+/// file: Colour map
+const genreColors = {
+	'Dance pop': '#E75B2B',
+	Pop: '#DB1E24',
+	'Hip-hop/R&B': '#F9B806',
+	'Acoustic/Folk': '#3091B9',
+	Other: '#E032A3',
+	EDM: '#53DC41'
+};
+```
+
+To look one up, we put the key in **square brackets**:
+
+```svelte
+/// file: Looking up a colour
+genreColors['Dance pop']; // "#E75B2B"
+genreColors[row.genre]; // the colour for this row's genre
+```
+
+We use brackets `[ ]` here (not a dot) because the key comes from the data and some genres contain spaces or slashes — `row.genre` looks up whatever genre that row happens to be.
+
+Now wire it into the drawing. Set the **cell's `fill`** and the **record label's `fill`** to `genreColors[row.genre]`, and the grid colours itself by genre:
+
+<Exercise file="6-drawing-an-entire-dataset.svelte" bleed>
+	<DrawingEntireDataset />
+</Exercise>
+
+{#snippet sidebar()}
+
+Paste this colour map into your file:
+
+```svelte
+/// file: Colour map
+const genreColors = {
+	'Dance pop': '#E75B2B',
+	Pop: '#DB1E24',
+	'Hip-hop/R&B': '#F9B806',
+	'Acoustic/Folk': '#3091B9',
+	Other: '#E032A3',
+	EDM: '#53DC41'
+};
+```
+
+> [!Note] New words
+> - **object**: a set of **key → value** pairs, like a dictionary.
+> - **key**: what you look up (here, the genre).
+> - **value**: what you get back (here, the colour).
+> - **lookup**: read a value with square brackets — `genreColors[row.genre]`.
+
+**Colour the cell and the label**
+
+```svelte
+/// file: Fills
+<rect ... fill={genreColors[row.genre]} />
+<circle ... fill={genreColors[row.genre]} />
+```
+
+**RESULT**:
+
+<ColoredGridDemo />
+
+{/snippet}
+
+</Section>
