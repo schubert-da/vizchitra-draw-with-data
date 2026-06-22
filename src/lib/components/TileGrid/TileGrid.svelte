@@ -2,6 +2,7 @@
 	import data from '$assets/data/spotify-2010s.csv';
 	import { Pi } from '@lucide/svelte';
 	import * as d3 from 'd3';
+	import TileLegend from './TileLegend.svelte';
 
 	console.log(data);
 
@@ -50,6 +51,9 @@
 	}
 </script>
 
+<div class="mx-auto w-full max-w-250 pt-10">
+	<TileLegend />
+</div>
 <div class="content dis w-full p-10">
 	<svg
 		class="mx-auto"
