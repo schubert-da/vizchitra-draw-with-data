@@ -2,6 +2,7 @@
 	import { page } from '$app/state';
 	import { marked } from 'marked';
 	import { fade } from 'svelte/transition';
+	import { PanelLeftClose, PanelLeftOpen } from '@lucide/svelte';
 	import { setScrolly } from '$components/chapters/scrolly.svelte.js';
 
 	let { children } = $props();
@@ -16,6 +17,23 @@
 
 	/** @type {HTMLElement} */
 	let asideEl = $state();
+
+	let collapsed = $state(false);
+
+	// Measure the panel so collapsing can slide it out by exactly its own size -
+	// width in the side-by-side layout, height in the stacked (mobile) one. The
+	// vars live on the shell so both the panel and the floating toggle can read
+	// them. Kept fresh on resize (e.g. crossing the 800px breakpoint).
+	$effect(() => {
+		function measure() {
+			if (!asideEl || !shellEl) return;
+			shellEl.style.setProperty('--aside-w', asideEl.offsetWidth + 'px');
+			shellEl.style.setProperty('--aside-h', asideEl.offsetHeight + 'px');
+		}
+		measure();
+		window.addEventListener('resize', measure);
+		return () => window.removeEventListener('resize', measure);
+	});
 
 	// When the active section changes, scroll the sidebar back to the top so the
 	// new section's content starts from the beginning.
@@ -54,16 +72,38 @@
 </script>
 
 {#if isChapter}
-	<div class="flex w-full items-start text-text max-[800px]:flex-col" bind:this={shellEl}>
+	<div
+		class="flex w-full items-start overflow-x-clip text-text [--aside-h:0px] [--aside-w:35%] max-[800px]:flex-col max-[800px]:overflow-clip"
+		bind:this={shellEl}
+	>
+		<button
+			type="button"
+			class="fixed top-[0.6rem] z-50 grid size-8 cursor-pointer place-items-center rounded-md border border-text/20 bg-palette-white text-text transition-all duration-300 ease-in-out hover:bg-primary/10 max-[800px]:top-[0.5rem] max-[800px]:right-[0.6rem] max-[800px]:left-auto max-[800px]:translate-x-0 {collapsed
+				? 'left-0 translate-x-[0.5rem]'
+				: 'left-[var(--aside-w)] -translate-x-[calc(100%_+_1.5rem)]'}"
+			onclick={() => (collapsed = !collapsed)}
+			aria-label={collapsed ? 'Open sidebar' : 'Close sidebar'}
+			aria-expanded={!collapsed}
+		>
+			{#if collapsed}
+				<PanelLeftOpen size={32} strokeWidth={1.5} />
+			{:else}
+				<PanelLeftClose size={32} strokeWidth={1.5} />
+			{/if}
+		</button>
+
 		<main
-			class="prose order-2 @container min-w-0 flex-1 px-[clamp(1.5rem,4vw,3rem)] pt-[clamp(2rem,6vh,4rem)] pb-[30vh] text-[1.05rem] leading-[1.7]"
+			class="prose @container order-2 min-w-0 flex-1 px-[clamp(1.5rem,4vw,3rem)] pt-[clamp(2rem,6vh,4rem)] pb-[30vh] text-[1.05rem] leading-[1.7]"
 		>
 			{@render children()}
 		</main>
 
 		<aside
 			bind:this={asideEl}
-			class="sticky top-0 order-1 flex h-dvh w-[min(35%,4540px)] max-w-full flex-col overflow-y-auto border-r border-text/12 bg-palette-white px-8 py-10 pt-6 max-[800px]:h-auto max-[800px]:w-full max-[800px]:border-r-0 max-[800px]:border-b max-[800px]:px-5 max-[800px]:py-4"
+			class="sticky top-0 order-1 flex h-dvh w-[min(35%,4540px)] max-w-full flex-col overflow-y-auto border-r border-text/12 bg-palette-white px-8 py-10 pt-6 transition-[margin] duration-300 ease-in-out max-[800px]:h-auto max-[800px]:w-full max-[800px]:border-r-0 max-[800px]:border-b max-[800px]:px-5 max-[800px]:py-4 {collapsed
+				? '-ml-[var(--aside-w)] max-[800px]:-mt-[var(--aside-h)] max-[800px]:ml-0'
+				: ''}"
+			inert={collapsed}
 		>
 			{#if scrolly.persistent}
 				<div class="prose text-[0.95rem] leading-relaxed">
