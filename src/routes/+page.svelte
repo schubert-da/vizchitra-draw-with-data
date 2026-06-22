@@ -1,5 +1,7 @@
 <script>
-	import TileGrid from '$components/TileGrid/TileGrid.svelte';
+	import TileGrid from '$components/TileGrid/TileGridOld.svelte';
+	import TileGridNew from '$components/TileGrid/TileGrid.svelte';
 </script>
 
-<TileGrid></TileGrid>
+<TileGridNew></TileGridNew>
+BELOW

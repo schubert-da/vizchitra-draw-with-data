@@ -1,258 +1,183 @@
 <script>
-	import data from '$assets/data/country-metrics.csv';
+	import data from '$assets/data/spotify-2010s.csv';
+	import { Pi } from '@lucide/svelte';
 	import * as d3 from 'd3';
 
-	const tileWidth = 300;
-	const TILES_PER_ROW = 4;
+	console.log(data);
 
-	// Which data column drives each design slot, and how to size it:
-	//   mode: 'rank'  → size driven by world ranking (rank 1 = biggest, evenly spaced)
-	//   mode: 'value' → size driven by the raw value (min value = smallest, max = biggest)
-	// Each column must have a matching `<column>_rank` column in the CSV
-	// (see scripts/add-ranks.mjs).
-	const metrics = {
-		topLeft: { column: 'life_expectancy', mode: 'value' }, // nested squares + star
-		topRight: { column: 'co2_emissions', mode: 'rank' }, // concentric arcs
-		bottomLeft: { column: 'population', mode: 'value' }, // circle + cross
-		bottomRight: { column: 'gdp_per_capita', mode: 'value' } // 2x2 grid of squares
-	};
-
-	// Column the tiles are ordered by (rank 1 placed first).
-	const sortBy = 'population';
-
-	const num = (row, column) => (row[column] === '' ? NaN : +row[column]);
-
-	// In rank mode, every metric shares one inverted scale (rank 1 → max size).
-	const rankScale = d3
+	let popularityScale = d3
 		.scaleLinear()
-		.domain([1, data.length])
-		.range([tileWidth / 2, 0]);
+		.domain(d3.extent(data, (d) => d.popularity))
+		.range([30, 90]);
+	let danceScale = d3
+		.scaleLinear()
+		.domain(d3.extent(data, (d) => d.danceability))
+		.range([30, 90]);
+	let speechScale = d3
+		.scaleLinear()
+		.domain(d3.extent(data, (d) => d.speechiness))
+		.range([30, 90]);
+	let energyScale = d3
+		.scaleLinear()
+		.domain(d3.extent(data, (d) => d.energy))
+		.range([30, 90]);
+	let bpmScale = d3
+		.scaleLinear()
+		.domain(d3.extent(data, (d) => d.bpm))
+		.range([30, 90]);
 
-	// In value mode, each metric needs its own domain (raw values aren't comparable).
-	const valueScales = Object.fromEntries(
-		[...new Set(Object.values(metrics).map((m) => m.column))].map((column) => [
-			column,
-			d3
-				.scaleLinear()
-				.domain(d3.extent(data, (d) => num(d, column)))
-				.range([0, tileWidth / 2])
-		])
-	);
-
-	// Scaled size for a slot in its configured mode. Missing values render as 0.
-	const size = (row, { column, mode }) => {
-		if (mode === 'rank') return rankScale(+row[`${column}_rank`]);
-		const value = num(row, column);
-		return Number.isNaN(value) ? 0 : valueScales[column](value);
+	const genreColors = {
+		'Dance pop': '#E75B2B',
+		Pop: '#DB1E24',
+		'Hip-hop/R&B': '#F9B806',
+		'Acoustic/Folk': '#3091B9',
+		Other: '#E032A3',
+		EDM: '#53DC41'
 	};
 
-	const sorted = [...data].sort((a, b) => +a[`${sortBy}_rank`] - +b[`${sortBy}_rank`]);
+	const tileSize = 250;
+	const numCols = 5;
 
-	function getArc(innerRadius, outerRadius, startAngle, endAngle) {
-		return d3.arc()({
-			innerRadius: innerRadius,
-			outerRadius: outerRadius,
-			startAngle: startAngle,
-			endAngle: endAngle
-		});
+	function drawArc(startAngle, endAngle, innerRadius = 0, outerRadius = tileSize * 0.5) {
+		const arc = d3
+			.arc()
+			.innerRadius(innerRadius)
+			.outerRadius(outerRadius)
+			.startAngle(startAngle)
+			.endAngle(endAngle);
+
+		return arc();
 	}
 </script>
 
-<div class="grid-container flex w-screen justify-center p-10">
+<div class="content dis w-full p-10">
 	<svg
-		class="bg-white"
-		width={tileWidth * TILES_PER_ROW}
-		height={tileWidth * Math.ceil(data.length / TILES_PER_ROW)}
+		class="mx-auto"
+		width={tileSize * numCols}
+		height={tileSize * Math.ceil(data.length / numCols)}
 	>
-		{#each sorted as row, index}
-			{@const tileX = (index % TILES_PER_ROW) * tileWidth}
-			{@const tileY = Math.floor(index / TILES_PER_ROW) * tileWidth}
-			{@const center = tileWidth / 2}
-			{@const tl = size(row, metrics.topLeft)}
-			{@const tr = size(row, metrics.topRight)}
-			{@const bl = size(row, metrics.bottomLeft)}
-			{@const br = size(row, metrics.bottomRight)}
-			{@const starCenterX = center - tl * 0.4}
-			{@const starCenterY = center - tl * 0.4}
-			{@const starSize = tl * 0.5}
-			<g class="country-{row.Entity}" transform="translate({tileX}, {tileY})">
-				<rect x={0} y={0} width={tileWidth} height={tileWidth} fill="#fff" stroke="#aaa" />
-
-				<!-- TOP LEFT: nested squares + star -->
+		{#each data as row, i}
+			<g
+				transform={`translate(${(i % numCols) * tileSize}, ${Math.floor(i / numCols) * tileSize})`}
+			>
 				<rect
-					x={center - tl}
-					y={center - tl}
-					width={tl}
-					height={tl}
-					fill="#3F3F78"
-					data-value={row[metrics.topLeft.column]}
+					width={tileSize}
+					height={tileSize}
+					fill={genreColors[row.genre]}
+					stroke="#fff"
+					stroke-width="4"
 				/>
-
-				<rect
-					x={center - tl * 0.85}
-					y={center - tl * 0.85}
-					width={tl * 0.85 - 2}
-					height={tl * 0.85 - 2}
-					fill="white"
-					data-value={row[metrics.topLeft.column]}
-				/>
-
-				<rect
-					x={starCenterX - starSize / 2}
-					y={starCenterY - starSize / 2}
-					width={starSize}
-					height={starSize}
-					fill="#E3BA35"
-					data-value={row[metrics.topLeft.column]}
-				/>
-				<rect
-					x={starCenterX - starSize / 2}
-					y={starCenterY - starSize / 2}
-					width={starSize}
-					height={starSize}
-					fill="#E3BA35"
-					data-value={row[metrics.topLeft.column]}
-					transform={`rotate(45, ${starCenterX}, ${starCenterY})`}
-				/>
-
-				<!-- TOP RIGHT: concentric arcs -->
+				<circle cx={tileSize / 2} cy={tileSize / 2} r={(tileSize * 0.9) / 2} fill="#351D13" />
 				<path
-					d={getArc(tr * 0.8, tr, 0, Math.PI / 2)}
-					fill="#3F3F78"
-					transform={`translate(${center}, ${center})`}
-					data-value={row[metrics.topRight.column]}
+					d={drawArc(1.5 * Math.PI, 2 * Math.PI, 0, popularityScale(row.popularity))}
+					fill="#EFEEE5"
+					stroke="#EFEEE5"
+					stroke-width="4"
+					transform={`translate(${tileSize / 2}, ${tileSize / 2})`}
 				/>
-
 				<path
-					d={getArc(tr * 0.7, tr * 0.5, 0, Math.PI / 2)}
-					fill="#6176B8"
-					transform={`translate(${center}, ${center})`}
-					data-value={row[metrics.topRight.column]}
-				/>
-
-				<path
-					d={getArc(tr * 0.4, tr * 0.25, 0, Math.PI / 2)}
-					stroke="#6176B8"
-					stroke-width="2"
-					fill="white"
-					transform={`translate(${center}, ${center})`}
-					data-value={row[metrics.topRight.column]}
-				/>
-
-				<!-- BOTTOM LEFT: circle + cross -->
-				<circle
-					cx={center - tileWidth / 4}
-					cy={center + tileWidth / 4}
-					r={bl / 2.25}
-					fill="#3F3F78"
-					data-value={row[metrics.bottomLeft.column]}
-				/>
-
-				<line
-					x1={center / 2}
-					y1={center}
-					x2={center / 2}
-					y2={tileWidth}
-					stroke="white"
-					stroke-width={bl / (25 * 0.65)}
+					d={drawArc(0.5 * Math.PI, 1 * Math.PI, 0, bpmScale(row.bpm))}
+					fill="#EFEEE5"
+					stroke="#EFEEE5"
+					stroke-width="4"
+					transform={`translate(${tileSize / 2}, ${tileSize / 2})`}
 				/>
 				<line
 					x1={0}
-					y1={center * 1.5}
-					x2={center}
-					y2={center * 1.5}
-					stroke="white"
-					stroke-width={bl / (25 * 0.65)}
+					y1={tileSize / 2}
+					x2={tileSize}
+					y2={tileSize / 2}
+					stroke="#EFEEE5"
+					stroke-width="4"
 				/>
+				<line
+					x1={tileSize / 2}
+					y1={0}
+					x2={tileSize / 2}
+					y2={tileSize}
+					stroke="#EFEEE5"
+					stroke-width="4"
+				/>
+
+				<rect
+					x={tileSize / 2}
+					y={0}
+					width={tileSize / 2}
+					height={tileSize / 2}
+					fill="#351D13"
+					stroke="#EFEEE5"
+					stroke-width="4"
+				/>
+				<rect
+					x={0}
+					y={tileSize / 2}
+					width={tileSize / 2}
+					height={tileSize / 2}
+					fill="#351D13"
+					stroke="#EFEEE5"
+					stroke-width="4"
+				/>
+
+				<path
+					d={drawArc(0, 0.5 * Math.PI, 0, danceScale(row.danceability))}
+					fill="#EFEEE5"
+					transform={`translate(${0}, ${tileSize})`}
+				/>
+				<path
+					d={drawArc(0, 0.5 * Math.PI, 0, danceScale(row.danceability) * 0.6)}
+					fill={genreColors[row.genre]}
+					transform={`translate(${0}, ${tileSize})`}
+				/>
+
+				<path
+					d={drawArc(Math.PI, 1.5 * Math.PI, 0, energyScale(row.energy))}
+					fill="#EFEEE5"
+					transform={`translate(${tileSize}, 0)`}
+				></path>
+				<path
+					d={drawArc(Math.PI, 1.5 * Math.PI, 0, energyScale(row.energy) * 0.6)}
+					fill={genreColors[row.genre]}
+					transform={`translate(${tileSize}, 0)`}
+				></path>
+
 				<circle
-					cx={center - tileWidth / 4}
-					cy={center + tileWidth / 4}
-					r={bl / (2 * 2.75)}
-					fill="#E3BA35"
-					stroke="white"
-					stroke-width={bl / (25 * 0.65)}
-					data-value={row[metrics.bottomLeft.column]}
+					cx={tileSize / 2}
+					cy={tileSize / 2}
+					r={30}
+					fill={genreColors[row.genre]}
+					stroke="#EFEEE5"
+					stroke-width="4"
 				/>
 
-				<!-- BOTTOM RIGHT: 2x2 grid of squares -->
-				<rect
-					x={center}
-					y={center}
-					width={br}
-					height={br}
-					fill="#3F3F78"
-					data-value={row[metrics.bottomRight.column]}
-				/>
-
-				<rect
-					x={center + br * 0.075}
-					y={center + br * 0.075}
-					width={br * 0.4}
-					height={br * 0.4}
-					fill="#6176B8"
-					data-value={row[metrics.bottomRight.column]}
-				/>
-				<rect
-					x={center + br * 0.115}
-					y={center + br * 0.115}
-					width={br * 0.32}
-					height={br * 0.32}
-					fill="white"
-				/>
-
-				<rect
-					x={center + br * 0.525}
-					y={center + br * 0.075}
-					width={br * 0.4}
-					height={br * 0.4}
-					fill="#6176B8"
-					data-value={row[metrics.bottomRight.column]}
-				/>
-				<rect
-					x={center + br * 0.565}
-					y={center + br * 0.115}
-					width={br * 0.32}
-					height={br * 0.32}
-					fill="white"
-				/>
-
-				<rect
-					x={center + br * 0.525}
-					y={center + br * 0.525}
-					width={br * 0.4}
-					height={br * 0.4}
-					fill="#6176B8"
-					data-value={row[metrics.bottomRight.column]}
-				/>
-				<rect
-					x={center + br * 0.565}
-					y={center + br * 0.565}
-					width={br * 0.32}
-					height={br * 0.32}
-					fill="white"
-				/>
-
-				<rect
-					x={center + br * 0.075}
-					y={center + br * 0.525}
-					width={br * 0.4}
-					height={br * 0.4}
-					fill="#6176B8"
-					data-value={row[metrics.bottomRight.column]}
-				/>
-				<rect
-					x={center + br * 0.115}
-					y={center + br * 0.565}
-					width={br * 0.32}
-					height={br * 0.32}
-					fill="white"
-				/>
-
-				<!-- <line x1={center} y1={0} x2={center} y2={tileWidth} stroke-width="1" stroke="#ddd" />
-				<line x1={0} y1={center} x2={tileWidth} y2={center} stroke-width="1" stroke="#ddd" /> -->
-				<text font-size="20" font-weight="bold" x={center} y={tileWidth - 10} text-anchor="middle"
-					>{row.Entity}</text
+				<text
+					class="font-display"
+					x={tileSize / 2}
+					y={tileSize - 53}
+					text-anchor="middle"
+					font-size="22"
+					font-weight="bold"
+					fill="#351D13"
+					stroke="#fff"
+					stroke-width="1.5"
+					paint-order="stroke"
 				>
+					{row.title.length > 20 ? row.title.slice(0, 20) + '…' : row.title}
+				</text>
+
+				<text
+					class="font-body"
+					x={tileSize / 2}
+					y={tileSize - 25}
+					text-anchor="middle"
+					font-size="18"
+					font-weight="bold"
+					fill="#351D13"
+					stroke="#fff"
+					stroke-width="1.5"
+					paint-order="stroke"
+				>
+					{row.artist}
+				</text>
 			</g>
 		{/each}
 	</svg>
