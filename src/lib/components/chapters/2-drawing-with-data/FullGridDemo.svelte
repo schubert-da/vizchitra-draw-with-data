@@ -20,7 +20,15 @@
 	{#each data as row, i}
 		<g transform={cellPosition(i)}>
 			<rect x="0" y="0" width={CELL} height={CELL} fill="none" stroke="#ddd" />
-			<circle cx="100" cy="85" r={radius(row.popularity)} fill="steelblue" />
+			<circle cx="100" cy="85" r={radius(row.popularity)} fill="#351D13" />
+			<circle
+				cx="100"
+				cy="85"
+				r={radius(row.popularity) * 0.3}
+				fill="#fff"
+				stroke="#fff"
+				stroke-width="4"
+			/>
 			<text x="100" y="158" text-anchor="middle" font-size="14" font-weight="bold" fill="#222">
 				{row.title}
 			</text>

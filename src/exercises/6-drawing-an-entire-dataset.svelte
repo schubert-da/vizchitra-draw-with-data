@@ -21,8 +21,12 @@
 			<!-- the cell's square border -->
 			<rect x="0" y="0" width={CELL} height={CELL} fill="none" stroke="#ddd" />
 
-			<!-- TODO: size the circle by popularity -> r={radius(row.popularity)} -->
-			<circle cx="100" cy="85" r="40" fill="steelblue" />
+			<!-- the record: a dark disc with a small light label, like a vinyl -->
+			<!-- TODO: size the disc by popularity -> r={radius(row.popularity)} -->
+			<circle cx="100" cy="85" r="40" fill="#351D13" />
+
+			<!-- TODO: the label is a third of the disc -> r={radius(row.popularity) * 0.3} -->
+			<circle cx="100" cy="85" r="12" fill="#fff" stroke="#fff" stroke-width="4" />
 
 			<!-- TODO: replace TITLE and ARTIST with {row.title} and {row.artist} -->
 			<text x="100" y="158" text-anchor="middle" font-size="14" font-weight="bold" fill="#222">

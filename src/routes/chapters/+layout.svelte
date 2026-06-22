@@ -56,7 +56,7 @@
 {#if isChapter}
 	<div class="flex w-full items-start text-text max-[800px]:flex-col" bind:this={shellEl}>
 		<main
-			class="prose order-2 min-w-0 flex-1 px-[clamp(1.5rem,4vw,3rem)] pt-[clamp(2rem,6vh,4rem)] pb-[30vh] text-[1.05rem] leading-[1.7]"
+			class="prose order-2 @container min-w-0 flex-1 px-[clamp(1.5rem,4vw,3rem)] pt-[clamp(2rem,6vh,4rem)] pb-[30vh] text-[1.05rem] leading-[1.7]"
 		>
 			{@render children()}
 		</main>
