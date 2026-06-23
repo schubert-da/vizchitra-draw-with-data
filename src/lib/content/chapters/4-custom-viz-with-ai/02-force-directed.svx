@@ -1,0 +1,42 @@
+<script>
+	import Section from '$components/chapters/Section.svelte';
+	import Bleed from '$components/chapters/Bleed.svelte';
+	import ForceGraphDemo from '$components/chapters/4-custom-viz-with-ai/ForceGraphDemo.svelte';
+</script>
+
+<Section id="force" title="2. A Force-Directed Cloud">
+
+The packing was tidy and still. This time we let the discs **move**. A **force simulation** gives each disc a little physics: they drift, bump into one another, and settle — and we nudge them so that discs of the same **genre** drift together into loose clumps, with each genre pushing the others away. No fixed grid, no anchors; the layout just emerges.
+
+It's also **interactive**. The circle under your cursor shoves nearby discs aside, so you can carve a path through the cloud, and the **slider** changes how many songs are in play at once — drag it and watch the simulation re-settle.
+
+<Bleed max={1200}>
+	<ForceGraphDemo />
+</Bleed>
+
+{#snippet sidebar()}
+
+A force layout is fiddly to hand-tune but easy to _describe_ — a good candidate for drafting with an AI assistant, then adjusting the strengths by feel. Try this prompt:
+
+```text
+/// file: Prompt to try
+I have a dataset of 2010s songs (title, artist, genre, popularity, bpm,
+energy, danceability).
+
+Build an interactive D3 force-directed chart in Svelte. Each song is a
+small "vinyl disc" sized by popularity. Cluster the discs by genre using
+a same-genre attraction plus charge repulsion (no fixed anchors), and add
+collision so they don't overlap.
+
+Keep a circle under the mouse that repels nearby discs as it moves. Add a
+slider that controls how many songs are shown at once, starting at 50.
+```
+
+> [!Tip] Things to try
+> - **Drag the slider** to add or remove songs and watch it re-settle.
+> - **Sweep the cursor** through a cluster to push the discs aside.
+> - Same-coloured discs drift together — those are the genres finding each other.
+
+{/snippet}
+
+</Section>

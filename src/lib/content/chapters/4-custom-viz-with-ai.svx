@@ -5,6 +5,7 @@ slug: 4-custom-viz-with-ai
 
 <script>
 	import PackedCircles from './4-custom-viz-with-ai/01-packed-circles.svx';
+	import ForceDirected from './4-custom-viz-with-ai/02-force-directed.svx';
 </script>
 
 <div class="mx-auto max-w-184">
@@ -18,3 +19,5 @@ This chapter is a small gallery of charts you could reach for next, each one a g
 </div>
 
 <PackedCircles />
+
+<ForceDirected />
