@@ -9,7 +9,11 @@
 
 	// Each metric maps to a fraction of a leaf's radius, so every disc shows that
 	// song's profile scaled to its own size. All four wedges radiate from the centre.
-	const frac = (key) => d3.scaleLinear().domain(d3.extent(data, (d) => d[key])).range([0.52, 0.96]);
+	const frac = (key) =>
+		d3
+			.scaleLinear()
+			.domain(d3.extent(data, (d) => d[key]))
+			.range([0.52, 0.96]);
 	const popFrac = frac('popularity');
 	const tempoFrac = frac('bpm');
 	const energyFrac = frac('energy');
@@ -41,6 +45,7 @@
 	d3.pack().size([W, W]).padding(4)(root);
 
 	const nodes = root.descendants();
+	console.log(nodes);
 
 	const PAD = 0.06; // angular gap so the four wedges read as separate quadrants
 
@@ -103,6 +108,24 @@
 				{/if}
 			</g>
 		{/if}
+	{/each}
+
+	<!-- artist labels: only for groups with more than 5 songs, centred in the group -->
+	{#each nodes.filter((n) => n.depth === 2 && n.children.length > 4) as a}
+		<text
+			x={a.x}
+			y={a.y}
+			text-anchor="middle"
+			dominant-baseline="central"
+			font-size={Math.max(11, Math.min(16, a.r * 0.22))}
+			font-weight="bold"
+			fill={dark}
+			stroke="#fff"
+			stroke-width="3"
+			paint-order="stroke"
+		>
+			{a.data[0]}
+		</text>
 	{/each}
 
 	<!-- genre labels on top -->

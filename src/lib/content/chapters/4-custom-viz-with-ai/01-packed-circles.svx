@@ -10,7 +10,7 @@ Our grid gave every song the same square. But songs aren't really a flat list â€
 
 Every leaf is the same **vinyl disc** we built â€” a dark record with four wedges radiating from the centre for popularity, tempo, energy and danceability, and a genre-coloured hub. Here each disc is **sized by popularity**, so the hits grow large while the deep cuts stay small, and every genre is tinted its own colour.
 
-<Bleed>
+<Bleed max={1200}>
 	<PackedCirclesDemo />
 </Bleed>
 
