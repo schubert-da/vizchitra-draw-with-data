@@ -10,7 +10,7 @@
 	>
 		Chapters
 	</h1>
-	<ol class="m-0 flex list-none flex-col gap-2 p-0">
+	<ol class="m-0 flex list-none flex-col gap-6 p-0">
 		{#each chapters as chapter (chapter.id)}
 			<li>
 				<a
@@ -22,6 +22,24 @@
 					</span>
 					<span class="text-[1.1rem] font-semibold">{chapter.title}</span>
 				</a>
+
+				{#if chapter.sections?.length}
+					<ol class="m-0 mt-2 flex list-none flex-col gap-1 py-0 pr-0 pl-[2.4rem]">
+						{#each chapter.sections as section, i (section.id)}
+							<li>
+								<a
+									href={`${chapter.path}#${section.id}`}
+									class="flex items-baseline gap-3 rounded-md px-2 py-1.5 text-text/80 no-underline transition-colors hover:bg-primary/5 hover:text-primary"
+								>
+									<span class="font-code text-[0.8rem] text-primary/70">
+										{String(chapter.id)}.{i + 1}
+									</span>
+									<span class="text-[0.95rem]">{section.title}</span>
+								</a>
+							</li>
+						{/each}
+					</ol>
+				{/if}
 			</li>
 		{/each}
 	</ol>
