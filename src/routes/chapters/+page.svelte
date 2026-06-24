@@ -28,7 +28,7 @@
 						{#each chapter.sections as section, i (section.id)}
 							<li>
 								<a
-									href={`${chapter.path}#${section.id}`}
+									href={section.id === '/' ? chapter.path : `${chapter.path}#${section.id}`}
 									class="flex items-baseline gap-3 rounded-md px-2 py-1.5 text-text/80 no-underline transition-colors hover:bg-primary/5 hover:text-primary"
 								>
 									<span class="font-code text-[0.8rem] text-primary/70">
