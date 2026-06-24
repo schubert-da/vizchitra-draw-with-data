@@ -1,0 +1,123 @@
+<script>
+	import Section from '$components/chapters/Section.svelte';
+	import Exercise from '$components/chapters/Exercise.svelte';
+	import InteractivityDemo from '$components/chapters/2-drawing-with-data/InteractivityDemo.svelte';
+	import DrawingEntireDataset from '$exercises/6-drawing-an-entire-dataset.svelte';
+</script>
+
+<Section id="interactivity" title="4. Adding Interactivity">
+
+Same file as before. The `{#each}` just draws whatever list we hand it - so to change the chart, we change the **list**, not the drawing.
+
+**1. A list we can reshape.** A few variables hold the chosen options, and a reactive `modifiedData` filters and sorts `data` from them:
+
+```svelte
+/// file: Add variables and sorting/filtering logic
+let sizeMetric = 'popularity';
+let sortMetric = 'popularity';
+let selectedGenre = 'all';
+
+$: modifiedData = data
+	.filter((row) => selectedGenre === 'all' || row.genre === selectedGenre)
+	.sort((a, b) => b[sortMetric] - a[sortMetric]);
+```
+
+Loop over `modifiedData` instead of `data` (keep it keyed for later) and size each disc by the chosen metric. Leave `size` at `gridSize(data.length)` so the canvas doesn't resize as you filter:
+
+```svelte
+/// file: The loop
+{#each modifiedData as row, i (row.title + row.artist + row.year)}
+	<g class="tile" transform={cellPosition(i)}>
+		...
+		<circle cx="100" cy="100" r={radius(row[sizeMetric])} fill="#351D13" />
+		...
+	</g>
+{/each}
+```
+
+Change any of those variables by hand and the grid redraws itself - that's the whole idea.
+
+**2. Play around with the controls.** `bind:value` ties each `<select>` to its variable, so a dropdown sets it. Try the dropdowns in the demo:
+
+```svelte
+/// file: The dropdowns
+<div class="mb-4 flex flex-wrap items-center gap-5 text-sm">
+	<label class="flex items-center gap-2 font-medium">
+		Size by
+		<select bind:value={sizeMetric} class="rounded border border-gray-300 px-2 py-1">
+			<option value="popularity">Popularity</option>
+			<option value="energy">Energy</option>
+			<option value="danceability">Danceability</option>
+		</select>
+	</label>
+	<label class="flex items-center gap-2 font-medium">
+		Sort by
+		<select bind:value={sortMetric} class="rounded border border-gray-300 px-2 py-1">
+			<option value="popularity">Popularity</option>
+			<option value="energy">Energy</option>
+			<option value="danceability">Danceability</option>
+		</select>
+	</label>
+	<label class="flex items-center gap-2 font-medium">
+		Genre
+		<select bind:value={selectedGenre} class="rounded border border-gray-300 px-2 py-1">
+			<option value="all">All 
+			</option>
+			<option value="Dance pop">Dance pop</option>
+			<option value="Pop">Pop</option>
+			<option value="Hip-hop/R&amp;B">Hip-hop/R&amp;B</option>
+			<option value="Acoustic/Folk">Acoustic/Folk</option>
+			<option value="EDM">EDM</option>
+			<option value="Other">Other</option>
+		</select>
+	</label>
+</div>
+```
+
+**3. Smooth the jumps.** Without easing, the tiles snap straight to their new spots - a bit choppy. Two CSS transitions, one for `transform` (the move) and one for `r` (the resize), make it glide:
+
+```css
+/// file: Transitions
+.tile {
+	transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+circle {
+	transition: r 0.5s cubic-bezier(0.68, -0.6, 0.32, 1.6);
+}
+```
+
+**4. Bonus - a hover lift.** While we're in CSS we can add a little polish. Wrap the disc and labels in an inner `<g class="tile-inner">`, then scale it on hover (a separate group, so it doesn't fight the positioning transform):
+
+```css
+/// file: Hover
+.tile-inner {
+	transform-box: fill-box;
+	transform-origin: center;
+	transition: transform 0.18s ease;
+}
+.tile:hover .tile-inner {
+	transform: scale(1.08);
+}
+```
+
+Now make it yours - paste these pieces into the grid from the last section and try it live:
+
+<Exercise file="6-drawing-an-entire-dataset.svelte" bleed>
+	<DrawingEntireDataset />
+</Exercise>
+
+{#snippet sidebar()}
+
+> [!Note] New words
+> - **`$:`**: a reactive statement; Svelte re-runs it whenever a value it reads changes.
+> - **`filter` / `sort`**: build a shorter or reordered list.
+> - **`bind:value`**: tie a dropdown to a variable, both ways.
+> - **keyed `{#each}`**: `(...)` gives each item an identity, so Svelte reuses its element instead of rebuilding it (and can animate the move).
+
+**RESULT**:
+
+<InteractivityDemo />
+
+{/snippet}
+
+</Section>
