@@ -100,7 +100,7 @@
 
 		<!-- ============================ STEP 1 ============================ -->
 		<section class="step">
-			<h2 class="step-title"><span class="step-num">1</span> Install Node.js</h2>
+			<h2 class="step-title"><span class="step-num">1</span>. Install Node.js</h2>
 			<p class="step-lead">
 				Node.js is the engine that runs the project behind the scenes. Installing it is just like
 				installing any other program.
@@ -190,7 +190,7 @@
 
 		<!-- ============================ STEP 2 ============================ -->
 		<section class="step">
-			<h2 class="step-title"><span class="step-num">2</span> Install VS Code</h2>
+			<h2 class="step-title"><span class="step-num">2</span>. Install VS Code</h2>
 			<p class="step-lead">
 				VS Code (Visual Studio Code) is a free text editor made for writing code. It's where you'll
 				open the project and make changes.
@@ -239,7 +239,7 @@
 
 		<!-- ============================ STEP 3 ============================ -->
 		<section class="step">
-			<h2 class="step-title"><span class="step-num">3</span> Download the project</h2>
+			<h2 class="step-title"><span class="step-num">3</span>. Download the project</h2>
 			<p class="step-lead">This is the folder full of files you'll be working with.</p>
 
 			<ol class="guide-list">
@@ -309,7 +309,7 @@
 
 		<!-- ============================ STEP 4 ============================ -->
 		<section class="step">
-			<h2 class="step-title"><span class="step-num">4</span> Open the project in VS Code</h2>
+			<h2 class="step-title"><span class="step-num">4</span>. Open the project in VS Code</h2>
 			<ol class="guide-list">
 				<li>Open VS Code.</li>
 				<li>
@@ -340,7 +340,9 @@
 
 		<!-- ============================ STEP 5 ============================ -->
 		<section class="step">
-			<h2 class="step-title"><span class="step-num">5</span> Install the project's dependencies</h2>
+			<h2 class="step-title">
+				<span class="step-num">5</span>. Install the project's dependencies
+			</h2>
 			<p class="step-lead">
 				Projects rely on building blocks made by other people. This command downloads them all into
 				the folder. You only need to do it once.
@@ -363,7 +365,7 @@
 
 		<!-- ============================ STEP 6 ============================ -->
 		<section class="step">
-			<h2 class="step-title"><span class="step-num">6</span> Start it up</h2>
+			<h2 class="step-title"><span class="step-num">6</span>. Start it up</h2>
 			<p class="mb-2">Now type this and press <kbd>Enter</kbd>:</p>
 			<pre class="cmd">npm run dev</pre>
 			<p class="mb-3">After a moment you'll see a message with a web address, something like:</p>
@@ -401,8 +403,8 @@
 
 	.step-title {
 		display: flex;
-		align-items: center;
-		gap: 0.75rem;
+		align-items: baseline;
+		/* gap: 0.75rem; */
 		margin: 0 0 0.5rem;
 		font-size: 1.6rem;
 		font-weight: 700;
@@ -411,15 +413,15 @@
 
 	.step-num {
 		display: grid;
-		place-items: center;
+		place-items: end;
 		flex: none;
-		width: 2rem;
-		height: 2rem;
-		border-radius: 9999px;
-		background: var(--color-primary);
-		color: var(--color-palette-white);
-		font-family: var(--font-code);
-		font-size: 1rem;
+		/* padding: 0.6rem 0.9rem; */
+		/* border-radius: 9999px; */
+		/* background: var(--color-primary); */
+		/* color: var(--color-palette-white); */
+		font-family: var(--font-body);
+		font-weight: 500;
+		font-size: 3rem;
 	}
 
 	.step-lead {
