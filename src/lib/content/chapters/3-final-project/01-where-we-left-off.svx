@@ -1,0 +1,75 @@
+<script>
+	import Section from '$components/chapters/Section.svelte';
+	import Exercise from '$components/chapters/Exercise.svelte';
+	import FinalVinylDisc from '$exercises/7-final-vinyl-disc.svelte';
+</script>
+
+<Section id="setup" title="Drawing the Music Chart">
+
+We pick up the grid from the end of Chapter 2: every song as a record disc, sized by popularity and draw the whole dataset at once. So the loop is just `data`, straight through:
+
+```svelte
+/// file: 7-final-vinyl-disc.svelte
+{#each data as row, i (row.title + row.artist + row.year)}
+	<g transform={cellPosition(i)}>
+		<rect x="0" y="0" width={CELL} height={CELL} fill={genreColors[row.genre]} stroke="#fff" />
+		<circle cx="100" cy="100" r={popularityScale(row.popularity)} fill="#351D13" />
+		<circle cx="100" cy="100" r={popularityScale(row.popularity) * 0.3} fill={genreColors[row.genre]} stroke="#fff" stroke-width="4" />
+	</g>
+{/each}
+```
+
+This is our canvas for the rest of the chapter. Open the file and follow along - we'll build everything else right here.
+
+<Exercise file="7-final-vinyl-disc.svelte" bleed>
+	<FinalVinylDisc />
+</Exercise>
+
+{#snippet sidebar()}
+
+**Shapes cheat-sheet**
+
+Every chart so far is built from just five SVG shapes - keep these handy:
+
+```svelte
+/// file: rectangle
+<rect x="0" y="0" width="200" height="200" fill="#eee" />
+```
+
+```svelte
+/// file: circle
+<circle cx="100" cy="100" r="40" fill="#351D13" />
+```
+
+```svelte
+/// file: line
+<line x1="0" y1="0" x2="200" y2="200" stroke="#000" stroke-width="2" />
+```
+
+```svelte
+/// file: path - custom outline (areas, arcs, wedges)
+<path d="M0 0 L100 50 L0 100 Z" fill="#509ad2" />
+```
+
+```svelte
+/// file: text
+<text x="100" y="100" text-anchor="middle">Hello</text>
+```
+
+**Drawing wedges with `arc()`**
+
+A wedge is a `<path>`, shaped with `d3.arc()` - but that works in **radians**, measured from 12 o'clock. The `arc()` helper in the exercise lets you pass plain **degrees** instead: `0°` points up, then clockwise - `90°` right, `180°` down, `270°` left.
+
+```svelte
+/// file: a wedge sized by a metric
+<path
+	d={arc({ startAngle: 0, endAngle: 90, outerRadius: popularityScale(row.popularity) })}
+	fill="#EFEEE5"
+/>
+```
+
+`startAngle` / `endAngle` set the slice, and `outerRadius` is how far it reaches - that's where a scale comes in. Add an `innerRadius` to leave a hole in the middle.
+
+{/snippet}
+
+</Section>

@@ -1,0 +1,18 @@
+---
+title: Final Project
+slug: 3-final-project
+---
+
+<script>
+	import WhereWeLeftOff from './3-final-project/01-where-we-left-off.svx';
+</script>
+
+<div class="mx-auto max-w-184">
+
+# Final Project
+
+This is the chart we've been building toward: every song as its own little record, all in one grid. We'll build it together, picking up where Chapter 2 left off.
+
+</div>
+
+<WhereWeLeftOff />

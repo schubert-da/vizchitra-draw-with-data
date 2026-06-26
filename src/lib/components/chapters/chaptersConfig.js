@@ -7,7 +7,7 @@ export const chapters = [
 	{
 		id: 1,
 		slug: '1-your-first-charts',
-		title: 'Your First Charts',
+		title: 'Your First Shapes',
 		path: '/chapters/1-your-first-charts',
 		sections: [
 			{ id: 'svg', title: 'The SVG canvas' },
@@ -32,9 +32,9 @@ export const chapters = [
 	{
 		id: 3,
 		slug: '3-final-project',
-		title: 'Final Project',
-		path: '/',
-		sections: [{ id: '/', title: 'Drawing our Music Charts' }]
+		title: 'Music Chart',
+		path: '/chapters/3-final-project',
+		sections: [{ id: 'setup', title: 'Drawing the Music Chart' }]
 	},
 	{
 		id: 4,
