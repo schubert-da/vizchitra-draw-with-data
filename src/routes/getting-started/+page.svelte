@@ -52,9 +52,9 @@
 		</h1>
 
 		<p class="mb-6 text-[1.15rem] leading-relaxed text-text/80">
-			Helloo there! Glad to see you here. This page walks you through getting your computer ready,
+			Helloo there! Glad you could make it. This page walks you through getting your computer ready,
 			one small step at a time. You don't need any coding experience - just follow along, and if
-			something looks unfamiliar, that's totally normal.
+			something looks unfamiliar, that's <em>totally normal</em>.
 		</p>
 
 		<div class="mb-10 rounded-lg border-l-4 border-palette-blue-dark bg-palette-blue/12 px-4 py-3">
