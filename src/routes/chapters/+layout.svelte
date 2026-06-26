@@ -2,7 +2,7 @@
 	import { page } from '$app/state';
 	import { marked } from 'marked';
 	import { fade } from 'svelte/transition';
-	import { PanelLeftClose, PanelLeftOpen } from '@lucide/svelte';
+	import { PanelLeftClose, PanelLeftOpen, ArrowLeft } from '@lucide/svelte';
 	import { setScrolly } from '$components/chapters/scrolly.svelte.js';
 
 	let { children } = $props();
@@ -105,6 +105,13 @@
 				: ''}"
 			inert={collapsed}
 		>
+			<a
+				href="/chapters"
+				class="mb-5 inline-flex items-center gap-1.5 self-start text-sm font-medium text-text/60 no-underline transition-colors hover:text-primary"
+			>
+				<ArrowLeft size={16} strokeWidth={2} /> All chapters
+			</a>
+
 			{#if scrolly.persistent}
 				<div class="prose text-[0.95rem] leading-relaxed">
 					{@render scrolly.persistent()}
