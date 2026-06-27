@@ -50,6 +50,9 @@ Now we can **draw with it**. We size a circle by the song's `popularity` and lab
 
 <Exercise file="4-draw-a-shape-with-data.svelte">
 	<DrawAShapeWithData />
+	{#snippet result()}
+		<FirstShapeDemo />
+	{/snippet}
 </Exercise>
 
 {#snippet sidebar()}

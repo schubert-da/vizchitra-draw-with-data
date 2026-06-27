@@ -24,6 +24,9 @@ To draw the circle:
 
 <Exercise file="1-first-scatter-plot.svelte">
 	<FirstScatterPlot />
+	{#snippet result()}
+		<ScatterDemo />
+	{/snippet}
 </Exercise>
 
 {#snippet sidebar()}

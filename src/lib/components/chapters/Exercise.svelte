@@ -2,25 +2,97 @@
 	// Frames a student's live exercise output inside a section's main track and
 	// points them at the file to edit. `file` is the name under src/exercises/
 	// (e.g. "1-first-scatter-plot.svelte"); `children` is the exercise output.
+	// `result` is an optional snippet holding the section's finished demo - when
+	// passed, the frame shows tabs to flip between the student's work and it.
 	// `bleed` lets a wide exercise (e.g. a big grid) spill past the article
 	// column to fill the whole main panel on roomy screens.
-	let { file, bleed = false, children } = $props();
+	let { file, bleed = false, children, result } = $props();
+
+	let active = $state('work'); // 'work' | 'solution'
 </script>
 
 <div class="my-6 rounded-lg border border-text/15 bg-palette-white" class:bleed>
 	<div
 		class="flex items-center gap-2 border-b border-text/10 px-3 py-1.5 text-xs font-[var(--font-code)] text-text/60"
 	>
-		<span class="font-bold tracking-[0.06em] text-primary uppercase">Your work</span>
-		<span>edit <code class="text-primary-400">src/exercises/{file}</code></span>
+		{#if result}
+			<div class="seg" role="tablist" aria-label="Exercise view">
+				<span class="seg-thumb" class:right={active === 'solution'} aria-hidden="true"></span>
+				<button
+					type="button"
+					role="tab"
+					aria-selected={active === 'work'}
+					class="seg-btn"
+					class:on={active === 'work'}
+					onclick={() => (active = 'work')}>Your work</button
+				>
+				<button
+					type="button"
+					role="tab"
+					aria-selected={active === 'solution'}
+					class="seg-btn"
+					class:on={active === 'solution'}
+					onclick={() => (active = 'solution')}>Solution</button
+				>
+			</div>
+		{:else}
+			<span class="font-bold tracking-[0.06em] text-primary uppercase">Your work</span>
+		{/if}
+
+		{#if active === 'work'}
+			<span class="ml-auto">edit <code class="text-primary-400">src/exercises/{file}</code></span>
+		{/if}
 	</div>
 
-	<div class="px-4">
-		{@render children()}
+	<div class="px-4" role="tabpanel">
+		{#if active === 'solution' && result}
+			{@render result()}
+		{:else}
+			{@render children()}
+		{/if}
 	</div>
 </div>
 
 <style>
+	/* A segmented slider: a pill track with a highlight that slides between the
+	   two options, so it reads clearly as a toggle. */
+	.seg {
+		position: relative;
+		display: inline-flex;
+		padding: 3px;
+		border-radius: 9999px;
+		background: color-mix(in srgb, currentColor 12%, transparent);
+	}
+	.seg-thumb {
+		position: absolute;
+		top: 3px;
+		bottom: 3px;
+		left: 3px;
+		width: calc(50% - 3px);
+		border-radius: 9999px;
+		background: var(--color-primary, #da7b4f);
+		transition: transform 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+	}
+	.seg-thumb.right {
+		transform: translateX(100%);
+	}
+	.seg-btn {
+		position: relative;
+		z-index: 1;
+		flex: 1 1 0;
+		padding: 0.15rem 0.7rem;
+		font-weight: 700;
+		letter-spacing: 0.06em;
+		text-transform: uppercase;
+		white-space: nowrap;
+		color: color-mix(in srgb, currentColor 60%, transparent);
+		cursor: pointer;
+		transition: color 0.22s ease;
+	}
+	.seg-btn.on {
+		color: #fff;
+	}
+
 	/* The article column is capped at 736px and centred in the main panel. To let
 	   a wide exercise fill the panel edge-to-edge we size it to 100cqw - the main
 	   column's own content width (it's a @container in the chapter layout). Using

@@ -25,6 +25,9 @@ An area chart is a line chart with the space underneath filled in. We trace the 
 
 <Exercise file="3-area-chart.svelte">
 	<AreaChart />
+	{#snippet result()}
+		<AreaDemo />
+	{/snippet}
 </Exercise>
 
 {#snippet sidebar()}

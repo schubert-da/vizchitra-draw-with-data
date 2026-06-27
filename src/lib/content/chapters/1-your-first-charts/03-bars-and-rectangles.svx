@@ -22,6 +22,9 @@ Because `y` is the **top** edge, a bar resting on the floor has to start at `y={
 
 <Exercise file="2-first-bar.svelte">
 	<FirstBar />
+	{#snippet result()}
+		<BarsDemo />
+	{/snippet}
 </Exercise>
 
 {#snippet sidebar()}

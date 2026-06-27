@@ -57,6 +57,9 @@ Now size each circle with `r={radius(row.popularity)}`. Fill in the cells in the
 
 <Exercise file="5-drawing-an-entire-dataset.svelte" bleed>
 	<DrawingEntireDataset />
+	{#snippet result()}
+		<FullGridDemo />
+	{/snippet}
 </Exercise>
 
 {#snippet sidebar()}

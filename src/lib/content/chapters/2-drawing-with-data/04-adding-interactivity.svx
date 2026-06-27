@@ -104,6 +104,9 @@ Now make it yours - paste these pieces into the grid from the last section and t
 
 <Exercise file="5-drawing-an-entire-dataset.svelte" bleed>
 	<DrawingEntireDataset />
+	{#snippet result()}
+		<InteractivityDemo />
+	{/snippet}
 </Exercise>
 
 {#snippet sidebar()}

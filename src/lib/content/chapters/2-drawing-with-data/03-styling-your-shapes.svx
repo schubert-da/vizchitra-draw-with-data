@@ -39,6 +39,9 @@ Now wire it into the drawing. Set the **cell's `fill`** and the **record label's
 
 <Exercise file="5-drawing-an-entire-dataset.svelte" bleed>
 	<DrawingEntireDataset />
+	{#snippet result()}
+		<ColoredGridDemo />
+	{/snippet}
 </Exercise>
 
 {#snippet sidebar()}
