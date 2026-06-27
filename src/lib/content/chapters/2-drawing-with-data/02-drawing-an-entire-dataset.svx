@@ -2,7 +2,7 @@
 	import Section from '$components/chapters/Section.svelte';
 	import Exercise from '$components/chapters/Exercise.svelte';
 	import FullGridDemo from '$components/chapters/2-drawing-with-data/FullGridDemo.svelte';
-	import DrawingEntireDataset from '$exercises/6-drawing-an-entire-dataset.svelte';
+	import DrawingEntireDataset from '$exercises/5-drawing-an-entire-dataset.svelte';
 </script>
 
 <Section id="each" title="2. Drawing an Entire Dataset">
@@ -50,7 +50,7 @@ const radius = scaleLinear()
 
 Now size each circle with `r={radius(row.popularity)}`. Fill in the cells in the exercise:
 
-<Exercise file="6-drawing-an-entire-dataset.svelte" bleed>
+<Exercise file="5-drawing-an-entire-dataset.svelte" bleed>
 	<DrawingEntireDataset />
 </Exercise>
 

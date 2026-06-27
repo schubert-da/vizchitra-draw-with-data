@@ -13,7 +13,6 @@ export const chapters = [
 			{ id: 'svg', title: 'The SVG canvas' },
 			{ id: 'circles', title: 'Plotting Points with Circles' },
 			{ id: 'rects', title: 'Bars and Rectangles' },
-			{ id: 'lines', title: 'Drawing Line Charts' },
 			{ id: 'paths', title: 'Area Charts' }
 		]
 	},

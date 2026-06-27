@@ -2,7 +2,7 @@
 	import Section from '$components/chapters/Section.svelte';
 	import Exercise from '$components/chapters/Exercise.svelte';
 	import ColoredGridDemo from '$components/chapters/2-drawing-with-data/ColoredGridDemo.svelte';
-	import DrawingEntireDataset from '$exercises/6-drawing-an-entire-dataset.svelte';
+	import DrawingEntireDataset from '$exercises/5-drawing-an-entire-dataset.svelte';
 </script>
 
 <Section id="styling" title="3. Styling your Shapes">
@@ -37,7 +37,7 @@ We use brackets `[ ]` here (not a dot) because the key comes from the data and s
 
 Now wire it into the drawing. Set the **cell's `fill`** and the **record label's `fill`** to `genreColors[row.genre]`, and the grid colours itself by genre:
 
-<Exercise file="6-drawing-an-entire-dataset.svelte" bleed>
+<Exercise file="5-drawing-an-entire-dataset.svelte" bleed>
 	<DrawingEntireDataset />
 </Exercise>
 

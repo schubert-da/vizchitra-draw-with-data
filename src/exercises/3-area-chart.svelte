@@ -1,5 +1,5 @@
 <!--
-	Exercise 4: Your First Area Chart
+	Exercise 3: Your First Area Chart
 
 	An area chart is one <path> shape. The `d` attribute is a list of drawing
 	commands:

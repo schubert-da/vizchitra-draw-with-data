@@ -2,10 +2,10 @@
 	import Section from '$components/chapters/Section.svelte';
 	import Exercise from '$components/chapters/Exercise.svelte';
 	import AreaDemo from '$components/chapters/1-your-first-charts/AreaDemo.svelte';
-	import AreaChart from '$exercises/4-area-chart.svelte';
+	import AreaChart from '$exercises/3-area-chart.svelte';
 </script>
 
-<Section id="paths" title="5. Area Charts">
+<Section id="paths" title="4. Area Charts">
 
 A `<path>` can draw _any_ shape. Everything lives in one attribute, `d` - a list of drawing commands the pen follows:
 
@@ -23,7 +23,7 @@ These strings get long and fiddly fast, so in practice we **almost never write `
 
 An area chart is a line chart with the space underneath filled in. We trace the same path through our points, then drop down to the base (`y = 350`) and close it into a solid shape:
 
-<Exercise file="4-area-chart.svelte">
+<Exercise file="3-area-chart.svelte">
 	<AreaChart />
 </Exercise>
 

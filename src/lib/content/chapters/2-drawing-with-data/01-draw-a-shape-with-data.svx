@@ -2,7 +2,7 @@
 	import Section from '$components/chapters/Section.svelte';
 	import Exercise from '$components/chapters/Exercise.svelte';
 	import FirstShapeDemo from '$components/chapters/2-drawing-with-data/FirstShapeDemo.svelte';
-	import DrawAShapeWithData from '$exercises/5-draw-a-shape-with-data.svelte';
+	import DrawAShapeWithData from '$exercises/4-draw-a-shape-with-data.svelte';
 </script>
 
 <Section id="first-shape" title="1. Draw a Shape with Data">
@@ -48,7 +48,7 @@ So far these values only appear in the console. To put one on the **page**, we w
 
 Now we can **draw with it**. We size a circle by the song's `popularity` and label it with the `title` and `artist`. In the exercise the shape is drawn with the values typed in by hand — swap each one for the matching field on `row` so the drawing comes from the data:
 
-<Exercise file="5-draw-a-shape-with-data.svelte">
+<Exercise file="4-draw-a-shape-with-data.svelte">
 	<DrawAShapeWithData />
 </Exercise>
 

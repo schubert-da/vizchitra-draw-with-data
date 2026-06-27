@@ -9,8 +9,7 @@ slug: 1-your-first-charts
 	import SvgCanvas from './1-your-first-charts/01-the-svg-canvas.svx';
 	import ScatterPlots from './1-your-first-charts/02-scatter-plots.svx';
 	import BarsAndRectangles from './1-your-first-charts/03-bars-and-rectangles.svx';
-	import DrawingLineCharts from './1-your-first-charts/04-drawing-line-charts.svx';
-	import AreaCharts from './1-your-first-charts/05-area-charts.svx';
+	import AreaCharts from './1-your-first-charts/04-area-charts.svx';
 </script>
 
 <ChapterAside>
@@ -34,7 +33,5 @@ A chart is really just shapes placed in the right spots. In this chapter we take
 <ScatterPlots />
 
 <BarsAndRectangles />
-
-<DrawingLineCharts />
 
 <AreaCharts />

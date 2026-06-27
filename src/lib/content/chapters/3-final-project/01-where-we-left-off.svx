@@ -1,7 +1,7 @@
 <script>
 	import Section from '$components/chapters/Section.svelte';
 	import Exercise from '$components/chapters/Exercise.svelte';
-	import FinalVinylDisc from '$exercises/7-final-vinyl-disc.svelte';
+	import FinalVinylDisc from '$exercises/6-final-vinyl-disc.svelte';
 </script>
 
 <Section id="setup" title="Drawing the Music Chart">
@@ -9,7 +9,7 @@
 We pick up the grid from the end of Chapter 2: every song as a record disc, sized by popularity and draw the whole dataset at once. So the loop is just `data`, straight through:
 
 ```svelte
-/// file: 7-final-vinyl-disc.svelte
+/// file: 6-final-vinyl-disc.svelte
 {#each data as row, i (row.title + row.artist + row.year)}
 	<g transform={cellPosition(i)}>
 		<rect x="0" y="0" width={CELL} height={CELL} fill={genreColors[row.genre]} stroke="#fff" />
@@ -21,7 +21,7 @@ We pick up the grid from the end of Chapter 2: every song as a record disc, size
 
 This is our canvas for the rest of the chapter. Open the file and follow along - we'll build everything else right here.
 
-<Exercise file="7-final-vinyl-disc.svelte" bleed>
+<Exercise file="6-final-vinyl-disc.svelte" bleed>
 	<FinalVinylDisc />
 </Exercise>
 
