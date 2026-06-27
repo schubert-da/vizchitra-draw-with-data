@@ -2,6 +2,7 @@
 	import Section from '$components/chapters/Section.svelte';
 	import Exercise from '$components/chapters/Exercise.svelte';
 	import FullGridDemo from '$components/chapters/2-drawing-with-data/FullGridDemo.svelte';
+	import ScaleDemo from '$components/chapters/2-drawing-with-data/ScaleDemo.svelte';
 	import DrawingEntireDataset from '$exercises/5-drawing-an-entire-dataset.svelte';
 </script>
 
@@ -47,6 +48,10 @@ const radius = scaleLinear()
 	.domain([0, 100]) // popularity runs from 0 to 100
 	.range([0, 95]); // 0 -> invisible, 100 -> biggest dot
 ```
+
+A scale is just a mapping: every value in the **domain** lands on a matching value in the **range**, in proportion. Drag the handles below to feel how an input maps to an output — and edit the four numbers to reshape the mapping:
+
+<ScaleDemo />
 
 Now size each circle with `r={radius(row.popularity)}`. Fill in the cells in the exercise:
 

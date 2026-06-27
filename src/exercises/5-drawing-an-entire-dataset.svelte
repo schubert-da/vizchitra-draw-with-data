@@ -4,7 +4,6 @@
 	import { scaleLinear } from 'd3';
 
 	// A SCALE maps popularity (0-100) onto a radius that fits a cell.
-	// (More on this in the sidebar.) Use it as: radius(row.popularity)
 	const radius = scaleLinear().domain([0, 100]).range([0, 95]);
 
 	// A colour for each genre - like a dictionary, look one up with
