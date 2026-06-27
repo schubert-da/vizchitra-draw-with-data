@@ -11,7 +11,7 @@ export const chapters = [
 		path: '/chapters/1-your-first-charts',
 		sections: [
 			{ id: 'svg', title: 'The SVG canvas' },
-			{ id: 'circles', title: 'Your First Scatter Plot' },
+			{ id: 'circles', title: 'Plotting Points with Circles' },
 			{ id: 'rects', title: 'Bars and Rectangles' },
 			{ id: 'lines', title: 'Drawing Line Charts' },
 			{ id: 'paths', title: 'Area Charts' }

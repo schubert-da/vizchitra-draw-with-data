@@ -5,7 +5,7 @@
 	import FirstScatterPlot from '$exercises/1-first-scatter-plot.svelte';
 </script>
 
-<Section id="circles" title="2. You First Scatter Plot">
+<Section id="circles" title="2. Plotting Points with Circles">
 
 Now we draw inside the canvas. A point is a `<circle>`, which needs a centre (`cx`, `cy`) and a radius `r`:
 
