@@ -20,19 +20,29 @@
 
 	let collapsed = $state(false);
 
-	// Measure the panel so collapsing can slide it out by exactly its own size -
-	// width in the side-by-side layout, height in the stacked (mobile) one. The
-	// vars live on the shell so both the panel and the floating toggle can read
-	// them. Kept fresh on resize (e.g. crossing the 800px breakpoint).
+	// Measure the panel so collapsing can slide it out by exactly its width in the
+	// side-by-side layout. The var lives on the shell so both the panel and the
+	// floating toggle can read it. Kept fresh on resize (e.g. crossing the 700px
+	// breakpoint, below which the panel becomes a fixed overlay instead).
 	$effect(() => {
 		function measure() {
 			if (!asideEl || !shellEl) return;
 			shellEl.style.setProperty('--aside-w', asideEl.offsetWidth + 'px');
-			shellEl.style.setProperty('--aside-h', asideEl.offsetHeight + 'px');
 		}
 		measure();
 		window.addEventListener('resize', measure);
 		return () => window.removeEventListener('resize', measure);
+	});
+
+	// Below 700px the sidebar is a fixed overlay rather than an in-flow column, so
+	// start it collapsed to keep the chapter readable; re-sync on each crossing of
+	// the breakpoint.
+	$effect(() => {
+		const mq = window.matchMedia('(max-width: 700px)');
+		const sync = () => (collapsed = mq.matches);
+		sync();
+		mq.addEventListener('change', sync);
+		return () => mq.removeEventListener('change', sync);
 	});
 
 	// When the active section changes, scroll the sidebar back to the top so the
@@ -73,7 +83,7 @@
 
 {#if isChapter}
 	<div
-		class="flex w-full items-start overflow-x-clip text-text [--aside-h:0px] [--aside-w:35%] max-[700px]:flex-col max-[700px]:overflow-clip"
+		class="flex w-full items-start overflow-x-clip text-text [--aside-w:35%] max-[700px]:flex-col max-[700px]:overflow-clip"
 		bind:this={shellEl}
 	>
 		<button
@@ -93,15 +103,15 @@
 		</button>
 
 		<main
-			class="prose @container order-2 min-w-0 flex-1 px-[clamp(1.5rem,4vw,3rem)] pt-[clamp(2rem,6vh,4rem)] pb-[30vh] text-[1.05rem] leading-[1.7]"
+			class="prose @container order-2 min-w-0 flex-1 px-[clamp(1.5rem,4vw,3rem)] pt-[clamp(2rem,6vh,4rem)] pb-[30vh] text-[1.05rem] leading-[1.7] max-[700px]:w-full"
 		>
 			{@render children()}
 		</main>
 
 		<aside
 			bind:this={asideEl}
-			class="sticky top-0 order-1 flex h-dvh w-[min(35%,4540px)] max-w-full flex-col overflow-y-auto border-r border-text/12 bg-palette-white px-8 py-10 pt-6 transition-[margin] duration-300 ease-in-out max-[700px]:h-auto max-[700px]:w-full max-[700px]:border-r-0 max-[700px]:border-b max-[700px]:px-5 max-[700px]:py-4 {collapsed
-				? '-ml-[var(--aside-w)] max-[700px]:-mt-[var(--aside-h)] max-[700px]:ml-0'
+			class="sticky top-0 order-1 flex h-dvh w-[min(35%,4540px)] max-w-full flex-col overflow-y-auto border-r border-text/12 bg-palette-white px-8 py-10 pt-6 transition-[margin,transform] duration-300 ease-in-out max-[700px]:fixed max-[700px]:inset-y-0 max-[700px]:left-0 max-[700px]:z-40 max-[700px]:w-full max-[700px]:border-r-0 max-[700px]:px-5 max-[700px]:py-4 max-[700px]:shadow-xl {collapsed
+				? '-ml-[var(--aside-w)] max-[700px]:ml-0 max-[700px]:-translate-x-full'
 				: ''}"
 			inert={collapsed}
 		>
