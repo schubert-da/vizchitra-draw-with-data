@@ -14,7 +14,15 @@
 	Bars grow up from the bottom. The SVG is 350 tall, so a bar of
 	height 70 sitting on the floor starts at y={350 - 70}.
 
-	The first row (y = 70) is done for you. Add a <rect> for each remaining
+	The data (only each row's y value is used — it sets the bar's height):
+	  label   y     x (step 100 across)
+	  A        70    30    <- done for you below
+	  B       300   130
+	  C       180   230
+	  D       320   330
+	  E       120   430
+
+	The first row (A: y = 70) is done for you. Add a <rect> for each remaining
 	row: move x across by 100 and set the height from its y value. Save and
 	watch this panel update.
 -->

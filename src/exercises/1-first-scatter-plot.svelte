@@ -10,7 +10,15 @@
 	  - cy: 350 - the row's y  (we flip it so larger y sits higher up)
 	  - r: radius
 
-	The first row (x = 50, y = 70) is done for you. Add a <circle> for each
+	The data (x and y are already pixel positions on the canvas):
+	  label   x     y
+	  A        50    70    <- done for you below
+	  B       160   300
+	  C       260   180
+	  D       360   320
+	  E       460   120
+
+	The first row (A: x = 50, y = 70) is done for you. Add a <circle> for each
 	remaining row. Save the file and watch this panel update.
 -->
 <svg class="chart" width="500" height="350">
