@@ -7,7 +7,7 @@ slug: 3-final-project
 	import WhereWeLeftOff from './3-final-project/01-where-we-left-off.svx';
 </script>
 
-<div class="mx-auto max-w-184">
+<div class="mx-auto max-w-200">
 
 # Final Project
 

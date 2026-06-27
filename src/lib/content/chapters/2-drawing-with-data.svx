@@ -10,7 +10,7 @@ slug: 2-drawing-with-data
 	import AddingInteractivity from './2-drawing-with-data/04-adding-interactivity.svx';
 </script>
 
-<div class="mx-auto max-w-184">
+<div class="mx-auto max-w-200">
 
 # Drawing with Data
 

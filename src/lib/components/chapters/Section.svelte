@@ -18,7 +18,7 @@
 	$effect(() => (el ? observeActive(el, scrolly, id) : undefined));
 </script>
 
-<section {id} bind:this={el} class="mx-auto max-w-184 scroll-mt-8 py-[clamp(3rem,9vh,6rem)]">
+<section {id} bind:this={el} class="mx-auto max-w-200 scroll-mt-8 py-[clamp(3rem,9vh,6rem)]">
 	<h2
 		class="mb-5 text-[1.9rem] leading-tight font-bold underline decoration-primary decoration-[0.08rem] underline-offset-4"
 	>

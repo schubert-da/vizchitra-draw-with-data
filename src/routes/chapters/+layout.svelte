@@ -73,12 +73,12 @@
 
 {#if isChapter}
 	<div
-		class="flex w-full items-start overflow-x-clip text-text [--aside-h:0px] [--aside-w:35%] max-[800px]:flex-col max-[800px]:overflow-clip"
+		class="flex w-full items-start overflow-x-clip text-text [--aside-h:0px] [--aside-w:35%] max-[700px]:flex-col max-[700px]:overflow-clip"
 		bind:this={shellEl}
 	>
 		<button
 			type="button"
-			class="fixed top-[0.6rem] z-50 grid size-8 cursor-pointer place-items-center rounded-md border border-text/20 bg-palette-white text-text transition-all duration-300 ease-in-out hover:bg-primary/10 max-[800px]:top-[0.5rem] max-[800px]:right-[0.6rem] max-[800px]:left-auto max-[800px]:translate-x-0 {collapsed
+			class="fixed top-[0.6rem] z-50 grid size-8 cursor-pointer place-items-center rounded-md border border-text/20 bg-palette-white text-text transition-all duration-300 ease-in-out hover:bg-primary/10 max-[700px]:top-[0.5rem] max-[700px]:right-[0.6rem] max-[700px]:left-auto max-[700px]:translate-x-0 {collapsed
 				? 'left-0 translate-x-[0.5rem]'
 				: 'left-[var(--aside-w)] -translate-x-[calc(100%_+_1.5rem)]'}"
 			onclick={() => (collapsed = !collapsed)}
@@ -100,8 +100,8 @@
 
 		<aside
 			bind:this={asideEl}
-			class="sticky top-0 order-1 flex h-dvh w-[min(35%,4540px)] max-w-full flex-col overflow-y-auto border-r border-text/12 bg-palette-white px-8 py-10 pt-6 transition-[margin] duration-300 ease-in-out max-[800px]:h-auto max-[800px]:w-full max-[800px]:border-r-0 max-[800px]:border-b max-[800px]:px-5 max-[800px]:py-4 {collapsed
-				? '-ml-[var(--aside-w)] max-[800px]:-mt-[var(--aside-h)] max-[800px]:ml-0'
+			class="sticky top-0 order-1 flex h-dvh w-[min(35%,4540px)] max-w-full flex-col overflow-y-auto border-r border-text/12 bg-palette-white px-8 py-10 pt-6 transition-[margin] duration-300 ease-in-out max-[700px]:h-auto max-[700px]:w-full max-[700px]:border-r-0 max-[700px]:border-b max-[700px]:px-5 max-[700px]:py-4 {collapsed
+				? '-ml-[var(--aside-w)] max-[700px]:-mt-[var(--aside-h)] max-[700px]:ml-0'
 				: ''}"
 			inert={collapsed}
 		>

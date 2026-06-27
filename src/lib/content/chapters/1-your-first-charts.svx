@@ -20,7 +20,7 @@ slug: 1-your-first-charts
 
 </ChapterAside>
 
-<div class="mx-auto max-w-184">
+<div class="mx-auto max-w-200">
 
 # Your First Charts
 
