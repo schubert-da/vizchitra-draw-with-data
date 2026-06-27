@@ -15,12 +15,12 @@
 	height 70 sitting on the floor starts at y={350 - 70}.
 
 	The data (only each row's y value is used — it sets the bar's height):
-	  label   y     x (step 100 across)
-	  A        70    30    <- done for you below
-	  B       300   130
-	  C       180   230
-	  D       320   330
-	  E       120   430
+	  label     y    
+	  A        70    
+	  B       300   
+	  C       180   
+	  D       320   
+	  E       120   
 
 	The first row (A: y = 70) is done for you. Add a <rect> for each remaining
 	row: move x across by 100 and set the height from its y value. Save and
