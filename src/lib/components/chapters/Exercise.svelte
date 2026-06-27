@@ -80,7 +80,7 @@
 		position: relative;
 		z-index: 1;
 		flex: 1 1 0;
-		padding: 0.15rem 0.7rem;
+		padding: 0.15rem 1.3rem;
 		font-weight: 700;
 		letter-spacing: 0.06em;
 		text-transform: uppercase;

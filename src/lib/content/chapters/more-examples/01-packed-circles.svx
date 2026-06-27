@@ -1,7 +1,7 @@
 <script>
 	import Section from '$components/chapters/Section.svelte';
 	import Bleed from '$components/chapters/Bleed.svelte';
-	import PackedCirclesDemo from '$components/chapters/4-custom-viz-with-ai/PackedCirclesDemo.svelte';
+	import PackedCirclesDemo from '$components/chapters/more-examples/PackedCirclesDemo.svelte';
 </script>
 
 <Section id="packing" title="1. Packing the Discs by Genre">

@@ -37,9 +37,9 @@ export const chapters = [
 	},
 	{
 		id: 4,
-		slug: '4-custom-viz-with-ai',
-		title: 'Custom Viz + AI',
-		path: '/chapters/4-custom-viz-with-ai',
+		slug: 'more-examples',
+		title: 'Some More Examples',
+		path: '/chapters/more-examples',
 		sections: [
 			{ id: 'packing', title: 'Packed Circles' },
 			{ id: 'force', title: 'A Force-Directed Cloud' }

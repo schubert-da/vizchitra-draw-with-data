@@ -1,11 +1,11 @@
 ---
 title: Custom Viz with AI
-slug: 4-custom-viz-with-ai
+slug: more-examples
 ---
 
 <script>
-	import PackedCircles from './4-custom-viz-with-ai/01-packed-circles.svx';
-	import ForceDirected from './4-custom-viz-with-ai/02-force-directed.svx';
+	import PackedCircles from './more-examples/01-packed-circles.svx';
+	import ForceDirected from './more-examples/02-force-directed.svx';
 </script>
 
 <div class="mx-auto max-w-200">

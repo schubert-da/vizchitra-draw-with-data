@@ -1,7 +1,7 @@
 <script>
 	import Section from '$components/chapters/Section.svelte';
 	import Bleed from '$components/chapters/Bleed.svelte';
-	import ForceGraphDemo from '$components/chapters/4-custom-viz-with-ai/ForceGraphDemo.svelte';
+	import ForceGraphDemo from '$components/chapters/more-examples/ForceGraphDemo.svelte';
 </script>
 
 <Section id="force" title="2. A Force-Directed Cloud">

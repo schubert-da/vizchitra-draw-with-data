@@ -1,10 +1,7 @@
 <script>
 	import data from '$assets/data/spotify-2010s.csv';
-	import { Pi } from '@lucide/svelte';
 	import * as d3 from 'd3';
 	import TileLegend from './TileLegend.svelte';
-
-	console.log(data);
 
 	let popularityScale = d3
 		.scaleLinear()

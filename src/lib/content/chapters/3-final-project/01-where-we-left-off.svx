@@ -2,6 +2,7 @@
 	import Section from '$components/chapters/Section.svelte';
 	import Exercise from '$components/chapters/Exercise.svelte';
 	import FinalVinylDisc from '$exercises/6-final-vinyl-disc.svelte';
+	import TileGrid from '$components/TileGrid/TileGrid.svelte';
 </script>
 
 <Section id="setup" title="Drawing the Music Chart">
@@ -23,6 +24,9 @@ This is our canvas for the rest of the chapter. Open the file and follow along -
 
 <Exercise file="6-final-vinyl-disc.svelte" bleed>
 	<FinalVinylDisc />
+	{#snippet result()}
+		<TileGrid />
+	{/snippet}
 </Exercise>
 
 {#snippet sidebar()}
