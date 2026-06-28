@@ -11,7 +11,7 @@
 
 <svg class="chart h-auto w-full" viewBox="0 0 {size.width} {size.height}">
 	<!-- <g transform={cellPosition(i, numColumns, tileWidth)}> -->
-	<rect x="0" y="0" width={tileWidth} height={tileWidth} fill="none" stroke="#ddd" />
+	<rect x="0" y="0" width={tileWidth} height={tileWidth} fill="#fff" stroke="#dddddd" />
 
 	<circle cx="100" cy="100" r="40" fill="#351D13" />
 	<circle cx="100" cy="100" r="12" fill="#fff" stroke="#fff" stroke-width="4" />
