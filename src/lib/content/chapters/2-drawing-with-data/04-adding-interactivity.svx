@@ -26,7 +26,7 @@ Loop over `modifiedData` instead of `data` (keep it keyed for later) and size ea
 
 ```svelte
 /// file: The loop
-{#each modifiedData as row, i (row.title + row.artist + row.year)}
+{#each modifiedData as row, i (row["title"] + row["artist"] + row["year"])}
 	<g class="tile" transform={cellPosition(i)}>
 		...
 		<circle cx="100" cy="100" r={radius(row[sizeMetric])} fill="#351D13" />

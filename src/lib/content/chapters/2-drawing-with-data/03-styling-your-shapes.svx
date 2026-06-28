@@ -57,14 +57,14 @@ let genreColors = {
 > - **object**: a set of **key → value** pairs, like a dictionary.
 > - **key**: what you look up (here, the genre).
 > - **value**: what you get back (here, the colour).
-> - **lookup**: read a value with square brackets — `genreColors[row.genre]`.
+> - **lookup**: read a value with square brackets — `genreColors[row["genre"]]`.
 
 **Colour the cell and the label**
 
 ```svelte
 /// file: Fills
-<rect ... fill={genreColors[row.genre]} />
-<circle ... fill={genreColors[row.genre]} />
+<rect ... fill={genreColors[row["genre"]]} />
+<circle ... fill={genreColors[row["genre"]]} />
 ```
 
 **RESULT**:

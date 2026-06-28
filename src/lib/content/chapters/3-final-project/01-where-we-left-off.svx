@@ -11,7 +11,7 @@ We pick up the grid from the end of Chapter 2: every song as a record disc, size
 
 ```svelte
 /// file: 6-final-vinyl-disc.svelte
-{#each data as row, i (row.title + row.artist + row.year)}
+{#each data as row, i (row["title"] + row["artist"] + row["year"])}
 	<g transform={cellPosition(i)}>
 		<rect x="0" y="0" width={CELL} height={CELL} fill={genreColors[row["genre"]]} stroke="#fff" />
 		<circle cx="100" cy="100" r={scale(row["popularity"])} fill="#351D13" />

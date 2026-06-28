@@ -24,24 +24,24 @@
 	role="img"
 	aria-label="A grid of every song as a record disc"
 >
-	{#each data as row, i (row.title + row.artist + row.year)}
+	{#each data as row, i (row["title"] + row["artist"] + row["year"])}
 		<g transform={cellPosition(i)}>
 			<rect
 				x="0"
 				y="0"
 				width={CELL}
 				height={CELL}
-				fill={genreColors[row['genre']]}
+				fill={genreColors[row["genre"]]}
 				stroke="#fff"
 				stroke-width="2"
 			/>
 
-			<circle cx="100" cy="100" r={scale(row['popularity'])} fill="#351D13" />
+			<circle cx="100" cy="100" r={scale(row["popularity"])} fill="#351D13" />
 			<circle
 				cx="100"
 				cy="100"
-				r={scale(row['popularity']) * 0.3}
-				fill={genreColors[row['genre']]}
+				r={scale(row["popularity"]) * 0.3}
+				fill={genreColors[row["genre"]]}
 				stroke="#fff"
 				stroke-width="4"
 			/>
@@ -57,7 +57,7 @@
 				stroke-width="2"
 				paint-order="stroke"
 			>
-				{row.title}
+				{row["title"]}
 			</text>
 			<text
 				x="100"
@@ -69,7 +69,7 @@
 				stroke-width="2"
 				paint-order="stroke"
 			>
-				{row.artist}
+				{row["artist"]}
 			</text>
 		</g>
 	{/each}
