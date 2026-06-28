@@ -5,6 +5,7 @@ slug: 3-final-project
 
 <script>
 	import WhereWeLeftOff from './3-final-project/01-where-we-left-off.svx';
+	import AiAssistedCustomViz from './3-final-project/02-ai-assisted-custom-viz.svx';
 </script>
 
 <div class="mx-auto max-w-200">
@@ -16,3 +17,5 @@ This is the chart we've been building toward: every song as its own little recor
 </div>
 
 <WhereWeLeftOff />
+
+<AiAssistedCustomViz />

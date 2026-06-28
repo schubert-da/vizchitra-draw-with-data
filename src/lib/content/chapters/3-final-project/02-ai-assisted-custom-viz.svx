@@ -1,0 +1,32 @@
+<script>
+	import Section from '$components/chapters/Section.svelte';
+</script>
+
+<Section id="ai-assisted" title="AI Assisted Custom Viz">
+
+You've got a working chart - now let's make it *yours* without writing every line by hand. Drop the file from the last section into an AI coding agent (Claude Code, Cursor, Copilot, or similar) and describe the tweak you want in plain English. The agent already sees your scales, your `{#each}` loop, and your styles, so small, specific asks work best.
+
+Keep the changes **minor and visual** - we're polishing the same vinyl-disc grid, not building a new chart. Make one change at a time, look at the result, then ask for the next.
+
+**Try a few of these prompts:**
+
+- *"Change all the colours to a more muted, earthy palette."*
+- *"On hover, dim all the other tiles to 30% opacity so the one I'm pointing at stands out."*
+- *"Add a staggered fade-in animation when the chart first loads, so the discs appear one after another."*
+- *"Make the grooves on each record more realistic by adding a few thin concentric rings."*
+- *"Add a subtle drop shadow under each disc so they look like they're floating."*
+- *"Spin the record slowly on hover, like it's playing."*
+- *"Sort the grid by genre and add a faint label above each genre group."*
+- *"Give the highest-popularity song a small glowing accent so it pops out from the rest."*
+- *"Round the corners of the tile backgrounds and add a little gap between them."*
+- *"Switch the layout from a square grid to a single horizontal row that scrolls."*
+
+**Tips for prompting:**
+
+- Be specific about *what* and *where* - "dim the other tiles" beats "make it look nicer".
+- If something breaks, paste the error back to the agent; it can usually fix its own mistakes.
+- Ask it to *explain* a change you like - that's how you learn the next trick yourself.
+
+There's no right answer here - poke at it, keep what you like, undo what you don't, and end up with a chart that feels like yours.
+
+</Section>
