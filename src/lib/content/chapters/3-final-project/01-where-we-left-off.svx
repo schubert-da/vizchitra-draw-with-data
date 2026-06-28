@@ -13,9 +13,9 @@ We pick up the grid from the end of Chapter 2: every song as a record disc, size
 /// file: 6-final-vinyl-disc.svelte
 {#each data as row, i (row.title + row.artist + row.year)}
 	<g transform={cellPosition(i)}>
-		<rect x="0" y="0" width={CELL} height={CELL} fill={genreColors[row.genre]} stroke="#fff" />
-		<circle cx="100" cy="100" r={popularityScale(row.popularity)} fill="#351D13" />
-		<circle cx="100" cy="100" r={popularityScale(row.popularity) * 0.3} fill={genreColors[row.genre]} stroke="#fff" stroke-width="4" />
+		<rect x="0" y="0" width={CELL} height={CELL} fill={genreColors[row["genre"]]} stroke="#fff" />
+		<circle cx="100" cy="100" r={scale(row["popularity"])} fill="#351D13" />
+		<circle cx="100" cy="100" r={scale(row["popularity"]) * 0.3} fill={genreColors[row["genre"]]} stroke="#fff" stroke-width="4" />
 	</g>
 {/each}
 ```
@@ -67,7 +67,7 @@ A wedge is a `<path>`, shaped with `d3.arc()` - but that works in **radians**, m
 ```svelte
 /// file: a wedge sized by a metric
 <path
-	d={arc({ startAngle: 0, endAngle: 90, outerRadius: popularityScale(row.popularity) })}
+	d={arc({ startAngle: 0, endAngle: 90, outerRadius: scale(row["popularity"]) })}
 	fill="#EFEEE5"
 />
 ```
