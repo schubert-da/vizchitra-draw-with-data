@@ -24,7 +24,7 @@ slug: 1-your-first-charts
 
 # Your First Charts
 
-A chart is really just shapes placed in the right spots. In this chapter we take the small dataset on the left and turn it into our first charts. We'll start with the canvas everything is drawn on, then plotting each row as a point, and building up from there.
+A chart is really just shapes placed in the right spots. In this chapter we take the small dataset on the left and turn it into our first charts.
 
 </div>
 

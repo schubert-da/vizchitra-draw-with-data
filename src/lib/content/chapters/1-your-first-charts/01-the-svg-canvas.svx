@@ -17,7 +17,7 @@ The SVG element can have fields of `"width"` and `"height"` which specify the di
 
 <CanvasDemo />
 
-**The coordinate system**: Every position is measured from the **top-left corner**, `(0, 0)`. `x` grows to the **right**, and `y` grows **downward** — so a bigger `y` sits _lower_ on the canvas, the opposite of a maths graph.
+**The coordinate system**: Every position is measured from the **top-left corner**, `(0, 0)`. `x` grows to the **right**, and `y` grows **downward** - so a bigger `y` sits _lower_ on the canvas, the opposite of a maths graph.
 
 {#snippet sidebar()}
 

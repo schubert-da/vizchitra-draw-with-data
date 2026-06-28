@@ -20,7 +20,6 @@ To draw the circle:
 - We start with placing the circle at the correct position with `cx` and `cy` and then 
 - `r` - gives it a radius.
 - `fill` to make it visible. This can be any colour eg. "red", "#ff0000", hsl(0, 100%, 50%), etc.
-- `stroke` is also a colour that can be used to give the circle a border. You can control its thickness with `stroke-width="4"`.
 
 <Exercise file="1-first-scatter-plot.svelte">
 	<FirstScatterPlot />
@@ -31,11 +30,13 @@ To draw the circle:
 
 {#snippet sidebar()}
 
-The table's `x` and `y` are already pixel positions, so plot them straight onto the canvas. Flip `y` with curly brackets so larger values sit higher: `cy={350 - 70}`.
+> [!Note] Handy extras
+> - **Complex math**: use curly brackets to compute a value inline — `cy={350 - 70}` is just 70 up from the bottom.
+> - **Outlines**: add `stroke` (outline colour) and `stroke-width` (thickness) to give a circle a border.
 
 ```svelte
 /// file: Circle
-<circle cx="50" cy={350 - 70} r="8" fill="steelblue" />
+<circle cx="50" cy={350 - 70} r="8" fill="steelblue" stroke="white" stroke-width="2" />
 ```
 
 **RESULT**:

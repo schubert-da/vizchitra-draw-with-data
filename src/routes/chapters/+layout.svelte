@@ -110,7 +110,7 @@
 
 		<aside
 			bind:this={asideEl}
-			class="sticky top-0 order-1 flex h-dvh w-[min(35%,4540px)] max-w-full flex-col overflow-y-auto border-r border-text/12 bg-palette-white px-8 py-10 pt-6 transition-[margin,transform] duration-300 ease-in-out max-[700px]:fixed max-[700px]:inset-y-0 max-[700px]:left-0 max-[700px]:z-40 max-[700px]:w-full max-[700px]:border-r-0 max-[700px]:px-5 max-[700px]:py-4 max-[700px]:shadow-xl {collapsed
+			class="sticky top-0 order-1 flex h-dvh w-[min(35%,4540px)] max-w-full flex-col overflow-y-auto border-r border-text/12 bg-palette-white px-4 pt-6 transition-[margin,transform] duration-300 ease-in-out max-[700px]:fixed max-[700px]:inset-y-0 max-[700px]:left-0 max-[700px]:z-40 max-[700px]:w-full max-[700px]:border-r-0 max-[700px]:px-5 max-[700px]:py-4 max-[700px]:shadow-xl lg:px-8 lg:py-10 {collapsed
 				? '-ml-[var(--aside-w)] max-[700px]:ml-0 max-[700px]:-translate-x-full'
 				: ''}"
 			inert={collapsed}
