@@ -18,7 +18,7 @@ let sortMetric = 'popularity';
 let selectedGenre = 'all';
 
 $: modifiedData = data
-	.filter((row) => selectedGenre === 'all' || row.genre === selectedGenre)
+	.filter((row) => selectedGenre === 'all' || row["genre"] === selectedGenre)
 	.sort((a, b) => b[sortMetric] - a[sortMetric]);
 ```
 
@@ -78,25 +78,28 @@ Change any of those variables by hand and the grid redraws itself - that's the w
 
 ```css
 /// file: Transitions
-.tile {
-	transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+g {
+	transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
 }
+
 circle {
 	transition: r 0.5s cubic-bezier(0.68, -0.6, 0.32, 1.6);
 }
 ```
 
-**4. Bonus - a hover lift.** While we're in CSS we can add a little polish. Wrap the disc and labels in an inner `<g class="tile-inner">`, then scale it on hover (a separate group, so it doesn't fight the positioning transform):
+**4. Hover animations.** While we're in CSS we can add a little polish. When the chart is hovered we dim *every* tile, then bring the one under the cursor back to full strength and lift it with a shadow - so a single record stands out from the crowd:
 
 ```css
 /// file: Hover
-.tile-inner {
-	transform-box: fill-box;
-	transform-origin: center;
-	transition: transform 0.18s ease;
+/* if the svg is hovered then make all g elements inside it 0.5 opacity */
+svg:hover g {
+	opacity: 0.5;
 }
-.tile:hover .tile-inner {
-	transform: scale(1.08);
+
+/* if the svg is hovered AND the g inside it is ALSO hovered then apply opacity 1 + drop shadow */
+svg:hover g:hover {
+	opacity: 1;
+	filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.45));
 }
 ```
 

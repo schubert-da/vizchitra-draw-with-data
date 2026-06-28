@@ -49,7 +49,7 @@
 </script>
 
 <div class="mx-auto w-full max-w-250 pt-10">
-	<TileLegend />
+	<!-- <TileLegend /> -->
 </div>
 <div class="content dis w-full p-10">
 	<svg
