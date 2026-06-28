@@ -1,5 +1,5 @@
 <script>
-	import { ArrowRight } from '@lucide/svelte';
+	import { ArrowRight, Globe, Instagram, Linkedin } from '@lucide/svelte';
 	import { chapters } from '$components/chapters/chaptersConfig.js';
 	import FinalProjectPeek from '$components/home/FinalProjectPeek.svelte';
 	import BackgroundBlend from '$components/ArtUtils/BackgroundBlend.svelte';
@@ -100,5 +100,60 @@
 				wedges encoding its popularity, tempo, energy and danceability.
 			</p>
 		</section>
+
+		<!-- Socials -->
+		<footer class="mt-10 border-t border-text/12 pt-6">
+			<p class="mb-3 font-code text-sm tracking-wide text-primary uppercase">Find me</p>
+			<ul class="m-0 flex list-none flex-wrap items-center gap-2 p-0">
+				<li>
+					<a
+						href="https://schubertcreates.xyz/"
+						class="flex items-center gap-2 border border-text/12 px-3 py-2 text-sm font-semibold no-underline transition-colors hover:border-primary hover:bg-primary/5"
+					>
+						<Globe class="flex-none text-primary" size={18} strokeWidth={2} />
+						Website
+					</a>
+				</li>
+				<li>
+					<a
+						href="https://www.instagram.com/schu.draws.stuff"
+						class="flex items-center gap-2 border border-text/12 px-3 py-2 text-sm font-semibold no-underline transition-colors hover:border-primary hover:bg-primary/5"
+					>
+						<Instagram class="flex-none text-primary" size={18} strokeWidth={2} />
+						Instagram
+					</a>
+				</li>
+				<li>
+					<a
+						href="https://www.linkedin.com/in/schubert-de-abreu-47a56037/"
+						class="flex items-center gap-2 border border-text/12 px-3 py-2 text-sm font-semibold no-underline transition-colors hover:border-primary hover:bg-primary/5"
+					>
+						<Linkedin class="flex-none text-primary" size={18} strokeWidth={2} />
+						LinkedIn
+					</a>
+				</li>
+				<li>
+					<a
+						href="https://bsky.app/profile/schubert-da.bsky.social"
+						class="flex items-center gap-2 border border-text/12 px-3 py-2 text-sm font-semibold no-underline transition-colors hover:border-primary hover:bg-primary/5"
+					>
+						<!-- Bluesky butterfly (no Lucide icon for it) -->
+						<svg
+							class="flex-none text-primary"
+							width="18"
+							height="18"
+							viewBox="0 0 600 530"
+							fill="currentColor"
+							aria-hidden="true"
+						>
+							<path
+								d="M135.7 44.0c70.0 52.6 145.4 159.2 173.0 216.4 27.6-57.2 102.9-163.8 173.0-216.4 50.6-37.9 132.6-67.3 132.6 26.3 0 18.7-10.7 157.2-17.0 179.7-21.9 78.2-101.6 98.1-172.5 86.1 123.9 21.1 155.4 91.0 87.3 160.9-129.3 132.8-185.8-33.3-200.3-75.9-2.7-7.8-3.9-11.5-3.9-8.3 0-3.2-1.3.5-3.9 8.3-14.5 42.6-71.0 208.7-200.3 75.9-68.1-69.9-36.6-139.8 87.3-160.9-70.9 12.0-150.6-7.9-172.5-86.1-6.3-22.5-17.0-161.0-17.0-179.7 0-93.6 82.0-64.2 132.6-26.3z"
+							/>
+						</svg>
+						Bluesky
+					</a>
+				</li>
+			</ul>
+		</footer>
 	</div>
 </main>
