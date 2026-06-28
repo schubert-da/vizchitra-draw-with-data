@@ -33,7 +33,10 @@ export const chapters = [
 		slug: '3-final-project',
 		title: 'Music Chart',
 		path: '/chapters/3-final-project',
-		sections: [{ id: 'setup', title: 'Drawing the Music Chart' }]
+		sections: [
+			{ id: 'setup', title: 'Drawing the Music Chart' },
+			{ id: 'ai-assisted', title: 'AI Assisted Custom Viz' }
+		]
 	},
 	{
 		id: 4,

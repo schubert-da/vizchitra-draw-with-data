@@ -1,10 +1,18 @@
 <script>
+	import { ArrowLeft } from '@lucide/svelte';
 	import { chapters } from '$components/chapters/chaptersConfig.js';
 </script>
 
 <svelte:head><title>Chapters</title></svelte:head>
 
 <main class="mx-auto max-w-160 px-8 py-12 text-text">
+	<a
+		href="/"
+		class="mb-6 inline-flex items-center gap-2 text-sm font-semibold text-primary no-underline hover:underline"
+	>
+		<ArrowLeft class="flex-none" size={16} strokeWidth={2} />
+		Back to home
+	</a>
 	<h1
 		class="mb-8 text-[2.5rem] font-extralight underline decoration-primary decoration-[0.07rem] underline-offset-[0.2rem]"
 	>

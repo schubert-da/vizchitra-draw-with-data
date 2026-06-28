@@ -1,5 +1,5 @@
 <script>
-	import { ArrowRight, Globe, Instagram, Linkedin } from '@lucide/svelte';
+	import { ArrowRight, Globe, Instagram, Linkedin, ExternalLink, FileText } from '@lucide/svelte';
 	import { chapters } from '$components/chapters/chaptersConfig.js';
 	import FinalProjectPeek from '$components/home/FinalProjectPeek.svelte';
 	import BackgroundBlend from '$components/ArtUtils/BackgroundBlend.svelte';
@@ -37,9 +37,12 @@
 			<p class="mb-2 font-code text-sm tracking-wide text-primary uppercase">
 				A VizChitra Workshop
 			</p>
-			<h1 class="mb-4 font-display text-[2.8rem] leading-[1.05] font-normal sm:text-[3.6rem]">
+			<h1 class=" font-display text-[2.8rem] leading-[1.05] font-normal sm:text-[3.6rem]">
 				Draw with Data
 			</h1>
+			<p class="mt-1 mb-4 text-[1.2rem] text-text/70">
+				by <span class="font-semibold text-text">Schubert De Abreu</span>
+			</p>
 			<p class="max-w-xl text-[1.15rem] leading-relaxed text-text/80">
 				Learn to turn raw data into visuals with code. We start with drawing basic shapes, then
 				learn to shape and style them with data, and then combine everything you learned to build
@@ -77,17 +80,41 @@
 			</ol>
 		</section>
 
+		<!-- Additional links -->
+		<section class="mb-10">
+			<h2 class="mb-3 font-display text-2xl leading-tight font-normal">Additional Links</h2>
+			<ol class="m-0 grid list-none grid-cols-1 gap-3 p-0 sm:grid-cols-2">
+				<li>
+					<a
+						href="https://draw-with-data.netlify.app/"
+						target="_blank"
+						rel="noopener"
+						class="flex h-full items-baseline gap-3 border border-text/12 px-[1.1rem] py-[0.9rem] no-underline transition-colors hover:border-primary hover:bg-primary/5"
+					>
+						<ExternalLink
+							class="flex-none translate-y-0.5 text-primary"
+							size={18}
+							strokeWidth={2}
+						/>
+						<span class="text-[1.05rem] font-semibold">Live project website</span>
+					</a>
+				</li>
+				<li>
+					<a
+						href="https://docs.google.com/document/d/1asOmvfwpQ6yAdEvBqPmtSX5gXXIVxXusKeVpoVusxqY/edit?tab=t.apdssjea4rlh"
+						target="_blank"
+						rel="noopener"
+						class="flex h-full items-baseline gap-3 border border-text/12 px-[1.1rem] py-[0.9rem] no-underline transition-colors hover:border-primary hover:bg-primary/5"
+					>
+						<FileText class="flex-none translate-y-0.5 text-primary" size={18} strokeWidth={2} />
+						<span class="text-[1.05rem] font-semibold">Workshop notes (Google Doc)</span>
+					</a>
+				</li>
+			</ol>
+		</section>
+
 		<!-- Sneak peek of the final project -->
 		<section class="">
-			<div class="mb-3 flex items-baseline justify-between gap-4">
-				<h2 class="font-display text-2xl leading-tight font-normal">A peek at the final project</h2>
-				<a
-					href={finalProject.path}
-					class="flex-none text-sm font-semibold text-primary no-underline hover:underline"
-				>
-					See how it's built →
-				</a>
-			</div>
 			<a
 				href={finalProject.path}
 				class="group block overflow-hidden border border-text/15 no-underline transition-colors hover:border-primary"
