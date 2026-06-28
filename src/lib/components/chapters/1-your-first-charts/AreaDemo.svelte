@@ -16,7 +16,7 @@
 	role="img"
 	aria-label="An area chart filling the space under one point per data row"
 >
-	<path d={pathD} fill="steelblue" fill-opacity="0.25" stroke="steelblue" stroke-width="2" />
+	<path d={pathD} fill="teal" stroke="teal" stroke-width="2" />
 	{#each data as p}
 		<circle cx={p.x} cy={350 - p.y} r="8" fill="steelblue" />
 	{/each}
