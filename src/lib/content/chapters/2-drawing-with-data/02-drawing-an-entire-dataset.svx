@@ -8,42 +8,21 @@
 
 <Section id="each" title="2. Drawing an Entire Dataset">
 
-We drew one song. With 139 of them, we don't want to copy that markup 139 times — we want to repeat it once per row. Svelte's **`{#each}` block** does exactly that: give it a list and it stamps out the HTML inside it once for every item.
-
-We'll start small, with the first six songs. `data.slice(0, 6)` takes items 0 to 5:
+We drew one song. With 139 of them, we don't want to copy that markup 139 times - we want to repeat it once per row. Svelte's **`{#each}` block** does exactly that: 
 
 ```svelte
 /// file: Loop over the first few
-{#each data.slice(0, 6) as row, i}
-	<circle r={row.popularity} />
+{#each data as row, i}
+	<circle r={row["popularity"]} />
 {/each}
 ```
 
-`row` is the song for this turn of the loop, and `i` is its **index** — its position in the list (0, 1, 2, …).
-
-Each song needs its own spot in a grid. We wrap every cell in a `<g>` — a **group** that holds several shapes and can be moved as one — and shift it into place with a `transform`. The grid maths lives in a helper, `cellPosition(i)`, so the HTML stays about the drawing:
-
-```svelte
-/// file: One group per cell
-{#each data.slice(0, 6) as row, i}
-	<g transform={cellPosition(i)}>
-		<rect ... />   <!-- the cell's border -->
-		<circle ... /> <!-- sized by popularity -->
-		<text>{row.title}</text>
-	</g>
-{/each}
-```
-
-Inside each group we draw two circles — a dark disc with a small light label, so each cell reads like a little **vinyl record** — plus the title and artist text and a `<rect>` marking the cell boundary. Swap `data.slice(0, 6)` for `data` and the loop draws **all 139 songs** at once.
-
+`row` is the song for this turn of the loop, and `i` is its **index** - its position in the list (0, 1, 2, …).
 ---
 
-One snag: popularity is measured from `0` to `100`, which is too big to use straight as a radius — a value of `83` would be a circle wider than its cell. We remap that `0–100` range onto a radius range that fits, with a **scale** from D3 — `scaleLinear`. We keep the low end at `0`, so the least popular songs shrink to nothing, which is honest to the data:
-
+Now lets map our data values to a more acceptable range, we will use a scale for this.
 ```svelte
 /// file: A scale for the radius
-import { scaleLinear } from 'd3';
-
 const radius = scaleLinear()
 	.domain([0, 100]) // popularity runs from 0 to 100
 	.range([0, 95]); // 0 -> invisible, 100 -> biggest dot
@@ -53,7 +32,7 @@ A scale is just a mapping: every value in the **domain** lands on a matching val
 
 <ScaleDemo />
 
-Now size each circle with `r={radius(row.popularity)}`. Fill in the cells in the exercise:
+Now size each circle with `r={radius(row["popularity"])}`. Fill in the cells in the exercise:
 
 <Exercise file="5-drawing-an-entire-dataset.svelte" bleed>
 	<DrawingEntireDataset />
