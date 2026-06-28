@@ -7,7 +7,7 @@
 
 <Section id="first-shape" title="1. Draw a Shape with Data">
 
-Up to now we typed every number ourselves. Let's load some **real data** instead — a list of popular songs from the 2010s — and let the data decide what we draw.
+Up to now we typed every number ourselves. Let's load some **real data**.
 
 We pull the data in with an `import`. It loads the file once and gives the list a name we can use everywhere - `data`:
 
@@ -20,33 +20,29 @@ We pull the data in with an `import`. It loads the file once and gives the list 
 </script>
 ```
 
-`console.log(...)` prints a value to the browser's **console** so we can look at it (open it with **F12**, then the _Console_ tab). Logging `data` shows an **array** — a numbered list — with one entry per song.
+`console.log(...)` displays a value to the browser's **console** so we can look at it (open it with **F12**, then the _Console_ tab).
 
-Each entry is a single song. To grab the first one we use its position in the list. Positions start at **0**, so the first song is `data[0]`. We give it a name so it's easy to reuse - this name is called a **variable**:
-
-```svelte
-/// file: Name the first row
-let row = data[0];
-console.log(row);
-```
-
-`row` contains several named fields. We read a field by writing the name after a dot - `row.title`, `row.artist`, `row.popularity`:
 
 ```svelte
-/// file: Read its fields
-console.log(row.title); // "Hey, Soul Sister"
-console.log(row.popularity); // 83
+/// file: Logging the data
+// log the whole dataset
+console.log(data);
+
+// log the first row
+console.log(data[0]); 
+
+// log the title of the first row
+console.log(data[0]["title"]); // "Hey, Soul Sister"
 ```
 
-So far these values only appear in the console. To put one on the **page**, we wrap it in **curly braces** `{ }` right in the markup. Whatever sits between the braces is run as JavaScript and its result is dropped into the drawing — either as an attribute value or as text on screen:
+So far these values only appear in the console. To put one on the **page**, we wrap it in **curly braces** `{ }`. Whatever sits between the braces is run as JavaScript and its result is dropped into the HTML:
 
 ```svelte
 /// file: Curly braces put a value into the markup
-<circle r={row.popularity} />  <!-- attribute: no quotes around the braces -->
-<text>{row.title}</text>       <!-- text: braces between the tags -->
+<circle r={row["popularity"]} />  <!-- use as radius value -->
+<text>{row["title"]}</text>       <!-- use as text content -->
 ```
 
-Now we can **draw with it**. We size a circle by the song's `popularity` and label it with the `title` and `artist`. In the exercise the shape is drawn with the values typed in by hand — swap each one for the matching field on `row` so the drawing comes from the data:
 
 <Exercise file="4-draw-a-shape-with-data.svelte">
 	<DrawAShapeWithData />
@@ -71,10 +67,10 @@ Array(139) [ {…}, {…}, … ]
 // console.log(row)     
 { title: "Hey, Soul Sister", … }  
 
-// console.log(row.title)
+// console.log(row["title"])
 "Hey, Soul Sister"       
 
-// console.log(row.popularity)         
+// console.log(row["popularity"])         
 83                                
 ```
 
@@ -87,14 +83,14 @@ Array(139) [ {…}, {…}, … ]
 
 ```svelte
 /// file: Circle
-<circle cx="150" cy="150" r={row.popularity} fill="steelblue" />
+<circle cx="150" cy="150" r={row["popularity"]} fill="steelblue" />
 ```
 
 
 ```svelte
 /// file: Filling the text
 <text x="150" y="240" text-anchor="middle" font-size="18" font-weight="bold" fill="#222">
-	{row.title}
+	{row["title"]}
 </text>
 ```
 
