@@ -6,16 +6,11 @@
 </script>
 
 <Section id="styling" title="3. Styling your Shapes">
-
-We'll keep working on the **same grid** from the last section — no new file. Right now every record looks alike; let's colour each one by its **genre** so the chart tells us something at a glance.
-
-The catch: a genre is a piece of text like `"Dance pop"` or `"Hip-hop/R&B"`, and an SVG `fill` needs a colour. We need a way to turn one into the other.
-
-For that we use an **object** as a lookup table — think of it like a **dictionary**: you look up a word (the genre) and get back its definition (the colour). Each line is a **key** (the genre) paired with a **value** (the colour):
+To colour our shapes based on genre we use an **object** as a lookup table - think of it like a **dictionary**: you look up a word (the genre) and get back its definition (the colour). Each line is a **key** (the genre) paired with a **value** (the colour):
 
 ```svelte
 /// file: Colour map
-const genreColors = {
+let genreColors = {
 	'Dance pop': '#E75B2B',
 	Pop: '#DB1E24',
 	'Hip-hop/R&B': '#F9B806',
@@ -30,12 +25,10 @@ To look one up, we put the key in **square brackets**:
 ```svelte
 /// file: Looking up a colour
 genreColors['Dance pop']; // "#E75B2B"
-genreColors[row.genre]; // the colour for this row's genre
+genreColors[row["genre"]]; // the colour for this row's genre
 ```
 
-We use brackets `[ ]` here (not a dot) because the key comes from the data and some genres contain spaces or slashes — `row.genre` looks up whatever genre that row happens to be.
-
-Now wire it into the drawing. Set the **cell's `fill`** and the **record label's `fill`** to `genreColors[row.genre]`, and the grid colours itself by genre:
+Now do it in your exercise:
 
 <Exercise file="5-drawing-an-entire-dataset.svelte" bleed>
 	<DrawingEntireDataset />
@@ -50,7 +43,7 @@ Paste this colour map into your file:
 
 ```svelte
 /// file: Colour map
-const genreColors = {
+let genreColors = {
 	'Dance pop': '#E75B2B',
 	Pop: '#DB1E24',
 	'Hip-hop/R&B': '#F9B806',
