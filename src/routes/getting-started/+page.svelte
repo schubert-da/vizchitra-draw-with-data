@@ -338,7 +338,19 @@
 			</div>
 		</section>
 
-		<!-- ============================ STEP 5 ============================ -->
+		<!-- Optional Svelte extension note (sits between Step 4 and Step 5) -->
+			<div class="callout callout--tip">
+				<p class="callout__title">Optional, but helpful</p>
+				<p>
+					VS Code may pop up a little notification suggesting the
+					<strong>Svelte for VS Code</strong> extension. If it does, go ahead and click
+					<strong>Install</strong> - it adds colour highlighting and helpful hints for the project's
+					<code>.svelte</code> files. It's completely optional, so if you don't see the prompt, don't
+					worry - everything still works without it.
+				</p>
+			</div>
+
+			<!-- ============================ STEP 5 ============================ -->
 		<section class="step">
 			<h2 class="step-title">
 				<span class="step-num">5</span>. Install the project's dependencies
