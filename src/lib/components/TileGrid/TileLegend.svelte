@@ -22,14 +22,46 @@
 			.endAngle(endAngle)();
 	}
 
-	// Right-hand key. `kind` says which quarter of the mini-icon to highlight,
-	// matching where the metric lives on a tile.
-	const quad = { tl: [0, 0], tr: [11, 0], br: [11, 11], bl: [0, 11] };
+	// Right-hand key. Each mini-icon draws the SAME arc as the tile - same start/end
+	// angles, anchored at the tile centre (centre arcs) or a corner (corner wedges) -
+	// so the legend shows the real shape and the direction each metric grows.
+	const M = 22; // mini reference-tile size
+	const R = M / 2;
 	const metricRows = [
-		{ kind: 'tl', color: cream, title: 'Popularity', desc: 'centre arc · top-left' },
-		{ kind: 'br', color: cream, title: 'Tempo (BPM)', desc: 'centre arc · bottom-right' },
-		{ kind: 'tr', color: exColor, title: 'Energy', desc: 'corner wedge · top-right' },
-		{ kind: 'bl', color: exColor, title: 'Danceability', desc: 'corner wedge · bottom-left' }
+		// centre arcs grow out from the middle of the tile
+		{
+			color: cream,
+			anchor: [R, R],
+			start: 1.5 * Math.PI,
+			end: 2 * Math.PI,
+			title: 'Popularity',
+			desc: 'centre arc · top-left'
+		},
+		{
+			color: cream,
+			anchor: [R, R],
+			start: 0.5 * Math.PI,
+			end: 1 * Math.PI,
+			title: 'Tempo (BPM)',
+			desc: 'centre arc · bottom-right'
+		},
+		// corner wedges grow out from a corner of the tile
+		{
+			color: exColor,
+			anchor: [M, 0],
+			start: Math.PI,
+			end: 1.5 * Math.PI,
+			title: 'Energy',
+			desc: 'corner wedge · top-right'
+		},
+		{
+			color: exColor,
+			anchor: [0, M],
+			start: 0,
+			end: 0.5 * Math.PI,
+			title: 'Danceability',
+			desc: 'corner wedge · bottom-left'
+		}
 	];
 
 	const genres = [
@@ -79,7 +111,11 @@
 		<rect x={C} y="0" width={C} height={C} fill={dark} stroke={cream} stroke-width="3" />
 		<rect x="0" y={C} width={C} height={C} fill={dark} stroke={cream} stroke-width="3" />
 
-		<path d={drawArc(0, 0.5 * Math.PI, 0, ex.dance)} fill={cream} transform={`translate(0, ${T})`} />
+		<path
+			d={drawArc(0, 0.5 * Math.PI, 0, ex.dance)}
+			fill={cream}
+			transform={`translate(0, ${T})`}
+		/>
 		<path
 			d={drawArc(0, 0.5 * Math.PI, 0, ex.dance * 0.6)}
 			fill={exColor}
@@ -127,8 +163,14 @@
 	<g transform="translate(190, 58)">
 		{#each metricRows as row, i}
 			<g transform={`translate(0, ${i * 33})`}>
-				<rect width="22" height="22" fill="#f7f6f1" stroke="#cfcabc" stroke-width="1.5" />
-				<rect x={quad[row.kind][0]} y={quad[row.kind][1]} width="11" height="11" fill={row.color} />
+				<rect width={M} height={M} fill="#f7f6f1" stroke="#cfcabc" stroke-width="1.5" />
+				<path
+					d={drawArc(row.start, row.end, 0, R)}
+					transform={`translate(${row.anchor[0]}, ${row.anchor[1]})`}
+					fill={'#E75B2B'}
+					stroke={dark}
+					stroke-width="0.75"
+				/>
 				<text x="30" y="11" font-size="13" font-weight="bold" fill={dark}>{row.title}</text>
 				<text x="30" y="25" font-size="10.5" fill="#666">{row.desc}</text>
 			</g>

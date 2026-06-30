@@ -48,14 +48,10 @@
 	}
 </script>
 
-<div class="mx-auto w-full max-w-250 pt-10">
-	<!-- <TileLegend /> -->
-</div>
-<div class="content dis w-full p-10">
+<div class="content dis w-full p-4 md:p-5 lg:p-10">
 	<svg
-		class="mx-auto"
-		width={tileSize * numCols}
-		height={tileSize * Math.ceil(data.length / numCols)}
+		class="mx-auto block h-auto w-full"
+		viewBox={`0 0 ${tileSize * numCols} ${tileSize * Math.ceil(data.length / numCols)}`}
 	>
 		{#each data as row, i}
 			<g
