@@ -77,6 +77,14 @@
 				times a second, so the edges shiver as if the page were sketched by hand and re-drawn frame
 				by frame.
 			</p>
+			<p class="mt-4">
+				<a
+					href="/experiments/boil-studio"
+					class="inline-flex items-center gap-2 rounded-lg border border-text/15 px-4 py-2 text-sm font-semibold text-primary no-underline transition-colors hover:border-primary hover:bg-primary/5"
+				>
+					Open Boil Studio — fullscreen pattern generator →
+				</a>
+			</p>
 		</header>
 
 		<div class="my-10 grid grid-cols-[repeat(auto-fit,minmax(15rem,1fr))] gap-6">
