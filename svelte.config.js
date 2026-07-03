@@ -72,12 +72,15 @@ const config = {
 	},
 	preprocess: [
 		mdsvex({
-			extensions: ['.svx', '.md'],
+			extensions: ['.svx'],
 			highlight,
 			remarkPlugins: [remarkCallouts]
 		})
 	],
-	extensions: ['.svelte', '.svx', '.md']
+	// Note: `.md` is intentionally NOT a component extension — content authored as
+	// components uses `.svx`. Plain `.md` files (e.g. content/notes.md, imported
+	// with ?raw) stay raw text and are never handed to the Svelte compiler.
+	extensions: ['.svelte', '.svx']
 };
 
 export default config;

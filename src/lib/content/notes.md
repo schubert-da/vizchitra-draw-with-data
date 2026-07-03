@@ -6,6 +6,7 @@
     "# slides  | 4–7 | Screen title"          an intro slide screen
     "# intro   | Header label | Screen title"  a non-slide intro screen
     "# chapter | <slug>/<section-id>"          a chapter section (title comes from chaptersConfig.js)
+    "# chapter | <slug> | Screen title"        a chapter opener, shown before that chapter's sections
 
   Under a heading, each note is one line. The first character sets its type:
     -  note        plain talking point (default; any unmarked line is a note too)
@@ -85,3 +86,67 @@
 - Trace the data: M to the first point, then L along the rest → a line.
 - Enclose it: drop down to the baseline, back to the start, Z → fill.
 ! Reflect: fiddly by hand, but the most powerful shape — almost anything is a path. We’ll automate soon.
+
+# chapter | 2-drawing-with-data | From manual to automatic
+
+- Recap: last chapter we built charts from basic shapes — but all VERY manual.
+- Change one data point → go back in, redo the math, add or remove shapes.
+- This chapter: automate all that.
+- Style and modify shapes so they react to the data.
+- Then make things interactive.
+- We’ll do this in JS — looks a bit different from what we’ve seen so far.
+- Trust me: just enough JS to make some interesting dataviz.
+
+# chapter | 2-drawing-with-data/first-shape
+
+> Now → working with data for the first time.
+- Goal: read the data, draw a circle sized by a column, plus a bit of text.
+- New <script> element — that’s where our JS goes.
+- Green text = comments again; JS uses // for comments.
+- [Open the CSV in Excel — walk through what we’re looking at.]
+- Really only 3 lines of code here.
+- Line 1: read the CSV, name it “data” (name can be anything).
+- Line 2: console.log(data) — prints whatever’s in the brackets. Open it with F12, or right-click → Inspect → Console.
+- Shows an array = a list of rows; expand one → a single row, like earlier.
+- Access a row with data[0] (index by number); then a value by column name.
+- Line 3: a variable — a named, reusable bit of code (here data[0]). Log it, swap indexes to show.
+- Use it: curly braces {} plug JS into the markup (like before). Swap in text, change the index.
+- Change the value in Excel → it updates live.
+
+# chapter | 2-drawing-with-data/each
+
+> Now → repeat shapes for every row in the data.
+- Goal: build the grid of shapes (show output).
+- Before, 6 circles meant 6 <circle> elements — not doing that 100+ times.
+- Instead: draw it once, repeat for each row.
+- Over to the exercise — roughly what’s in our example file.
+- Same as before: title + artist text (fill later), the circle (sized by columns).
+- New: a smaller white circle on top → looks like a disc, plus a background rectangle.
+- Grid setup: variables for tile width + number of columns.
+- size comes from gridSize — a function: takes inputs, returns a value (not writing functions today).
+- Repeat with an each block in Svelte (write the syntax) — runs the content once per row.
+- Access each row’s values with “row”, like last time.
+- Updates — but all stacked on top of each other → fix with the g element (moves each tile by its index).
+- Heads up: our data’s all 0–100 — but a “streams” column in the millions couldn’t map straight to a radius.
+- Reach for a D3 scale — here’s the interactive, here’s how to apply.
+
+# chapter | 2-drawing-with-data/interactivity
+
+> Now → make the chart interactive.
+- Add state: sizeMetric + selectedGenre, and a basic reactive variable.
+- Use both to vary the chart — show how each one changes the output.
+- Update the loop variables to read them.
+- Copy the block across and explain what it does.
+- Jumpy → smooth it with CSS transitions on the <g> and <circle> elements.
+- CSS can do more than that — paste an example to show.
+
+# chapter | 3-final-project/setup
+
+> Now → the final project: the music chart tile.
+- Walk the shape we’re drawing — the only new piece is the arcs.
+- Arc syntax: draw a basic one on screen as a demo (not data-driven yet).
+! Remember: we’re drawing a single shape here, not the 100+ designs.
+- Use a scale to draw the base circle.
+- Start with popularity → draw a wedge bottom-right, explain its position, then translate it into place.
+- Repeat the same for the other wedges.
+- Time permitting → a more complex design.
