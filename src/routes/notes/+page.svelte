@@ -1,6 +1,6 @@
 <script>
 	import { chapters } from '$components/chapters/chaptersConfig.js';
-	import { notes, slideNotes } from '$lib/content/notes.js';
+	import { notes, slideNotes, chapterIntros } from '$lib/content/notes.js';
 	import ChevronLeft from '@lucide/svelte/icons/chevron-left';
 	import ChevronRight from '@lucide/svelte/icons/chevron-right';
 	import ArrowRight from '@lucide/svelte/icons/arrow-right';
@@ -28,21 +28,35 @@
 		items: s.items ?? []
 	}));
 
-	const chapterScreens = chapters.flatMap((ch) =>
-		(ch.sections ?? []).map((sec, i) => {
-			const entry = notes[`${ch.slug}/${sec.id}`];
+	const chapterScreens = chapters.flatMap((ch) => {
+		const base = { group: 'chapter', chapterId: ch.id, chapterTitle: ch.title };
+		const out = [];
+
+		// Optional chapter opener, shown before the chapter's sections.
+		const intro = chapterIntros[ch.slug];
+		if (intro) {
+			out.push({
+				...base,
+				tag: `${ch.id}`,
+				label: `${ch.id} · ${ch.title}`,
+				title: intro.title || ch.title,
+				items: intro.items ?? []
+			});
+		}
+
+		(ch.sections ?? []).forEach((sec, i) => {
 			const tag = `${ch.id}.${i + 1}`;
-			return {
-				group: 'chapter',
-				chapterId: ch.id,
-				chapterTitle: ch.title,
+			out.push({
+				...base,
 				tag,
 				label: `${tag} · ${ch.title}`,
 				title: sec.title,
-				items: entry?.items ?? []
-			};
-		})
-	);
+				items: notes[`${ch.slug}/${sec.id}`]?.items ?? []
+			});
+		});
+
+		return out;
+	});
 
 	const screens = [...slideScreens, ...chapterScreens];
 
