@@ -81,6 +81,7 @@
 		</section>
 
 		<!-- Additional links -->
+		<!-- 
 		<section class="mb-10">
 			<h2 class="mb-3 font-display text-2xl leading-tight font-normal">Additional Links</h2>
 			<ol class="m-0 grid list-none grid-cols-1 gap-3 p-0 sm:grid-cols-2">
@@ -111,7 +112,8 @@
 					</a>
 				</li>
 			</ol>
-		</section>
+		</section> 
+		-->
 
 		<!-- Sneak peek of the final project -->
 		<section class="">
