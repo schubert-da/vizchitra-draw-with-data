@@ -1,4 +1,7 @@
 <script>
+	// Solution — Exercise 6: the whole dataset drawn at once. Every song is a record
+	// disc — sized by popularity, coloured by genre — laid out on the grid. This is
+	// the canvas we build the final project on.
 	import data from '$assets/data/spotify-2010s.csv';
 	import { CELL, cellPosition, gridSize } from '$components/chapters/2-drawing-with-data/grid.js';
 	import { genreColors } from '$components/chapters/2-drawing-with-data/genre-colors.js';
@@ -24,24 +27,24 @@
 	role="img"
 	aria-label="A grid of every song as a record disc"
 >
-	{#each data as row, i (row["title"] + row["artist"] + row["year"])}
+	{#each data as row, i (row['title'] + row['artist'] + row['year'])}
 		<g transform={cellPosition(i)}>
 			<rect
 				x="0"
 				y="0"
 				width={CELL}
 				height={CELL}
-				fill={genreColors[row["genre"]]}
+				fill={genreColors[row['genre']]}
 				stroke="#fff"
 				stroke-width="2"
 			/>
 
-			<circle cx="100" cy="100" r={scale(row["popularity"])} fill="#351D13" />
+			<circle cx="100" cy="100" r={scale(row['popularity'])} fill="#351D13" />
 			<circle
 				cx="100"
 				cy="100"
-				r={scale(row["popularity"]) * 0.3}
-				fill={genreColors[row["genre"]]}
+				r={scale(row['popularity']) * 0.3}
+				fill={genreColors[row['genre']]}
 				stroke="#fff"
 				stroke-width="4"
 			/>
@@ -57,7 +60,7 @@
 				stroke-width="2"
 				paint-order="stroke"
 			>
-				{row["title"]}
+				{row['title']}
 			</text>
 			<text
 				x="100"
@@ -69,7 +72,7 @@
 				stroke-width="2"
 				paint-order="stroke"
 			>
-				{row["artist"]}
+				{row['artist']}
 			</text>
 		</g>
 	{/each}

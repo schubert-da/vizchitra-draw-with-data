@@ -30,7 +30,7 @@ genreColors[row["genre"]]; // the colour for this row's genre
 
 Now do it in your exercise:
 
-<Exercise file="5-drawing-an-entire-dataset.svelte" bleed>
+<Exercise file="5-drawing-an-entire-dataset.svelte" solution="5-styled.svelte" bleed>
 	<DrawingEntireDataset />
 	{#snippet result()}
 		<ColoredGridDemo />

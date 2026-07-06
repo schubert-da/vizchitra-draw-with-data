@@ -5,55 +5,122 @@
 	// `result` is an optional snippet holding the section's finished demo - when
 	// passed, the frame shows tabs to flip between the student's work and it.
 	// `bleed` lets a wide exercise (e.g. a big grid) spill past the article
-	// column to fill the whole main panel on roomy screens.
-	let { file, bleed = false, children, result } = $props();
+	// column to fill the whole main panel on roomy screens. `solution` names a
+	// specific file under src/exercises/solutions/ to copy - defaults to `file`,
+	// but a section reusing one starter can point at its own solved variant.
+	let { file, bleed = false, solution, children, result } = $props();
 
 	let active = $state('work'); // 'work' | 'solution'
+	let copied = $state(false);
+
+	// Raw source of every drop-in solved exercise, loaded once at build time and
+	// keyed by basename so an <Exercise> can look its solution up by name.
+	const solutionModules = import.meta.glob('../../../exercises/solutions/*.svelte', {
+		query: '?raw',
+		import: 'default',
+		eager: true
+	});
+	const solutionSources = Object.fromEntries(
+		Object.entries(solutionModules).map(([path, src]) => [path.split('/').pop(), src])
+	);
+	const solutionSource = $derived(solutionSources[solution ?? file]);
+
+	async function copySolution() {
+		try {
+			await navigator.clipboard.writeText(solutionSource);
+			copied = true;
+			setTimeout(() => (copied = false), 1800);
+		} catch {
+			// Clipboard unavailable (insecure context or permission denied) - no-op.
+		}
+	}
 </script>
 
-<div class="my-6 rounded-lg border border-text/15 bg-palette-white" class:bleed>
-	<div
-		class="flex items-center gap-2 border-b border-text/10 px-3 py-1.5 text-xs font-[var(--font-code)] text-text/60"
-	>
-		{#if result}
-			<div class="seg" role="tablist" aria-label="Exercise view">
-				<span class="seg-thumb" class:right={active === 'solution'} aria-hidden="true"></span>
-				<button
-					type="button"
-					role="tab"
-					aria-selected={active === 'work'}
-					class="seg-btn"
-					class:on={active === 'work'}
-					onclick={() => (active = 'work')}>Your work</button
-				>
-				<button
-					type="button"
-					role="tab"
-					aria-selected={active === 'solution'}
-					class="seg-btn"
-					class:on={active === 'solution'}
-					onclick={() => (active = 'solution')}>Solution</button
-				>
-			</div>
-		{:else}
-			<span class="font-bold tracking-[0.06em] text-primary uppercase">Your work</span>
-		{/if}
+<div class="my-6" class:bleed>
+	{#if solutionSource}
+		<div class="mb-1.5 flex justify-end">
+			<button type="button" class="copy-solution" class:copied onclick={copySolution}>
+				{copied ? 'Copied!' : 'Copy solution'}
+			</button>
+		</div>
+	{/if}
 
-		{#if active === 'work'}
-			<span class="ml-auto">edit <code class="text-primary-400">src/exercises/{file}</code></span>
-		{/if}
-	</div>
+	<div class="rounded-lg border border-text/15 bg-palette-white">
+		<div
+			class="flex items-center gap-2 border-b border-text/10 px-3 py-1.5 text-xs font-[var(--font-code)] text-text/60"
+		>
+			{#if result}
+				<div class="seg" role="tablist" aria-label="Exercise view">
+					<span class="seg-thumb" class:right={active === 'solution'} aria-hidden="true"></span>
+					<button
+						type="button"
+						role="tab"
+						aria-selected={active === 'work'}
+						class="seg-btn"
+						class:on={active === 'work'}
+						onclick={() => (active = 'work')}>Your work</button
+					>
+					<button
+						type="button"
+						role="tab"
+						aria-selected={active === 'solution'}
+						class="seg-btn"
+						class:on={active === 'solution'}
+						onclick={() => (active = 'solution')}>Solution</button
+					>
+				</div>
+			{:else}
+				<span class="font-bold tracking-[0.06em] text-primary uppercase">Your work</span>
+			{/if}
 
-	<div class="px-4" role="tabpanel">
-		{#if active === 'solution' && result}
-			{@render result()}
-		{:else}
-			{@render children()}
-		{/if}
+			{#if active === 'work'}
+				<span class="ml-auto">edit <code class="text-primary-400">src/exercises/{file}</code></span>
+			{/if}
+		</div>
+
+		<div class="px-4" role="tabpanel">
+			{#if active === 'solution' && result}
+				{@render result()}
+			{:else}
+				{@render children()}
+			{/if}
+		</div>
 	</div>
 </div>
 
 <style>
+	/* A small outlined button above the frame; copies the solved file's source.
+	   currentColor-based so it reads cleanly on either theme, filling with the
+	   accent colour for a moment after a successful copy. */
+	.copy-solution {
+		display: inline-flex;
+		align-items: center;
+		padding: 0.28rem 0.7rem;
+		border: 1px solid color-mix(in srgb, currentColor 22%, transparent);
+		border-radius: 0.4rem;
+		background: transparent;
+		font-family: var(--font-code);
+		font-size: 0.72rem;
+		font-weight: 700;
+		letter-spacing: 0.04em;
+		text-transform: uppercase;
+		color: color-mix(in srgb, currentColor 65%, transparent);
+		cursor: pointer;
+		transition:
+			color 0.18s ease,
+			border-color 0.18s ease,
+			background 0.18s ease;
+	}
+	.copy-solution:hover {
+		color: var(--color-primary, #da7b4f);
+		border-color: color-mix(in srgb, var(--color-primary, #da7b4f) 45%, transparent);
+	}
+	.copy-solution.copied {
+		color: #fff;
+		background: var(--color-primary, #da7b4f);
+		border-color: var(--color-primary, #da7b4f);
+	}
+
 	/* A segmented slider: a pill track with a highlight that slides between the
 	   two options, so it reads clearly as a toggle. */
 	.seg {

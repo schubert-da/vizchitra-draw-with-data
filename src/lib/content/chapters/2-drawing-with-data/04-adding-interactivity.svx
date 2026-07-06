@@ -105,7 +105,7 @@ svg:hover g:hover {
 
 Now make it yours - paste these pieces into the grid from the last section and try it live:
 
-<Exercise file="5-drawing-an-entire-dataset.svelte" bleed>
+<Exercise file="5-drawing-an-entire-dataset.svelte" solution="5-interactive.svelte" bleed>
 	<DrawingEntireDataset />
 	{#snippet result()}
 		<InteractivityDemo />
