@@ -80,6 +80,16 @@
 			</ol>
 		</section>
 
+		<!-- Resources & thanks -->
+		<a
+			href="/resources-and-thanks"
+			class="mb-10 flex items-center gap-3 border border-text/12 px-4 py-3 no-underline transition-colors hover:border-primary hover:bg-primary/5"
+		>
+			<span class="text-[1.05rem] font-semibold">Resources &amp; thanks</span>
+			<span class="text-text/80">Further reading, and the people who helped build this.</span>
+			<ArrowRight class="ml-auto flex-none text-primary" size={20} strokeWidth={2} />
+		</a>
+
 		<!-- Additional links -->
 		<!-- 
 		<section class="mb-10">

@@ -1,0 +1,37 @@
+<script>
+	import { marked } from 'marked';
+	// The reading list lives in a plain Markdown file so it's easy to edit and grow
+	// without touching this page. It's imported raw and rendered inline here.
+	import resourcesRaw from '$lib/content/resources.md?raw';
+
+	const resourcesHtml = marked.parse(resourcesRaw);
+</script>
+
+<p class="eyebrow">Appendix</p>
+
+# Resources & Thanks
+
+Chances are you started with little to no experience in using Svelte and D3, but throughout this workshop you figured out how to draw basic shapes on a browser, manipulate them with data and made a start on your journey to create custom dataviz - and *maybe* along the way realised that code isn't as scary as you thought it was. 
+
+If you were also curious about how you could take this forwards, so here's a couple links to get you started - there's a lot of different directions that you could go with creating on the web, so pick whatever you find interesting.
+
+
+## Additional Resources
+
+{@html resourcesHtml}
+
+## Acknowledgements
+
+I'm a strong believer that **rarely, is anything we produce, built in a vacuum**. There are dozens of people who influence the work we 
+put out. This is just my attempt to list out the handful of folks whose contributions simply can't go unmentioned:
+
+
+- [Amit Kapoor](https://amitkaps.com/): Amit was the primary reviewer for this workshop. With this being my first time teaching, his meticulous edits and guidance saw me through multiple reworks of workshop content and stands today as something I'm confident about sharing with others. 
+- [Gurman Bhatia](https://gurmanbhatia.com/): Besides being my boss, Gurman is a force of positivity in the Indian dataviz community. This workshop is the result of her badgering me throughout the years to get out of my comfort zone and try my hand at speaking (as with *many* other speakers). Shes does [office hours](https://gurmanbhatia.com/office-hours/) too btw.
+- [Aman Bhargava](https://aman.bh): Aside from overcompensating for my first time teaching, Aman's [learning resources](https://teaching.aman.bh/web2025) are the primary inspiration why I have put as much time into this course site. Working together has caused both of us to push and inspire each of us to do so much more, dev or otherwise. 
+- [Arvind V](https://arvindvenkatadri.com/): Arvind reviewed the first draft of this workshop and was honestly the best person to make my first time teaching less intimidating.
+- [Divya Ribeiro](https://www.instagram.com/divyaribeiro/): Divya was my editorial POC and was in every review call and handled *all* of the logistics around the workshop, despite having a ridiculous amount on her plate with VizChitra. Also a [crazy talented illustrator](https://www.instagram.com/divyaribeiro/) btw.
+- **Vivek Matthew, Darshan**: Didn't think I would need help on the day of, but I couldn't have been more wrong. 
+- [Revisual Labs team](https://revisual.co/about): I did a dry run of the workshop with the team a week before VizChitra - explaining things to real people was by far the best barometer of what worked. Surround yourself with people with people that will call you out when they have no clue what you're on about, but *somehow also hype you up* regardless!
+- **Showcased works by**: [Revisual Labs](https://revisual.co), [Urmila J](https://www.instagram.com/vizcrazy/), [Aman Bhargava](https://aman.bh), [Surbhi Bhatia](https://surbhibhatia.com/), [Nadieh Bremer](https://www.visualcinnamon.com/), [Shirley Wu](https://www.shirleywu.studio/), [Amelia Wattenberger](https://wattenberger.com/), [Odd Studio](https://odd.studio/)
+- [Ustwo games](https://ustwogames.co.uk/): I often like to study art direction but trying to emulate things in code. The inspiration for this workshop site is largely around - [Assemble with Care](https://ustwogames.co.uk/our-games/assemble-with-care/) - a cozy game from the makers of *Monument Valley*. You can find some of the visual exploration [here](/experiments) and their insanely well detailed [technical art write-up here](https://medium.com/@ustwogames/technical-art-in-assemble-with-care-9b31792add10).
