@@ -1,14 +1,24 @@
 <script>
+	import { interpolateRgb } from 'd3';
 	import TileGrid from '$components/TileGrid/TileGrid.svelte';
 	import TileLegend from '$components/TileGrid/TileLegend.svelte';
 	import BackgroundBlend from '$components/ArtUtils/BackgroundBlend.svelte';
 	import Boil from '$components/ArtUtils/Boil.svelte';
 
 	// Boiling blend backdrop, matching the landing page (its warm top colours).
+	// Colours warm at the top and cool to blue as you scroll to the bottom.
 	const blend = { displacement: 50, baseFrequency: 0.007, fps: 2, scale: 90, blur: 2 };
-	const colorA = '#f5d784';
-	const colorB = '#bf5e3bb3';
+
+	let scrollY = $state(0);
+	let innerHeight = $state(0);
+	let t = $derived(
+		innerHeight ? Math.min(1, scrollY / (document.documentElement.scrollHeight - innerHeight)) : 0
+	);
+	let colorA = $derived(interpolateRgb('#f5d784', '#42e0ce')(t));
+	let colorB = $derived(interpolateRgb('#bf5e3bb3', '#2b415f')(t));
 </script>
+
+<svelte:window bind:scrollY bind:innerHeight />
 
 <svelte:head><title>Preview • Draw with Data</title></svelte:head>
 
