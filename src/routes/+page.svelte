@@ -5,12 +5,12 @@
 	import BackgroundBlend from '$components/ArtUtils/BackgroundBlend.svelte';
 	import Boil from '$components/ArtUtils/Boil.svelte';
 
-	const finalProject = chapters.find((c) => c.slug === '3-final-project');
+	const finalProject = { path: '/preview' };
 
 	// Boiling blend backdrop, matching the Getting Started page (its warm top colours).
-	const blend = { displacement: 50, baseFrequency: 0.007, fps: 2, scale: 90, blur: 2 };
+	const blend = { displacement: 80, baseFrequency: 0.007, fps: 1, scale: 110, blur: 2 };
 	const colorA = '#f5d784';
-	const colorB = '#bf5e3bb3';
+	const colorB = '#bf5e3b';
 </script>
 
 <svelte:head><title>Draw with Data</title></svelte:head>
